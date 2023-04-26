@@ -4,17 +4,20 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform head;
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float maxSpeed = 50f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float maxSpeed;
 
     [Header("Objects:")]
     [SerializeField] private Animator rifleAnim;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
+    [SerializeField] private GameObject crosshair;
+    [SerializeField] private GameObject scope;
 
     private Rigidbody rb;
     private bool shouldJump = false;
+    private bool ads;
     private Vector3 movement;
 
     // Start is called before the first frame update
@@ -42,6 +45,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.1f, Color.blue);
+
+        if (ads)
+            AimStart();
+        else
+            AimStop();
     }
 
     public void OnMove(InputValue input)
@@ -65,9 +73,10 @@ public class PlayerController : MonoBehaviour
         rifleAnim.SetTrigger("Shoot");
     }
 
-    public void OnAim()
+    public void OnAim(InputValue input)
     {
         rifleAnim.SetBool("ADS", !rifleAnim.GetBool("ADS"));
+        ads = input.isPressed;
     }
 
     public void OnDrop()
@@ -80,5 +89,17 @@ public class PlayerController : MonoBehaviour
         Vector2 res = new Vector2(vel.x, vel.z);
         res = Vector2.ClampMagnitude(res, clampValue);
         return res;
+    }
+
+    private void AimStart()
+    {
+        crosshair.SetActive(false);
+        scope.SetActive(true);
+    }
+
+    private void AimStop()
+    {
+        crosshair.SetActive(true);
+        scope.SetActive(false);
     }
 }

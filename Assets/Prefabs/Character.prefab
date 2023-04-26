@@ -52,12 +52,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 1761868204606840452}
-  moveSpeed: 300
+  moveSpeed: 5000
   jumpForce: 5
-  maxSpeed: 300
+  maxSpeed: 5
   rifleAnim: {fileID: 4054843259902028757}
   bulletPrefab: {fileID: 2776646117404197337, guid: 80e13d194d2d7644cbf224c5aee59687, type: 3}
   bulletSpawnPoint: {fileID: 6440375846857712309}
+  crosshair: {fileID: 0}
+  scope: {fileID: 0}
 --- !u!54 &4613373557657892372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760283044882052000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19700003, y: -0.19799995, z: 0.8790002}
+  m_LocalPosition: {x: 0.19700003, y: -0.19799995, z: 0.687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -289,7 +291,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -330,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 9086566704594835636}
-  mouseSensitivity: 100
+  mouseSensitivity: 1000
   playerBody: {fileID: 1449900856752445663}
 --- !u!1001 &5365587917458499567
 PrefabInstance:
@@ -339,21 +341,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 649514964849123505}
     m_Modifications:
+    - target: {fileID: 4528350694815874131, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4997469823575018140, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4997469823575018140, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.19700003
       objectReference: {fileID: 0}
     - target: {fileID: 4997469823575018140, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.19799995
       objectReference: {fileID: 0}
     - target: {fileID: 4997469823575018140, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.687
       objectReference: {fileID: 0}
     - target: {fileID: 4997469823575018140, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -385,44 +391,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5625353272431480870, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: m_Name
-      value: blasterF
+      value: Blaster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
---- !u!1 &317258820275533769 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5625353272431480870, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
-  m_PrefabInstance: {fileID: 5365587917458499567}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &2633732077176582137
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317258820275533769}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &3926347562348065737
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317258820275533769}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.09717369, y: 0.45999995, z: 1.26}
-  m_Center: {x: 0.005382061, y: 0, z: 0}
 --- !u!4 &1093514461036260723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4997469823575018140, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
