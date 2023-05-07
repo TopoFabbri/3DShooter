@@ -8,13 +8,18 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject ps;
 
+    [SerializeField] private bool addPlayerVel;
+
     private Transform character;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.forward * speed;
-        character = GameObject.FindGameObjectWithTag("Character").transform;
+        character = GameObject.Find("Blaster").transform;
+        rb.velocity = character.transform.forward * speed;
+
+        if (addPlayerVel)
+            rb.velocity += character.GetComponent<Rigidbody>().velocity;
     }
 
     // Update is called once per frame

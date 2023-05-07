@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2232681317730221317}
   - component: {fileID: 2258691574598215783}
   - component: {fileID: 2769742968444626374}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   speed: 100
   rb: {fileID: 2769742968444626374}
   ps: {fileID: 8214336893352226562, guid: 931d1aa3e8ccdb84991b0199c090f3cd, type: 3}
+  addPlayerVel: 1
 --- !u!33 &6021713485177760160
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -198,6 +199,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b41bd83ab4f57884bae0f732101bf0a9, type: 3}
       propertyPath: m_Name
       value: foamBulletB
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b41bd83ab4f57884bae0f732101bf0a9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b41bd83ab4f57884bae0f732101bf0a9, type: 3}
