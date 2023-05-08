@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float recoil = 10f;
 
-    [Header("Objects:")] [SerializeField] private GameObject weapon;
+    [Header("Objects:")][SerializeField] private GameObject weapon;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private GameObject crosshair;
@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private bool shot = false;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         cameraMovement = GetComponentInChildren<CameraMovement>();
         rb = GetComponent<Rigidbody>();
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(movement.x * transform.right + movement.z * transform.forward, ForceMode.Acceleration);
+        rb.AddForce((movement.x * transform.right + movement.z * transform.forward) * Time.fixedDeltaTime, ForceMode.Acceleration);
         Vector2 tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
         rb.velocity = new Vector3(tmp.x, rb.velocity.y, tmp.y);
 
@@ -45,8 +45,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.1f, Color.blue);
 
@@ -68,7 +67,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue input)
     {
         var direction = input.Get<Vector2>();
-        movement = new Vector3(direction.x, 0, direction.y) * moveSpeed * Time.deltaTime;
+        movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
     }
 
     public void OnJump()
@@ -82,12 +81,11 @@ public class PlayerController : MonoBehaviour
     public void OnShoot(InputValue value)
     {
         shot = value.isPressed;
-        
+
         if (shot && weapon)
-        {
-            Instantiate(bulletPrefab, bulletSpawnPoint.position, weapon.transform.rotation);
-            ps.Play();
-        }
+            weapon.GetComponent<Gun>().Shoot(bulletSpawnPoint.transform);
+
+        ps.Play();
     }
 
     public void OnAim(InputValue input)

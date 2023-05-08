@@ -1,35 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour
 {
-    private GameObject hand;
-    private Rigidbody rb;
-    private BoxCollider collider;
+    public abstract void DropGun();
 
-    private void Start()
-    {
-        hand = GameObject.Find("Hand");
-        rb = GetComponent<Rigidbody>();
-        collider = GetComponent<BoxCollider>();
-    }
+    public abstract void GrabGun(Transform parent);
 
-    public void DropGun()
-    {
-        rb.useGravity = true;
-        collider.isTrigger = false;
-        hand.SetActive(false);
-        transform.parent = null;
-    }
-
-    public void GrabGun(Transform parent)
-    {
-        rb.useGravity = false;
-        collider.isTrigger = true;
-        hand.SetActive(true);
-        transform.parent = parent;
-    }
+    public abstract void Shoot(Transform bulletSpawnPoint);
 }

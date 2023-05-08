@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 4528350694815874131}
   - component: {fileID: 8914955610770326910}
   m_Layer: 7
-  m_Name: blasterF
+  m_Name: RayPython
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9f35b0222a1444a8685ade5e0edf9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2776646117404197337, guid: 80e13d194d2d7644cbf224c5aee59687, type: 3}
 --- !u!1001 &5642331400581249161
 PrefabInstance:
   m_ObjectHideFlags: 0
