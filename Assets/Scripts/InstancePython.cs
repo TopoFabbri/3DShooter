@@ -7,14 +7,9 @@ using UnityEngine.XR;
 public class InstancePython : Gun
 {
     [SerializeField] private GameObject bulletPrefab;
-
-    private GameObject hand;
-    private Rigidbody rb;
-    private BoxCollider collider;
-
+   
     private void Start()
     {
-        hand = GameObject.Find("Hand");
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
     }
@@ -25,6 +20,7 @@ public class InstancePython : Gun
         collider.isTrigger = false;
         hand.SetActive(false);
         transform.parent = null;
+        rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
     }
 
     public override void GrabGun(Transform parent)
@@ -35,7 +31,7 @@ public class InstancePython : Gun
         transform.parent = parent;
     }
 
-    public override void Shoot(Transform bulletSpawnPoint)
+    public override void Shoot()
     {
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
     }

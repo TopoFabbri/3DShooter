@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject ps;
+    [SerializeField] private float damage = 20f;
 
     [SerializeField] private bool addPlayerVel;
 
@@ -15,7 +16,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        character = GameObject.Find("Blaster").transform;
+        character = GameObject.Find("Character").GetComponentInChildren<Gun>().transform;
         rb.velocity = character.transform.forward * speed;
 
         if (addPlayerVel)
@@ -32,6 +33,9 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Instantiate(ps, transform.position, Quaternion.identity);
+        
+        if (collision.gameObject.CompareTag("Enemy"))
+            collision.gameObject.GetComponent<Stats>().LoseLife(damage);
     }
 
     private void OnCollisionExit(Collision collision)

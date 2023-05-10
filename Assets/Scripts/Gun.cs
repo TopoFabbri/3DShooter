@@ -4,9 +4,14 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
+    [SerializeField] protected GameObject hand;
+    [SerializeField] protected Transform bulletSpawnPoint;
+    protected Rigidbody rb;
+    protected BoxCollider collider;
+
     public abstract void DropGun();
 
     public abstract void GrabGun(Transform parent);
 
-    public abstract void Shoot(Transform bulletSpawnPoint);
+    public abstract void Shoot();
 }

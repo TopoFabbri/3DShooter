@@ -11,20 +11,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float recoil = 10f;
 
-    [Header("Objects:")][SerializeField] private GameObject weapon;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform bulletSpawnPoint;
+    [Header("Objects:")] [SerializeField] private GameObject weapon;
     [SerializeField] private GameObject crosshair;
-    [SerializeField] private GameObject scope;
-    [SerializeField] private ParticleSystem ps;
 
+    private ParticleSystem ps;
     private CameraMovement cameraMovement;
     private Rigidbody rb;
     private bool shouldJump = false;
     private bool ads;
     private Vector3 movement;
     private bool shot = false;
-
 
     private void Start()
     {
@@ -34,7 +30,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce((movement.x * transform.right + movement.z * transform.forward) * Time.fixedDeltaTime, ForceMode.Acceleration);
+        rb.AddForce((movement.x * transform.right + movement.z * transform.forward) * Time.fixedDeltaTime,
+            ForceMode.Acceleration);
         Vector2 tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
         rb.velocity = new Vector3(tmp.x, rb.velocity.y, tmp.y);
 
@@ -83,9 +80,10 @@ public class PlayerController : MonoBehaviour
         shot = value.isPressed;
 
         if (shot && weapon)
-            weapon.GetComponent<Gun>().Shoot(bulletSpawnPoint.transform);
-
-        ps.Play();
+        {
+            weapon.GetComponent<Gun>().Shoot();
+            ps.Play();
+        }
     }
 
     public void OnAim(InputValue input)
@@ -97,6 +95,7 @@ public class PlayerController : MonoBehaviour
     {
         weapon.GetComponent<Gun>().DropGun();
         weapon = null;
+        ps = null;
     }
 
     public void OnGrab()
@@ -108,8 +107,16 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag("Gun"))
             {
+                if (weapon)
+                {
+                    weapon.GetComponent<Gun>().DropGun();
+                    weapon = null;
+                    ps = null;
+                }
+
                 hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
                 weapon = hit.transform.gameObject;
+                ps = weapon.GetComponentInChildren<ParticleSystem>();
             }
         }
     }
