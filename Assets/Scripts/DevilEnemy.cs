@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,15 @@ public class DevilEnemy : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float fireDis = 5f;
     [SerializeField] private float cooldown = 1f;
+    [SerializeField] private float longCooldown = 5f;
     [SerializeField] private GameObject fireBall;
+    [SerializeField] private Transform life;
 
     private Transform target;
     private Rigidbody rb;
-    private List<GameObject> fireBalls = new List<GameObject>();
     private List<float> fbTime = new List<float>();
     private float nextFireTime = 0;
+    private int fireCount = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -26,10 +29,10 @@ public class DevilEnemy : MonoBehaviour
     private void Update()
     {
         transform.LookAt(target);
-        
-        if (Time.time > nextFireTime || nextFireTime < cooldown)
+
+        if (Time.time > nextFireTime)
         {
-            if (Vector3.Distance(transform.position, target.position) > fireDis || fireBalls.Count >= 3)
+            if (Vector3.Distance(transform.position, target.position) > fireDis)
                 rb.velocity = speed * transform.forward;
             else
                 Shoot();
@@ -38,7 +41,13 @@ public class DevilEnemy : MonoBehaviour
 
     private void Shoot()
     {
-        nextFireTime = Time.time + cooldown;
-        fireBalls.Add(Instantiate<GameObject>(fireBall, transform.position + transform.forward, transform.rotation));
+        fireCount++;
+
+        nextFireTime = Time.time + (fireCount >= 3 ? longCooldown : cooldown);
+
+        if (fireCount >= 3)
+            fireCount = 0;
+
+        Instantiate<GameObject>(fireBall, transform.position + transform.forward, transform.rotation);
     }
 }

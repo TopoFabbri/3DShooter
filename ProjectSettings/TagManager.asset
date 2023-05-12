@@ -9,6 +9,7 @@ TagManager:
   - Character
   - Gun
   - Enemy
+  - Walls
   layers:
   - Default
   - TransparentFX

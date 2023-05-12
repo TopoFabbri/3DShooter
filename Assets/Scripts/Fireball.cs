@@ -8,7 +8,7 @@ public class Fireball : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private float damage = 25f;
     private Rigidbody rb;
-    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -23,9 +23,11 @@ public class Fireball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Character"))
+        if (other.GetComponent<Stats>())
         {
             other.GetComponent<Stats>().LoseLife(damage);
         }
+
+        Destroy(gameObject);
     }
 }

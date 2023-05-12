@@ -37,15 +37,17 @@ public class RayPython : Gun
         Ray ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
         RaycastHit hit = new RaycastHit();
 
-        if (Physics.Raycast(ray, out hit)) 
+        if (Physics.Raycast(ray, out hit))
         {
             Instantiate(ps, hit.point, Quaternion.identity);
 
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.gameObject.GetComponent<Rigidbody>()?.AddForce(transform.forward * strength, ForceMode.Impulse);
                 hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
             }
+
+            if (hit.transform.gameObject.GetComponent<Rigidbody>())
+                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * strength, ForceMode.Impulse);
         }
     }
 }
