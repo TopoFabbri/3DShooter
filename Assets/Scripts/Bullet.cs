@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 450f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject ps;
     [SerializeField] private float damage = 20f;
+    [FormerlySerializedAs("life")] [SerializeField] private float lifeTime = 5f;
 
     [SerializeField] private bool addPlayerVel;
+
+    private float destroyTime;
 
     private Transform character;
 
@@ -17,16 +21,18 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         character = GameObject.Find("Character").GetComponentInChildren<Gun>().transform;
-        rb.velocity = character.transform.forward * speed;
+        rb.velocity = transform.forward * speed;
 
         if (addPlayerVel)
             rb.velocity += character.GetComponent<Rigidbody>().velocity;
+
+        destroyTime = Time.time + lifeTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, character.position) > 100f)
+        if (Time.time > destroyTime)
             Destroy(gameObject);
     }
 
@@ -34,12 +40,7 @@ public class Bullet : MonoBehaviour
     {
         Instantiate(ps, transform.position, Quaternion.identity);
         
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.GetComponent<Stats>())
             collision.gameObject.GetComponent<Stats>().LoseLife(damage);
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        Destroy(gameObject);
     }
 }

@@ -44,8 +44,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawLine(transform.position, transform.position + Vector3.down * 1.1f, Color.blue);
-
         if (ads)
             AimStart();
         else
@@ -57,7 +55,7 @@ public class PlayerController : MonoBehaviour
         if (weapon)
         {
             weapon.transform.position = cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
-            weapon.transform.LookAt(weapon.transform.position + cameraMovement.GetWorldMouseDir());
+            weapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
         }
     }
 
@@ -105,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.gameObject.CompareTag("Gun"))
+            if (hit.transform.gameObject.CompareTag("Gun") && Vector3.Distance(hit.transform.position, transform.position) < 3f)
             {
                 if (weapon)
                 {

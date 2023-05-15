@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NormalEnemy : MonoBehaviour
@@ -8,6 +10,8 @@ public class NormalEnemy : MonoBehaviour
     
     private Transform target;
     private Rigidbody rb;
+    private float damageTime = 2f;
+    private float cooldown;
     
     // Start is called before the first frame update
     private void Start()
@@ -21,5 +25,23 @@ public class NormalEnemy : MonoBehaviour
     {
         transform.LookAt(target);
         rb.velocity = speed * transform.forward;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Character"))
+        {
+            other.gameObject.GetComponent<Stats>().LoseLife(10f);
+            cooldown = Time.time + damageTime;
+        }
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (Time.time > cooldown && other.gameObject.CompareTag("Character"))
+        {
+            other.gameObject.GetComponent<Stats>().LoseLife(10f);
+            cooldown = Time.time + damageTime;
+        }
     }
 }

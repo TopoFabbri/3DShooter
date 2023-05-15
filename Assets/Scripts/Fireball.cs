@@ -21,12 +21,10 @@ public class Fireball : MonoBehaviour
         rb.velocity = transform.forward * speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.GetComponent<Stats>())
-        {
-            other.GetComponent<Stats>().LoseLife(damage);
-        }
+        if (other.gameObject.GetComponent<Stats>())
+            other.gameObject.GetComponent<Stats>().LoseLife(damage);
 
         Destroy(gameObject);
     }

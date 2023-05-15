@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    [SerializeField] private float hp = 100;
+    [SerializeField] private float hp = 100f;
+    [SerializeField] private float lifeRegen = 0f;
     [SerializeField] private Transform life;
 
-    // Start is called before the first frame update
     private void Start()
     {
-        
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (hp <= 0)
             Die();
+
+        hp += lifeRegen * Time.deltaTime;
+        hp = Mathf.Clamp(hp, 0f, 100f);
 
         if (life)
         {
@@ -34,6 +35,12 @@ public class Stats : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        if (!CompareTag("Character"))
+            Destroy(gameObject);
+    }
+
+    public float GetHp()
+    {
+        return hp;
     }
 }

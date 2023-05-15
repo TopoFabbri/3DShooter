@@ -7,16 +7,25 @@ using UnityEngine.XR;
 public class InstancePython : Gun
 {
     [SerializeField] private GameObject bulletPrefab;
-   
+    [SerializeField] private GameObject sprite;
+    [SerializeField] private Transform character;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
     }
 
+    private void Update()
+    {
+        sprite.transform.position = transform.position + Vector3.up;
+        sprite.transform.LookAt(character.position);
+    }
+
     public override void DropGun()
     {
         rb.useGravity = true;
+        sprite.SetActive(true);
         collider.isTrigger = false;
         hand.SetActive(false);
         transform.parent = null;
@@ -26,6 +35,7 @@ public class InstancePython : Gun
     public override void GrabGun(Transform parent)
     {
         rb.useGravity = false;
+        sprite.SetActive(false);
         collider.isTrigger = true;
         hand.SetActive(true);
         transform.parent = parent;

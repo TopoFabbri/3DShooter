@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4120803325681411507}
   - component: {fileID: 7802463989186662147}
-  - component: {fileID: 6021713485177760160}
-  - component: {fileID: 2232681317730221317}
   - component: {fileID: 2258691574598215783}
   - component: {fileID: 2769742968444626374}
   m_Layer: 6
@@ -52,58 +50,9 @@ MonoBehaviour:
   speed: 100
   rb: {fileID: 2769742968444626374}
   ps: {fileID: 8214336893352226562, guid: 931d1aa3e8ccdb84991b0199c090f3cd, type: 3}
+  damage: 20
+  lifeTime: 5
   addPlayerVel: 1
---- !u!33 &6021713485177760160
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2776646117404197337}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2232681317730221317
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2776646117404197337}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 4875329586141879171, guid: b41bd83ab4f57884bae0f732101bf0a9, type: 3}
-  - {fileID: -5354028657143720620, guid: b41bd83ab4f57884bae0f732101bf0a9, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2258691574598215783
 SphereCollider:
   m_ObjectHideFlags: 0
