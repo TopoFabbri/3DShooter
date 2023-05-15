@@ -53,7 +53,7 @@ public class RayPython : Gun
                 hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
 
             if (hit.transform.gameObject.GetComponent<Rigidbody>())
-                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * strength, ForceMode.Impulse);
+                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
         }
     }
 }

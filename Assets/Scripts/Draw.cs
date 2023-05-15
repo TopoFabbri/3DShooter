@@ -44,6 +44,11 @@ public class Draw : MonoBehaviour
         Debug.DrawLine(point - Vector3.left * size / 2f, point + Vector3.left * size / 2f, color);
         Debug.DrawLine(point - Vector3.forward * size / 2f, point + Vector3.forward * size / 2f, color);
     }
+
+    public static void Ray(Ray ray, Color color)
+    {
+        Debug.DrawRay(ray.origin, ray.direction, color);
+    }
     
     public static void Point(Vector3 point, float size, float delay)
     {
