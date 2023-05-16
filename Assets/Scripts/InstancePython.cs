@@ -18,6 +18,7 @@ public class InstancePython : Gun
 
     private void Update()
     {
+        base.Update();
         sprite.transform.position = transform.position + Vector3.up;
         sprite.transform.LookAt(character.position);
     }
@@ -43,6 +44,10 @@ public class InstancePython : Gun
 
     public override void Shoot()
     {
-        Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        if (!isReloading)
+        {
+            Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            chamber--;
+        }
     }
 }

@@ -18,9 +18,11 @@ public class RayPython : Gun
 
     private void Update()
     {
+        base.Update();
         sprite.transform.position = transform.position + Vector3.up;
         sprite.transform.LookAt(character.position);
     }
+    
     public override void DropGun()
     {
         rb.useGravity = true;
@@ -42,18 +44,23 @@ public class RayPython : Gun
 
     public override void Shoot()
     {
-        Ray ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
-        RaycastHit hit = new RaycastHit();
-
-        if (Physics.Raycast(ray, out hit))
+        if (!isReloading)
         {
-            Instantiate(ps, hit.point, Quaternion.identity);
+            Ray ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
+            RaycastHit hit = new RaycastHit();
 
-            if (hit.transform.gameObject.GetComponent<Stats>())
-                hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Instantiate(ps, hit.point, Quaternion.identity);
 
-            if (hit.transform.gameObject.GetComponent<Rigidbody>())
-                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
+                if (hit.transform.gameObject.GetComponent<Stats>())
+                    hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
+
+                if (hit.transform.gameObject.GetComponent<Rigidbody>())
+                    hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
+            }
+
+            chamber--;
         }
     }
 }
