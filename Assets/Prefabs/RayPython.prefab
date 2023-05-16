@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 4555439334314141241}
   - component: {fileID: 8259525399008471756}
   - component: {fileID: 1418276753163355219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,6 +425,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4997469823575018140}
     m_Modifications:
+    - target: {fileID: 1172410495222944412, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809499876439083558, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3579248735665761146, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -481,9 +489,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3819401526212752849, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4244602441304109504, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
       propertyPath: m_Name
       value: Colt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244602441304109504, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026674176105141103, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888285531418094412, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5e2cfac3dc9bf943b96d8cc682440c7, type: 3}

@@ -49,6 +49,11 @@ public class Draw : MonoBehaviour
     {
         Debug.DrawRay(ray.origin, ray.direction, color);
     }
+
+    public static void Line(Vector3 start, Vector3 dir, float length)
+    {
+        Debug.DrawLine(start, start + dir * length, color);
+    }
     
     public static void Point(Vector3 point, float size, float delay)
     {

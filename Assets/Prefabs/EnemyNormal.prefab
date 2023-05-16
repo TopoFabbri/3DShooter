@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 4259751715390509325}
   - component: {fileID: 4910925692431632602}
   - component: {fileID: 6625045434142015474}
+  - component: {fileID: 6324731538647066611}
   m_Layer: 0
   m_Name: EnemyNormal
   m_TagString: Enemy
@@ -195,6 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  leftRayOrigin: {fileID: 0}
+  rightRayOrigin: {fileID: 0}
 --- !u!114 &6625045434142015474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +213,20 @@ MonoBehaviour:
   hp: 100
   lifeRegen: 0
   life: {fileID: 724345844084816989}
+--- !u!114 &6324731538647066611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611229226745734839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528e80e33946e63498ca7a8135048420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.5
+  detectionDis: 1
 --- !u!1001 &3170238141101934861
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9719,6 +9719,7 @@ GameObject:
   - component: {fileID: 4259751715390509325}
   - component: {fileID: 3727829341014317724}
   - component: {fileID: 1723215673720494278}
+  - component: {fileID: 1165602744406655865}
   m_Layer: 0
   m_Name: EnemyDevil
   m_TagString: Enemy
@@ -9794,6 +9795,20 @@ MonoBehaviour:
   hp: 100
   lifeRegen: 0
   life: {fileID: 8341668384956792066}
+--- !u!114 &1165602744406655865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611229226745734839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528e80e33946e63498ca7a8135048420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.5
+  detectionDis: 1
 --- !u!1001 &6274736317127878824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9873,19 +9888,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d0c77be9901429c468b38bafbc2e129f, type: 3}
   m_PrefabInstance: {fileID: 6274736317127878824}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7344028171338165617
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6617264215900771833}
-  m_Material: {fileID: 13400000, guid: bce0398986591d24b9bc4d5e59fab236, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8884629, y: 4.2774725, z: 1.5876781}
-  m_Center: {x: -0.004373712, y: 3.0851104, z: -0.020852001}
 --- !u!135 &361966773
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9899,3 +9901,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.71
   m_Center: {x: 0, y: 0.87, z: 0}
+--- !u!65 &7344028171338165617
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6617264215900771833}
+  m_Material: {fileID: 13400000, guid: bce0398986591d24b9bc4d5e59fab236, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8884629, y: 4.2774725, z: 1.5876781}
+  m_Center: {x: -0.004373712, y: 3.0851104, z: -0.020852001}

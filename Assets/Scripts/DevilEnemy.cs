@@ -12,6 +12,7 @@ public class DevilEnemy : MonoBehaviour
     [SerializeField] private GameObject fireBall;
     [SerializeField] private Transform life;
 
+    private ObstacleEvasion obstacleEvasion;
     private Transform target;
     private Rigidbody rb;
     private List<float> fbTime = new List<float>();
@@ -21,6 +22,7 @@ public class DevilEnemy : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        obstacleEvasion = GetComponent<ObstacleEvasion>();
         target = GameObject.Find("Character").transform;
         rb = GetComponent<Rigidbody>();
     }
@@ -33,9 +35,14 @@ public class DevilEnemy : MonoBehaviour
         if (Time.time > nextFireTime)
         {
             if (Vector3.Distance(transform.position, target.position) > fireDis)
+            {
+                obstacleEvasion.CheckAndEvade();
                 rb.velocity = speed * transform.forward;
+            }
             else
+            {
                 Shoot();
+            }
         }
     }
 
