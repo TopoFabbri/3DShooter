@@ -1086,8 +1086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnemies: 20
-  devilDensity: 8
-  spawnCooldown: 2
+  devilDensity: 4
+  spawnCooldown: 1.5
   enemyPrefab:
   - {fileID: 4611229226745734839, guid: 9e57ae7e69180c64da805973433c255f, type: 3}
   - {fileID: 4611229226745734839, guid: 068f92f40d7e85b4ebee48a42dd0d90c, type: 3}

@@ -39,8 +39,7 @@ public class Stats : MonoBehaviour
 
     private void Die()
     {
-        if (!CompareTag("Character"))
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     public float GetHp()

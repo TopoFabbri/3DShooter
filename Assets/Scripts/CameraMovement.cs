@@ -49,7 +49,7 @@ public class CameraMovement : MonoBehaviour
 
         if (Physics.Raycast(worldMouse, out hit, 100f, ~(1 << 7)))
             worldMouseDir = hit.point;
-        else 
+        else
             worldMouseDir = worldMouse.origin + worldMouse.direction * 100f;
 
         float yRot = 0;
@@ -80,14 +80,14 @@ public class CameraMovement : MonoBehaviour
         if (!ads)
         {
             Vector2 mouse = input.Get<Vector2>();
+
             mouse.x /= Screen.width;
             mouse.y /= Screen.height;
-        
+
             xRotation -= mouse.y * mouseSensitivity;
             xRotation = Mathf.Clamp(xRotation, -89f, 89f);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouse.x * mouseSensitivity);
-            
         }
     }
 }

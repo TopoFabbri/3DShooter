@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -132,7 +133,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnReload()
     {
-        weapon.Reload();
+        if (weapon)
+            weapon.Reload();
     }
 
     private Vector2 ClampPlaneVelocity(Vector3 vel, float clampValue)
@@ -159,5 +161,10 @@ public class PlayerController : MonoBehaviour
     public Gun GetWeapon()
     {
         return weapon;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(4);
     }
 }

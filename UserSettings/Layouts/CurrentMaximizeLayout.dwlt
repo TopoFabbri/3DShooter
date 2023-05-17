@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1680
     height: 917
-  m_MinSize: {x: 300, y: 100}
-  m_MaxSize: {x: 24288, y: 8096}
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 1036
+  controlID: 26067
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -45,10 +45,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
-    y: 73
-    width: 1134
-    height: 896
+    x: 1382
+    y: 684
+    width: 297
+    height: 285
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1134, y: 638}
+  m_TargetSize: {x: 297, y: 167}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -75,10 +75,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -567
-    m_HBaseRangeMax: 567
-    m_VBaseRangeMin: -319
-    m_VBaseRangeMax: 319
+    m_HBaseRangeMin: -148.5
+    m_HBaseRangeMax: 148.5
+    m_VBaseRangeMin: -83.5
+    m_VBaseRangeMax: 83.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -96,23 +96,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1134
-      height: 875
+      width: 297
+      height: 264
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 567, y: 437.5}
+    m_Translation: {x: 148.5, y: 132}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -567
-      y: -437.5
-      width: 1134
-      height: 875
+      x: -148.5
+      y: -132
+      width: 297
+      height: 264
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1134, y: 896}
+  m_LastWindowPixelSize: {x: 297, y: 285}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -137,12 +137,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1367
+    width: 1382
     height: 917
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 1037
+  controlID: 94
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -160,7 +160,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 231
+    width: 230
     height: 917
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
@@ -191,7 +191,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
-    width: 230
+    width: 229
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 12bb0000
-      m_LastClickedID: 47890
-      m_ExpandedIDs: 424ffeffc2ba0000fcba0000
+      m_SelectedIDs: e8afffff
+      m_LastClickedID: -20504
+      m_ExpandedIDs: 98a8ffffe8afffffbcb0ffff66dafffffaddffff8cf5ffffb4f6ffffdcf7ffff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -219,7 +219,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -237,28 +237,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 231
+    x: 230
     y: 0
-    width: 1136
+    width: 1152
     height: 917
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 2}
+  m_ActualView: {fileID: 7}
   m_Panes:
   - {fileID: 7}
-  - {fileID: 2}
   - {fileID: 8}
   - {fileID: 9}
   - {fileID: 10}
   - {fileID: 11}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 5
+  m_Selected: 0
+  m_LastSelected: 0
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -279,9 +278,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
+    x: 230
     y: 73
-    width: 1134
+    width: 1150
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -510,7 +509,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 4611686018427387906
+  m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
@@ -518,9 +517,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 29.515245, y: 18.279982, z: 11.657531}
+    m_Target: {x: 7.723289, y: -2.0650933, z: 6.523383}
     speed: 2
-    m_Value: {x: 29.515245, y: 18.279982, z: 11.657531}
+    m_Value: {x: 7.723289, y: -2.0650933, z: 6.523383}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -567,13 +566,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.11075402, y: 0.7347107, z: -0.12370443, w: -0.65777236}
+    m_Target: {x: 0.31107873, y: 0.13708112, z: -0.045399792, w: 0.9393499}
     speed: 2
-    m_Value: {x: -0.11075217, y: 0.7346984, z: -0.12370237, w: -0.6577614}
+    m_Value: {x: 0.31107867, y: 0.13708109, z: -0.04539978, w: 0.93934965}
   m_Size:
-    m_Target: 0.32287082
+    m_Target: 12.124355
     speed: 2
-    m_Value: 0.32287082
+    m_Value: 12.124355
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -591,7 +590,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.14363147, y: 0.049554106, z: -0.007197269, w: -0.98838097}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -618,9 +617,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
+    x: 230
     y: 73
-    width: 1134
+    width: 1150
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -628,14 +627,14 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_PosLeft: {x: 0, y: 0}
-  m_PosRight: {x: 0, y: 66}
+  m_PosRight: {x: 0, y: 0}
   m_Scope: 1
   m_SplitterFlex: 0.2
   m_SearchText: 
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e594f01a
-    m_LastClickedID: 451974373
+    m_SelectedIDs: 7f0eae07
+    m_LastClickedID: 128847487
     m_ExpandedIDs: a01a5fa653336be200000000c53aba5a
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -674,9 +673,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
+    x: 230
     y: 73
-    width: 1134
+    width: 1150
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -703,9 +702,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 237
+    x: 230
     y: 73
-    width: 1153
+    width: 1150
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -759,9 +758,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 231
+    x: 230
     y: 73
-    width: 1134
+    width: 1150
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -792,9 +791,9 @@ MonoBehaviour:
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1f319e6b
-    m_LastClickedID: 1805529375
-    m_ExpandedIDs: 6729a2dd26101651fb011751
+    m_SelectedIDs: 1d4eeb7d
+    m_LastClickedID: 2112572957
+    m_ExpandedIDs: d9a8c8acbd36e8be14ec96bf6729a2dd0f551428c8aa372e709fa43a3cfad83a95924844fb011751d59dd05d
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -828,7 +827,7 @@ MonoBehaviour:
         selectedIndex: -1
         scroll: {x: 0, y: 0}
       - itemId: 403810634
-        selectedIndex: 0
+        selectedIndex: 1
         scroll: {x: 0, y: 0}
       - itemId: 82801685
         selectedIndex: 0
@@ -850,6 +849,9 @@ MonoBehaviour:
         scroll: {x: 0, y: 0}
       - itemId: 1081013944
         selectedIndex: -1
+        scroll: {x: 0, y: 0}
+      - itemId: 656259478
+        selectedIndex: 0
         scroll: {x: 0, y: 0}
     m_ManualPathEditMode: 0
   m_ActionAssetManager:
@@ -891,8 +893,17 @@ MonoBehaviour:
       \"type\": \"Value\",\n                    \"id\": \"68e5404d-e5d9-49e1-9c08-4f6a2ebd5d1a\",\n                   
       \"expectedControlType\": \"Vector2\",\n                    \"processors\":
       \"\",\n                    \"interactions\": \"\",\n                    \"initialStateCheck\":
-      true\n                }\n            ],\n            \"bindings\": [\n               
-      {\n                    \"name\": \"WASD\",\n                    \"id\": \"9a65fe61-9457-4f2e-962e-da4fd01f932e\",\n                   
+      true\n                },\n                {\n                    \"name\":
+      \"Pause\",\n                    \"type\": \"Button\",\n                   
+      \"id\": \"2b31ad67-934e-4af5-a3c4-25317ae6d427\",\n                    \"expectedControlType\":
+      \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"Press\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"Restart\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"29398502-da1d-4898-81e6-096e7f0dcbb2\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      }\n            ],\n            \"bindings\": [\n                {\n                   
+      \"name\": \"WASD\",\n                    \"id\": \"9a65fe61-9457-4f2e-962e-da4fd01f932e\",\n                   
       \"path\": \"2DVector\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Move\",\n                    \"isComposite\": true,\n                   
@@ -917,42 +928,244 @@ MonoBehaviour:
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Move\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": true\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"0087da50-4ea1-428d-b9c6-90ef714b4920\",\n                   
+      \"name\": \"Gamepad\",\n                    \"id\": \"d6c914f6-1a48-48e4-b0d5-6beea8a09415\",\n                   
+      \"path\": \"2DVector\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Move\",\n                    \"isComposite\": true,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"up\",\n                    \"id\": \"09eb5e84-2f67-4429-99c8-f844f9234d7f\",\n                   
+      \"path\": \"<Gamepad>/leftStick/up\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Move\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"down\",\n                    \"id\": \"48957025-22e3-4a91-9a11-426dbe155468\",\n                   
+      \"path\": \"<Gamepad>/leftStick/down\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Move\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"left\",\n                    \"id\": \"e00ca0a5-8f4e-4eb8-b0c0-533cd0837711\",\n                   
+      \"path\": \"<Gamepad>/leftStick/left\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Move\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"right\",\n                    \"id\": \"843abdfb-66f2-49ce-8529-32f1011cde6f\",\n                   
+      \"path\": \"<Gamepad>/leftStick/right\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Move\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"0087da50-4ea1-428d-b9c6-90ef714b4920\",\n                   
       \"path\": \"<Mouse>/leftButton\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Shoot\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"72c418c8-895b-4fe6-ae7e-eaa6b7cc1afd\",\n                   
+      \"name\": \"\",\n                    \"id\": \"e38c2b23-a3de-44e6-90c3-ad2dd0b21777\",\n                   
+      \"path\": \"<Gamepad>/rightTrigger\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Shoot\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"72c418c8-895b-4fe6-ae7e-eaa6b7cc1afd\",\n                   
       \"path\": \"<Keyboard>/space\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Jump\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"f7e41822-09ff-4404-9b77-c26d5fc5e79e\",\n                   
+      \"name\": \"\",\n                    \"id\": \"29d2be7b-3128-49b6-8916-5bee906d6a15\",\n                   
+      \"path\": \"<Gamepad>/buttonSouth\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Jump\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"f7e41822-09ff-4404-9b77-c26d5fc5e79e\",\n                   
       \"path\": \"<Mouse>/rightButton\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Aim\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"06a7ac5c-1807-4967-b09d-34e2bf72ef27\",\n                   
+      \"name\": \"\",\n                    \"id\": \"f2d9d375-b4cd-41a4-b562-f1a527759d81\",\n                   
+      \"path\": \"<Gamepad>/leftTrigger\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Aim\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"06a7ac5c-1807-4967-b09d-34e2bf72ef27\",\n                   
       \"path\": \"<Keyboard>/g\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Drop\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"2f63a3d3-0fd8-44a8-b7a5-3a8574b64999\",\n                   
+      \"name\": \"\",\n                    \"id\": \"075eba6f-345d-4f9c-bb84-932ab941bd22\",\n                   
+      \"path\": \"<Gamepad>/buttonNorth\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Drop\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"2f63a3d3-0fd8-44a8-b7a5-3a8574b64999\",\n                   
       \"path\": \"<Keyboard>/f\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Grab\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"d3cff3d1-1aec-4744-baea-092bf79dd408\",\n                   
+      \"name\": \"\",\n                    \"id\": \"8273fa51-4724-4fae-a8bd-edeab4a88292\",\n                   
+      \"path\": \"<Gamepad>/buttonEast\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Grab\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"d3cff3d1-1aec-4744-baea-092bf79dd408\",\n                   
       \"path\": \"<Keyboard>/r\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Reload\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"646a8432-93eb-42ac-9be2-4e175dc4165a\",\n                   
+      \"name\": \"\",\n                    \"id\": \"a01c494a-e29d-4ae5-a4f7-507f15a905aa\",\n                   
+      \"path\": \"<Gamepad>/buttonWest\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Reload\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"646a8432-93eb-42ac-9be2-4e175dc4165a\",\n                   
       \"path\": \"<Mouse>/delta\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Camera\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": false\n                }\n            ]\n        }\n   
-      ],\n    \"controlSchemes\": []\n}"
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"2D Vector\",\n                    \"id\": \"c5e45a4d-3c71-484e-a5e7-a336d307e1ec\",\n                   
+      \"path\": \"2DVector(mode=2)\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Camera\",\n                    \"isComposite\": true,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"Up\",\n                    \"id\": \"2a18e1c7-1fba-43a9-9954-8769997b5133\",\n                   
+      \"path\": \"<Gamepad>/rightStick/up\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Camera\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"Down\",\n                    \"id\": \"1f2c4713-ca67-47cf-af39-c8c6f5e1adff\",\n                   
+      \"path\": \"<Gamepad>/rightStick/down\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Camera\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"Left\",\n                    \"id\": \"26887583-1cb5-403d-8172-0fd628b89c2a\",\n                   
+      \"path\": \"<Gamepad>/rightStick/left\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Camera\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"Right\",\n                    \"id\": \"24409ce4-0a4e-4765-84e3-b90be48f78fe\",\n                   
+      \"path\": \"<Gamepad>/rightStick/right\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Camera\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"2fb4bf6c-5c90-40b3-9a15-f44e00466aed\",\n                   
+      \"path\": \"<Keyboard>/escape\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Pause\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"9ec34223-9990-4636-a368-f8459113ab2b\",\n                   
+      \"path\": \"<Gamepad>/start\",\n                    \"interactions\": \"Press\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Pause\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"312cdcc7-bf8a-4d76-b83e-f4cf91b15468\",\n                   
+      \"path\": \"<Keyboard>/tab\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Restart\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"f2ae3f9a-f139-49c8-a44f-d7b6ad4f56b6\",\n                   
+      \"path\": \"<Gamepad>/rightShoulder\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Restart\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                }\n           
+      ]\n        },\n        {\n            \"name\": \"UI\",\n            \"id\":
+      \"f6250586-5465-45df-8b01-1d9218cf431b\",\n            \"actions\": [\n               
+      {\n                    \"name\": \"Click\",\n                    \"type\":
+      \"PassThrough\",\n                    \"id\": \"96c5fe41-1d73-4205-a8ad-7f02044dd52a\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": true\n               
+      },\n                {\n                    \"name\": \"Point\",\n                   
+      \"type\": \"PassThrough\",\n                    \"id\": \"add333a7-a1c1-4683-936c-79fd7d39fdd7\",\n                   
+      \"expectedControlType\": \"Vector2\",\n                    \"processors\":
+      \"\",\n                    \"interactions\": \"\",\n                    \"initialStateCheck\":
+      true\n                },\n                {\n                    \"name\":
+      \"Navigate\",\n                    \"type\": \"PassThrough\",\n                   
+      \"id\": \"24fcf22b-d9ba-4375-bc0e-d42b101acb9d\",\n                    \"expectedControlType\":
+      \"Vector2\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      }\n            ],\n            \"bindings\": [\n                {\n                   
+      \"name\": \"Keyboard\",\n                    \"id\": \"32557951-52f8-46b4-9fe4-aba818705dce\",\n                   
+      \"path\": \"2DVector\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": true,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"up\",\n                    \"id\": \"e7d4403f-5af7-4c9b-8518-c4af2e5d1f96\",\n                   
+      \"path\": \"<Keyboard>/w\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": true\n                },\n                {\n                   
+      \"name\": \"up\",\n                    \"id\": \"19ee56d4-096c-4d7a-8d2f-6d6eb01b1c14\",\n                   
+      \"path\": \"<Keyboard>/upArrow\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": true\n                },\n                {\n                   
+      \"name\": \"down\",\n                    \"id\": \"76c8307e-fdf8-48d8-99d3-3e76cc50cc51\",\n                   
+      \"path\": \"<Keyboard>/s\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": true\n                },\n                {\n                   
+      \"name\": \"down\",\n                    \"id\": \"054a20d3-d314-4c48-99f7-968025f4c0e6\",\n                   
+      \"path\": \"<Keyboard>/downArrow\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Navigate\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"left\",\n                    \"id\": \"39b89a53-a7e0-4a9d-8e02-c6ca1c2f57a6\",\n                   
+      \"path\": \"<Keyboard>/a\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": true\n                },\n                {\n                   
+      \"name\": \"left\",\n                    \"id\": \"65a9fbbc-b5f0-45d3-a220-be0f073f919f\",\n                   
+      \"path\": \"<Keyboard>/leftArrow\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Navigate\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"right\",\n                    \"id\": \"fa1a3e6d-e441-4fc2-9146-71462eb9ab19\",\n                   
+      \"path\": \"<Keyboard>/d\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": true\n                },\n                {\n                   
+      \"name\": \"right\",\n                    \"id\": \"8db517fe-8c53-43f8-b64c-053bf769dca9\",\n                   
+      \"path\": \"<Keyboard>/rightArrow\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Navigate\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"Gamepad\",\n                    \"id\":
+      \"db8323af-599b-4b4e-ac6f-402376b58b32\",\n                    \"path\": \"2DVector\",\n                   
+      \"interactions\": \"\",\n                    \"processors\": \"\",\n                   
+      \"groups\": \"\",\n                    \"action\": \"Navigate\",\n                   
+      \"isComposite\": true,\n                    \"isPartOfComposite\": false\n               
+      },\n                {\n                    \"name\": \"up\",\n                   
+      \"id\": \"29ec9299-d85f-4cd9-881d-0f4edec6457e\",\n                    \"path\":
+      \"<Gamepad>/leftStick/up\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Navigate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": true\n                },\n                {\n                   
+      \"name\": \"down\",\n                    \"id\": \"3f383ffd-335f-4142-901e-0f69812d198d\",\n                   
+      \"path\": \"<Gamepad>/leftStick/down\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Navigate\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"left\",\n                    \"id\": \"0a26956f-33eb-419d-9e10-eb68e7d6824f\",\n                   
+      \"path\": \"<Gamepad>/leftStick/left\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Navigate\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"right\",\n                    \"id\": \"2cd6c546-44b8-4c16-9cde-fc9fc12b13df\",\n                   
+      \"path\": \"<Gamepad>/leftStick/right\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Navigate\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": true\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"dfa27fa2-a214-4ebe-84b1-d225a698fad2\",\n                   
+      \"path\": \"<Mouse>/position\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Point\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"89c93e2f-2a76-44b5-a6af-dbbeb13f9cb8\",\n                   
+      \"path\": \"<Mouse>/leftButton\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Click\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"3c1236e0-54c1-46e4-89de-8b02ac33fbb3\",\n                   
+      \"path\": \"<XRController>/trigger\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Click\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                }\n           
+      ]\n        }\n    ],\n    \"controlSchemes\": []\n}"
     m_IsDirty: 0
   m_Toolbar:
     m_IsDirty: 0
@@ -988,10 +1201,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 314
+    x: 230
     y: 73
-    width: 966
-    height: 650
+    width: 1150
+    height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -999,9 +1212,9 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 
+    m_SelectedIDs: 51f5902d
+    m_LastClickedID: 764474705
+    m_ExpandedIDs: ffffffff
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1027,6 +1240,31 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 14}
+  - {fileID: 17}
+  m_Position:
+    serializedVersion: 2
+    x: 1382
+    y: 0
+    width: 298
+    height: 917
+  m_MinSize: {x: 100, y: 200}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 26068
+--- !u!114 &14
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: InspectorWindow
@@ -1034,19 +1272,19 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1367
+    x: 0
     y: 0
-    width: 313
-    height: 917
+    width: 298
+    height: 611
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 14}
   - {fileID: 15}
+  - {fileID: 16}
   m_Selected: 0
   m_LastSelected: 1
---- !u!114 &14
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1066,10 +1304,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1367
+    x: 1382
     y: 73
-    width: 312
-    height: 896
+    width: 297
+    height: 590
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1088,7 +1326,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &15
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1108,12 +1346,38 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1246
+    x: 1367
     y: 73
-    width: 433
+    width: 312
     height: 896
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
+--- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: GameView
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 611
+    width: 298
+    height: 306
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 2}
+  m_Panes:
+  - {fileID: 2}
+  m_Selected: 0
+  m_LastSelected: 0
