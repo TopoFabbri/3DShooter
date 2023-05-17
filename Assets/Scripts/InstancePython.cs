@@ -47,6 +47,8 @@ public class InstancePython : Gun
         if (!isReloading)
         {
             Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            anim.Play();
+            
             chamber--;
         }
     }

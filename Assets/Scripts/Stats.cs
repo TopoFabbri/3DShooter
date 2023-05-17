@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class Stats : MonoBehaviour
     [SerializeField] private float hp = 100f;
     [SerializeField] private float lifeRegen = 0f;
     [SerializeField] private Transform life;
+
+    public delegate void ObjectDestroyed(GameObject destroyed);
+    public static event ObjectDestroyed DestroyedEvent;
 
     private void Start()
     {
@@ -42,5 +46,11 @@ public class Stats : MonoBehaviour
     public float GetHp()
     {
         return hp;
+    }
+
+    private void OnDestroy()
+    {
+        if (DestroyedEvent != null)
+            DestroyedEvent(gameObject);
     }
 }

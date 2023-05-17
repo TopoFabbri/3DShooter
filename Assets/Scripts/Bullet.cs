@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 450f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject ps;
-    [SerializeField] private float damage = 20f;
+    [SerializeField] private float damage = 50f;
     [FormerlySerializedAs("life")] [SerializeField] private float lifeTime = 5f;
 
     [SerializeField] private bool addPlayerVel;

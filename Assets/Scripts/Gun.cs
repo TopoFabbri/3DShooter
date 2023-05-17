@@ -7,6 +7,7 @@ public abstract class Gun : MonoBehaviour
 {
     [SerializeField] protected GameObject hand;
     [SerializeField] protected Transform bulletSpawnPoint;
+    [SerializeField] protected Animation anim;
 
     protected Rigidbody rb;
     protected BoxCollider collider;
@@ -38,4 +39,14 @@ public abstract class Gun : MonoBehaviour
     public abstract void GrabGun(Transform parent);
 
     public abstract void Shoot();
+
+    public int GetBullets()
+    {
+        return chamber;
+    }
+
+    public bool GetReloading()
+    {
+        return isReloading;
+    }
 }

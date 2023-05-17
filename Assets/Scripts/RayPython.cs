@@ -8,7 +8,7 @@ public class RayPython : Gun
     [SerializeField] private GameObject ps;
     [SerializeField] private GameObject sprite;
     [SerializeField] private Transform character;
-    [SerializeField] private float damage = 20;
+    [SerializeField] private float damage = 50f;
 
     private void Start()
     {
@@ -59,6 +59,8 @@ public class RayPython : Gun
                 if (hit.transform.gameObject.GetComponent<Rigidbody>())
                     hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
             }
+            
+            anim.Play();
 
             chamber--;
         }

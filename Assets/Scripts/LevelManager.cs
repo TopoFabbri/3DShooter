@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Stats.DestroyedEvent += OnEnemyDestroyed;
+        
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
     }
@@ -43,5 +45,11 @@ public class LevelManager : MonoBehaviour
 
         spawnIndex++;
         spawnTime = Time.time + spawnCooldown;
+    }
+
+    private void OnEnemyDestroyed(GameObject gameObject)
+    {
+        if (enemies.Contains(gameObject))
+            enemies.Remove(gameObject);
     }
 }

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float recoil = 10f;
 
-    [Header("Objects:")] [SerializeField] private GameObject weapon;
+    [Header("Objects:")] [SerializeField] private Gun weapon;
     [SerializeField] private GameObject crosshair;
 
     private ParticleSystem ps;
@@ -54,8 +54,15 @@ public class PlayerController : MonoBehaviour
 
         if (weapon)
         {
-            weapon.transform.position = cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
-            weapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
+            if (weapon.GetReloading())
+            {
+                weapon.transform.position = transform.position - transform.forward;
+            }
+            else
+            {
+                weapon.transform.position = cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
+                weapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
+            }
         }
     }
 
@@ -67,8 +74,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 1.1f))
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out hit, 1.1f, ~LayerMask.GetMask("Player")))
         {
+            print(hit.transform.name);
             shouldJump = true;
         }
     }
@@ -91,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDrop()
     {
-        weapon.GetComponent<Gun>().DropGun();
+        weapon.DropGun();
         weapon = null;
         ps = null;
     }
@@ -103,20 +113,26 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.gameObject.CompareTag("Gun") && Vector3.Distance(hit.transform.position, transform.position) < 3f)
+            if (hit.transform.gameObject.CompareTag("Gun") &&
+                Vector3.Distance(hit.transform.position, transform.position) < 3f)
             {
                 if (weapon)
                 {
-                    weapon.GetComponent<Gun>().DropGun();
+                    weapon.DropGun();
                     weapon = null;
                     ps = null;
                 }
 
                 hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
-                weapon = hit.transform.gameObject;
+                weapon = hit.transform.gameObject.GetComponent<Gun>();
                 ps = weapon.GetComponentInChildren<ParticleSystem>();
             }
         }
+    }
+
+    public void OnReload()
+    {
+        weapon.Reload();
     }
 
     private Vector2 ClampPlaneVelocity(Vector3 vel, float clampValue)
@@ -138,5 +154,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         crosshair.SetActive(true);
         cameraMovement.ads = false;
+    }
+
+    public Gun GetWeapon()
+    {
+        return weapon;
     }
 }

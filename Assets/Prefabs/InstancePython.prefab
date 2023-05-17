@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 5968411035550672685}
   - component: {fileID: 4528350694815874131}
   - component: {fileID: 8914955610770326910}
+  - component: {fileID: 543434074}
   m_Layer: 7
   m_Name: InstancePython
   m_TagString: Gun
@@ -381,9 +382,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 2394978719228377415}
   bulletSpawnPoint: {fileID: 1375474192954705242}
+  anim: {fileID: 543434074}
   bulletPrefab: {fileID: 2776646117404197337, guid: 80e13d194d2d7644cbf224c5aee59687, type: 3}
   sprite: {fileID: 6285167013497632853}
   character: {fileID: 0}
+--- !u!111 &543434074
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5625353272431480870}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 87789db617aa89d41ae128e8ef429ca6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 87789db617aa89d41ae128e8ef429ca6, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6285167013497632853
 GameObject:
   m_ObjectHideFlags: 0

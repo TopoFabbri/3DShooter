@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Feet
+  m_Name: Body
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _METALLICGLOSSMAP
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: ca95df38498ef304fbfc018aec49311e, type: 3}
+        m_Texture: {fileID: 2800000, guid: aeb915b557e98294c9e05cf1283b875a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -43,11 +43,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 24f32739e6147b040bb1623229e70cb1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4955c19c994601245b21dc38bb5fd800, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 3c507ed3b327ba84bbf14473526f8f6e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7ff2407b75dac7c428bda2ff7596ccde, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

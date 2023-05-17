@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -29,13 +30,6 @@ public class CameraMovement : MonoBehaviour
 
     private void CenterAim()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -89f, 89f);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit = new RaycastHit();
 
@@ -79,5 +73,21 @@ public class CameraMovement : MonoBehaviour
     public Vector3 GetWorldMouseDir()
     {
         return worldMouseDir;
+    }
+
+    public void OnCamera(InputValue input)
+    {
+        if (!ads)
+        {
+            Vector2 mouse = input.Get<Vector2>();
+            mouse.x /= Screen.width;
+            mouse.y /= Screen.height;
+        
+            xRotation -= mouse.y * mouseSensitivity;
+            xRotation = Mathf.Clamp(xRotation, -89f, 89f);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            playerBody.Rotate(Vector3.up * mouse.x * mouseSensitivity);
+            
+        }
     }
 }
