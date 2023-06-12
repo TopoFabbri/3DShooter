@@ -29,6 +29,16 @@ public class ObstacleEvasion : MonoBehaviour
                 Vector3 dir = Vector3.Cross(Vector3.up, hit.normal);
                 transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
             }
+            else
+            {
+                ray.origin = transform.position;
+
+                if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag("Walls"))
+                {
+                    Vector3 dir = Vector3.Cross(Vector3.up, hit.normal);
+                    transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
+                }
+            }
         }
     }
 }

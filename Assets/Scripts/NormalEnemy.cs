@@ -7,8 +7,6 @@ using UnityEngine;
 public class NormalEnemy : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
-    [SerializeField] private Transform leftRayOrigin;
-    [SerializeField] private Transform rightRayOrigin;
 
     private ObstacleEvasion obstacleEvasion;
     private Transform target;

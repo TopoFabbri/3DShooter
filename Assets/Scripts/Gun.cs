@@ -29,9 +29,12 @@ public abstract class Gun : MonoBehaviour
 
     public void Reload()
     {
-        isReloading = true;
-        bulletReloadTime = Time.time + reloadCooldown * (chamberSize - chamber);
-        chamber = chamberSize;
+        if (!isReloading)
+        {
+            isReloading = true;
+            bulletReloadTime = Time.time + reloadCooldown * (chamberSize - chamber);
+            chamber = chamberSize;
+        }
     }
 
     public abstract void DropGun();

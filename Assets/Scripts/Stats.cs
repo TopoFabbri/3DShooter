@@ -12,10 +12,6 @@ public class Stats : MonoBehaviour
     public delegate void ObjectDestroyed(GameObject destroyed);
     public static event ObjectDestroyed DestroyedEvent;
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         if (hp <= 0)
