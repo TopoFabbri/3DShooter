@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
             eventSystem.SetSelectedGameObject(FirstSelectedGameObject);
             Time.timeScale = 0;
             PauseScreen.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
