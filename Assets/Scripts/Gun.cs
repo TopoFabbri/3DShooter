@@ -23,10 +23,12 @@ public abstract class Gun : MonoBehaviour
         if (chamber <= 0)
             Reload();
 
+        //TODO: Fix - Could be a coroutine
         if (Time.time > bulletReloadTime)
             isReloading = false;
     }
 
+    //TODO: Fix - Could be a coroutine
     public void Reload()
     {
         if (!isReloading)
@@ -43,11 +45,13 @@ public abstract class Gun : MonoBehaviour
 
     public abstract void Shoot();
 
+    //TODO: Fix - Should be native Setter/Getter
     public int GetBullets()
     {
         return chamber;
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public bool GetReloading()
     {
         return isReloading;

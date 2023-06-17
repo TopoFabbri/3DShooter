@@ -15,10 +15,12 @@ public class ObstacleEvasion : MonoBehaviour
         Ray ray = new Ray(leftRayOrigin, transform.forward);
         RaycastHit hit;
         
+        //TODO: Fix - Hardcoded value
         if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag("Walls"))
         {
             Vector3 dir = Vector3.Cross(Vector3.up, hit.normal);
             transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
+            //TODO: Fix - Use return; to avoid nasty nesting
         }
         else
         {

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float maxSpeed;
+    //TODO: TP2 - Syntax - Fix declaration order
     [SerializeField] private float recoil = 10f;
 
     [Header("Objects:")] [SerializeField] private Gun weapon;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         cameraMovement = GetComponentInChildren<CameraMovement>();
+        //TODO: Fix - Add [RequireComponentAttribute]
         rb = GetComponent<Rigidbody>();
     }
 
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnMove(InputValue input)
     {
         var direction = input.Get<Vector2>();
@@ -77,15 +80,19 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
+        //TODO: Fix - Hardcoded value
         if (Physics.Raycast(ray, out hit, 1.1f, ~LayerMask.GetMask("Player")))
         {
+            //TODO: Fix - Bad log/Log out of context
             print(hit.transform.name);
             shouldJump = true;
         }
     }
 
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnShoot(InputValue value)
     {
+        //TODO: Fix - Unclear name
         shot = value.isPressed;
 
         if (shot && weapon)
@@ -95,6 +102,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnAim(InputValue input)
     {
         ads = input.isPressed;
@@ -114,6 +122,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
+            //TODO: Fix - Hardcoded value
             if (hit.transform.gameObject.CompareTag("Gun") &&
                 Vector3.Distance(hit.transform.position, transform.position) < 3f)
             {
@@ -163,6 +172,7 @@ public class PlayerController : MonoBehaviour
         return weapon;
     }
 
+    //TODO: TP2 - SOLID
     private void OnDestroy()
     {
         SceneManager.LoadScene(4);

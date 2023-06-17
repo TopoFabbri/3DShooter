@@ -28,6 +28,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnPause()
     {
+        //TODO: Fix - Hardcoded value
+        //TODO: Fix - Unclear logic. When/where is the actionMap modified?
         if (playerInput.currentActionMap.name == "World")
         {
             eventSystem.SetSelectedGameObject(FirstSelectedGameObject);

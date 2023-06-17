@@ -3,16 +3,19 @@ using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private Transform head;
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private Transform playerBody;
     [SerializeField] private float bordersMargin = 20f;
+    //TODO: Fix - Unclear name - Is this a standard feature in shooters?
     public bool ads = false;
 
     private Camera cam;
     private float xRotation = 0f;
     private Vector3 worldMouseDir;
 
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -22,6 +25,7 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        //TODO: TP2 - Strategy
         if (!ads)
             CenterAim();
         else
@@ -54,6 +58,7 @@ public class CameraMovement : MonoBehaviour
 
         float yRot = 0;
 
+        //TODO: Fix - Trash code
         if (mousePos.x > Screen.width - bordersMargin)
             yRot = ((mousePos.x - (Screen.width - bordersMargin)) / bordersMargin) * mouseSensitivity * Time.deltaTime;
         else if (mousePos.x < bordersMargin)
@@ -75,10 +80,12 @@ public class CameraMovement : MonoBehaviour
         return worldMouseDir;
     }
 
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnCamera(InputValue input)
     {
         if (!ads)
         {
+            //TODO: Fix - Unclear name
             Vector2 mouse = input.Get<Vector2>();
 
             mouse.x /= Screen.width;

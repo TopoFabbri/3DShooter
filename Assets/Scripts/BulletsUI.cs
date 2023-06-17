@@ -9,6 +9,7 @@ public class BulletsUI : MonoBehaviour
     [SerializeField] private List<Sprite> sprites;
     [SerializeField] private PlayerController player;
 
+    //TODO: Fix - Add [RequireComponentAttribute]
     private Image image;
     
     private void Start()

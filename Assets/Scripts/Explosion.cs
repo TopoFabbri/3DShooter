@@ -15,6 +15,7 @@ public class Explosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO: FIX -Use particle system callback
         if (!ps.isPlaying)
         {
             Destroy(gameObject);

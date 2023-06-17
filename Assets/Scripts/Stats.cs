@@ -38,6 +38,7 @@ public class Stats : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public float GetHp()
     {
         return hp;
