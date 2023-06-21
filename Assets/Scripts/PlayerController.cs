@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float recoil = 10f;
 
-    [Header("Objects:")] [SerializeField] private Gun weapon;
+    [Header("Objects:")][SerializeField] private Gun weapon;
     [SerializeField] private GameObject crosshair;
+    [SerializeField] private Hud hud;
 
     private ParticleSystem ps;
     private CameraMovement cameraMovement;
@@ -65,6 +66,8 @@ public class PlayerController : MonoBehaviour
                 weapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
             }
         }
+
+        hud.SetTextActive(PointingAtGun());
     }
 
     public void OnMove(InputValue input)
@@ -166,5 +169,22 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.LoadScene(4);
+    }
+
+    private bool PointingAtGun()
+    {
+        Ray ray = new Ray(cameraMovement.gameObject.transform.position, cameraMovement.gameObject.transform.forward);
+        RaycastHit hit = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.gameObject.CompareTag("Gun") &&
+                Vector3.Distance(hit.transform.position, transform.position) < 3f)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
