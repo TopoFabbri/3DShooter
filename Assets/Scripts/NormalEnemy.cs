@@ -11,14 +11,18 @@ public class NormalEnemy : MonoBehaviour
     private ObstacleEvasion obstacleEvasion;
     private Transform target;
     private Rigidbody rb;
+    //TODO: Fix - Add [SerializeFieldAttribute]
     private float damageTime = 2f;
     private float cooldown;
 
     // Start is called before the first frame update
     private void Start()
     {
+        //TODO: Fix - Add [RequireComponentAttribute]
         obstacleEvasion = GetComponent<ObstacleEvasion>();
+        //TODO: Fix - Hardcoded value
         target = GameObject.Find("Character").transform;
+        //TODO: Fix - Add [RequireComponentAttribute]
         rb = GetComponent<Rigidbody>();
     }
 
@@ -42,6 +46,7 @@ public class NormalEnemy : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
+        //TODO: Fix - Hardcoded value
         if (Time.time > cooldown && other.gameObject.CompareTag("Character"))
         {
             other.gameObject.GetComponent<Stats>().LoseLife(10f);

@@ -12,6 +12,7 @@ public class RayPython : Gun
 
     private void Start()
     {
+        //TODO: Fix - Add [RequireComponentAttribute]
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
     }
@@ -25,6 +26,7 @@ public class RayPython : Gun
     
     public override void DropGun()
     {
+        //TODO: Fix - Repeated code
         rb.useGravity = true;
         sprite.SetActive(true);
         collider.isTrigger = false;
@@ -35,6 +37,7 @@ public class RayPython : Gun
 
     public override void GrabGun(Transform parent)
     {
+        //TODO: Fix - Repeated code
         rb.useGravity = false;
         sprite.SetActive(false);
         collider.isTrigger = true;
@@ -44,6 +47,7 @@ public class RayPython : Gun
 
     public override void Shoot()
     {
+        //TODO: Fix - OOP
         if (!isReloading)
         {
             Ray ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
@@ -60,8 +64,10 @@ public class RayPython : Gun
                     hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
             }
             
+            //TODO: Fix - OOP
             anim.Play();
 
+            //TODO: Fix - OOP
             chamber--;
         }
     }

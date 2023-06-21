@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        //TODO: Fix - Could be a coroutine
         if (Time.time > spawnTime && enemies.Count < maxEnemies)
             SpawnEnemy();
     }

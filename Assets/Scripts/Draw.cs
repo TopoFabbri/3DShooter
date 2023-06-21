@@ -67,6 +67,7 @@ public class Draw : MonoBehaviour
 
     private void Update()
     {
+        //TODO: Fix - Could be a coroutine or timed invoke
         if (Time.time <= pointDestroyTime)
             Point(pointPos, .5f);
     }

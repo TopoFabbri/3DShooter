@@ -12,6 +12,7 @@ public class InstancePython : Gun
 
     private void Start()
     {
+        //TODO: Fix - Add [RequireComponentAttribute]
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
     }
@@ -30,6 +31,7 @@ public class InstancePython : Gun
         collider.isTrigger = false;
         hand.SetActive(false);
         transform.parent = null;
+        //TODO: Fix - Hardcoded value
         rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
     }
 
