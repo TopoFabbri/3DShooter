@@ -3,48 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-//TODO: Documentation - Add summary
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 450f;
     [SerializeField] private Rigidbody rb;
-    //TODO: Fix - Unclear name
-    [SerializeField] private GameObject ps;
+
+    [FormerlySerializedAs("ps")] [SerializeField] private GameObject particleSystem;
     [SerializeField] private float damage = 50f;
     [FormerlySerializedAs("life")] [SerializeField] private float lifeTime = 5f;
-
     [SerializeField] private bool addPlayerVel;
 
-    private float destroyTime;
-
     private Transform character;
+    private const string CharacterObjectName = "Character";
 
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //TODO: Fix - Hardcoded value
-        character = GameObject.Find("Character").GetComponentInChildren<Gun>().transform;
+        character = GameObject.Find(CharacterObjectName).GetComponentInChildren<Gun>().transform;
         rb.velocity = transform.forward * speed;
 
         if (addPlayerVel)
             rb.velocity += character.GetComponent<Rigidbody>().velocity;
 
-        destroyTime = Time.time + lifeTime;
+        StartCoroutine(DestroyAfterTime(lifeTime));
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    ///  Deletes an object from map after given time
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    private IEnumerator DestroyAfterTime(float time)
     {
-        //TODO: Fix - Could be coroutine or timed invoke
-        if (Time.time > destroyTime)
-            Destroy(gameObject);
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(ps, transform.position, Quaternion.identity);
-        
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
+
         if (collision.gameObject.GetComponent<Stats>())
             collision.gameObject.GetComponent<Stats>().LoseLife(damage);
     }

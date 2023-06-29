@@ -4,20 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class BulletsUI : MonoBehaviour
 {
     [SerializeField] private List<Sprite> sprites;
     [SerializeField] private PlayerController player;
-
-    //TODO: Fix - Add [RequireComponentAttribute]
-    private Image image;
+    [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private Id stateId;
     
+    private Image image;
+
     private void Start()
     {
+        stateMachine = FindObjectOfType<StateMachine>();
         image = GetComponent<Image>();
     }
 
-    private void Update()
+    private void OnEnable()
+    {
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+
+    private void OnUpdate()
     {
         if (player.GetWeapon())
         {

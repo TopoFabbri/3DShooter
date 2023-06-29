@@ -18,8 +18,8 @@ public class CameraMovement : MonoBehaviour
     //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     void Start()
     {
+        InputListener.Camera += OnCamera;
         cam = GetComponent<Camera>();
-
         Cursor.lockState = CursorLockMode.Locked;
     }
 

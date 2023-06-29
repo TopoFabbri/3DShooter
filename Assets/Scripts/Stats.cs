@@ -46,7 +46,6 @@ public class Stats : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (DestroyedEvent != null)
-            DestroyedEvent(gameObject);
+        DestroyedEvent?.Invoke(gameObject);
     }
 }

@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform head;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpForce;
     [SerializeField] private float maxSpeed;
     //TODO: TP2 - Syntax - Fix declaration order
     [SerializeField] private float recoil = 10f;
@@ -20,13 +19,20 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem ps;
     private CameraMovement cameraMovement;
     private Rigidbody rb;
-    private bool shouldJump = false;
     private bool ads;
     private Vector3 movement;
-    private bool shot = false;
+    private bool hasShot = false;
 
     private void Start()
     {
+        // Action subscriptions
+        InputListener.Move += OnMove;
+        InputListener.Shoot += OnShoot;
+        InputListener.Aim += OnAim;
+        InputListener.Drop += OnDrop;
+        InputListener.Grab += OnGrab;
+        InputListener.Reload += OnReload;
+        
         cameraMovement = GetComponentInChildren<CameraMovement>();
         //TODO: Fix - Add [RequireComponentAttribute]
         rb = GetComponent<Rigidbody>();
@@ -38,12 +44,6 @@ public class PlayerController : MonoBehaviour
             ForceMode.Acceleration);
         Vector2 tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
         rb.velocity = new Vector3(tmp.x, rb.velocity.y, tmp.y);
-
-        if (shouldJump)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            shouldJump = false;
-        }
     }
 
     private void Update()
@@ -52,9 +52,6 @@ public class PlayerController : MonoBehaviour
             AimStart();
         else
             AimStop();
-
-        if (Input.GetKey(KeyCode.Tab))
-            SceneManager.LoadScene(0);
 
         if (weapon)
         {
@@ -79,26 +76,12 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
     }
 
-    public void OnJump()
-    {
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, Vector3.down);
-        //TODO: Fix - Hardcoded value
-        if (Physics.Raycast(ray, out hit, 1.1f, ~LayerMask.GetMask("Player")))
-        {
-            //TODO: Fix - Bad log/Log out of context
-            print(hit.transform.name);
-            shouldJump = true;
-        }
-    }
-
     //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnShoot(InputValue value)
     {
-        //TODO: Fix - Unclear name
-        shot = value.isPressed;
+        hasShot = value.isPressed;
 
-        if (shot && weapon)
+        if (hasShot && weapon)
         {
             weapon.GetComponent<Gun>().Shoot();
             ps.Play();

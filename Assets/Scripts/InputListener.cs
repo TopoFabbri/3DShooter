@@ -1,0 +1,73 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class InputListener : MonoBehaviour
+{
+    // World
+    public static event Action<InputValue> Move;
+    public static event Action<InputValue> Shoot;
+    public static event Action<InputValue> Aim;
+    public static event Action<InputValue> Camera;
+    public static event Action Drop;
+    public static event Action Grab;
+    public static event Action Reload;
+
+    // UI
+    public static event Action Pause;
+    public static event Action Resume;
+
+    public static event Action Navigate;
+
+    private void OnMove(InputValue input)
+    {
+        Move?.Invoke(input);
+    }
+
+    private void OnShoot(InputValue input)
+    {
+        Shoot?.Invoke(input);
+    }
+
+    private void OnAim(InputValue input)
+    {
+        Aim?.Invoke(input);
+    }
+    
+    private void OnCamera(InputValue input)
+    {
+        Camera?.Invoke(input);
+    }
+    
+    private void OnDrop()
+    {
+        Drop?.Invoke();
+    }
+    
+    private void OnGrab()
+    {
+        Grab?.Invoke();
+    }
+    
+    private void OnReload()
+    {
+        Reload?.Invoke();
+    }
+    
+    private void OnPause()
+    {
+        Pause?.Invoke();
+    }
+
+    private void OnResume()
+    {
+        Resume?.Invoke();
+    }
+
+    private void OnNavigate()
+    {
+        Navigate?.Invoke();
+    }
+}
