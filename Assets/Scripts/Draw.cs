@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class Draw : MonoBehaviour
 {
-    public static Color color = Color.white;
-    private static float pointDestroyTime = 0f;
-    private static Vector3 pointPos = new Vector3();
+    public static Color Color = Color.white;
+    private static float pointDestroyTime;
+    private static Vector3 pointPos;
 
+    /// <summary>
+    /// Draw a cube only edges
+    /// </summary>
+    /// <param name="center"></param>
+    /// <param name="size"></param>
     public static void WireCube(Vector3 center, Vector3 size)
     {
         Vector3 halfSize = size / 2f;
@@ -38,37 +43,36 @@ public class Draw : MonoBehaviour
         Debug.DrawLine(bottomLeftBack, topLeftBack, Color.white);
     }
 
+    /// <summary>
+    /// Draw a cross to represent a point
+    /// </summary>
+    /// <param name="point"></param>
+    /// <param name="size"></param>
     public static void Point(Vector3 point, float size)
     {
-        Debug.DrawLine(point - Vector3.up * size / 2f, point + Vector3.up * size / 2f, color);
-        Debug.DrawLine(point - Vector3.left * size / 2f, point + Vector3.left * size / 2f, color);
-        Debug.DrawLine(point - Vector3.forward * size / 2f, point + Vector3.forward * size / 2f, color);
+        Debug.DrawLine(point - Vector3.up * size / 2f, point + Vector3.up * size / 2f, Color);
+        Debug.DrawLine(point - Vector3.left * size / 2f, point + Vector3.left * size / 2f, Color);
+        Debug.DrawLine(point - Vector3.forward * size / 2f, point + Vector3.forward * size / 2f, Color);
     }
 
+    /// <summary>
+    /// Draw a line from a ray
+    /// </summary>
+    /// <param name="ray"></param>
+    /// <param name="color"></param>
     public static void Ray(Ray ray, Color color)
     {
         Debug.DrawRay(ray.origin, ray.direction, color);
     }
 
+    /// <summary>
+    /// Draw a line
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="dir"></param>
+    /// <param name="length"></param>
     public static void Line(Vector3 start, Vector3 dir, float length)
     {
-        Debug.DrawLine(start, start + dir * length, color);
-    }
-    
-    public static void Point(Vector3 point, float size, float delay)
-    {
-        pointDestroyTime = Time.time + delay;
-        pointPos = point;
-        
-        Debug.DrawLine(point - Vector3.up * size / 2f, point + Vector3.up * size / 2f, color);
-        Debug.DrawLine(point - Vector3.left * size / 2f, point + Vector3.left * size / 2f, color);
-        Debug.DrawLine(point - Vector3.forward * size / 2f, point + Vector3.forward * size / 2f, color);
-    }
-
-    private void Update()
-    {
-        //TODO: Fix - Could be a coroutine or timed invoke
-        if (Time.time <= pointDestroyTime)
-            Point(pointPos, .5f);
+        Debug.DrawLine(start, start + dir * length, Color);
     }
 }
