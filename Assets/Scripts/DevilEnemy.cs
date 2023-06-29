@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObstacleEvasion))]
 public class DevilEnemy : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
@@ -10,28 +8,37 @@ public class DevilEnemy : MonoBehaviour
     [SerializeField] private float cooldown = 1f;
     [SerializeField] private float longCooldown = 5f;
     [SerializeField] private GameObject fireBall;
-    //TODO: TP2 - Remove unused methods/variables/classes
-    [SerializeField] private Transform life;
 
     private ObstacleEvasion obstacleEvasion;
     private Transform target;
     private Rigidbody rb;
-    //TODO: TP2 - Remove unused methods/variables/classes
-    private List<float> fbTime = new List<float>();
-    private float nextFireTime = 0;
-    private int fireCount = 0;
+    private float nextFireTime;
+    private int fireCount;
+    [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private Id stateId;
+    private const string CharacterName = "Character";
 
-    // Start is called before the first frame update
     private void Start()
     {
-        //TODO: Fix - Add [RequireComponentAttribute]
         obstacleEvasion = GetComponent<ObstacleEvasion>();
-        target = GameObject.Find("Character").transform;
+        target = GameObject.Find(CharacterName).transform;
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void OnEnable()
+    {
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+    
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private void OnUpdate()
     {
         transform.LookAt(target);
 
@@ -50,6 +57,9 @@ public class DevilEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Instantiate a fireball
+    /// </summary>
     private void Shoot()
     {
         fireCount++;
@@ -59,6 +69,7 @@ public class DevilEnemy : MonoBehaviour
         if (fireCount >= 3)
             fireCount = 0;
 
-        Instantiate<GameObject>(fireBall, transform.position + transform.forward, transform.rotation);
+        var trans = transform;
+        Instantiate(fireBall, trans.position + trans.forward, trans.rotation);
     }
 }
