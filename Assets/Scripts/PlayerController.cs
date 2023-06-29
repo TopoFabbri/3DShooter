@@ -143,14 +143,14 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         crosshair.SetActive(false);
-        cameraMovement.ads = true;
+        cameraMovement.aimDownSight = true;
     }
 
     private void AimStop()
     {
         Cursor.lockState = CursorLockMode.Locked;
         crosshair.SetActive(true);
-        cameraMovement.ads = false;
+        cameraMovement.aimDownSight = false;
     }
 
     public Gun GetWeapon()

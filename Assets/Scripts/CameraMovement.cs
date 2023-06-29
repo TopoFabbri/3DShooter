@@ -3,98 +3,149 @@ using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
-    //TODO: TP2 - Remove unused methods/variables/classes
-    [SerializeField] private Transform head;
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private Transform playerBody;
     [SerializeField] private float bordersMargin = 20f;
-    //TODO: Fix - Unclear name - Is this a standard feature in shooters?
-    public bool ads = false;
+    [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private Id stateId;
 
     private Camera cam;
-    private float xRotation = 0f;
     private Vector3 worldMouseDir;
+    private float xRotation = 0f;
 
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    void Start()
+    public bool aimDownSight;
+
+    private void Start()
     {
         InputListener.Camera += OnCamera;
         cam = GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void OnEnable()
+    {
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+    
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private void OnUpdate()
     {
         //TODO: TP2 - Strategy
-        if (!ads)
+        if (!aimDownSight)
             CenterAim();
         else
             CursorAim();
     }
 
+    /// <summary>
+    /// Manage aim when crosshair is on the middle
+    /// </summary>
     private void CenterAim()
     {
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        RaycastHit hit = new RaycastHit();
+        var camTransform = cam.transform;
+        var ray = new Ray(camTransform.position, camTransform.forward);
 
-        if (Physics.Raycast(ray, out hit, 100f, ~(1 << 7)))
+        if (Physics.Raycast(ray, out var hit, 100f, ~(1 << 7)))
             worldMouseDir = hit.point;
         else
-            worldMouseDir = cam.transform.position + cam.transform.forward * 100f;
+            worldMouseDir = camTransform.position + camTransform.forward * 100f;
     }
 
+    /// <summary>
+    /// Manage aim when crosshair is cursor
+    /// </summary>
     private void CursorAim()
     {
-        Vector3 mousePos = Input.mousePosition;
+        var mousePos = Input.mousePosition;
         mousePos.z = cam.nearClipPlane + 5;
-        RaycastHit hit = new RaycastHit();
-        Vector3 worldPos = cam.ScreenToWorldPoint(mousePos);
-        Ray worldMouse = new Ray(cam.transform.position, worldPos - cam.transform.position);
+        var worldPos = cam.ScreenToWorldPoint(mousePos);
+        var camPos = cam.transform.position;
+        var worldMouse = new Ray(camPos, worldPos - camPos);
 
-        if (Physics.Raycast(worldMouse, out hit, 100f, ~(1 << 7)))
+        if (Physics.Raycast(worldMouse, out var hit, 100f, ~(1 << 7)))
             worldMouseDir = hit.point;
         else
             worldMouseDir = worldMouse.origin + worldMouse.direction * 100f;
 
-        float yRot = 0;
-
-        //TODO: Fix - Trash code
-        if (mousePos.x > Screen.width - bordersMargin)
-            yRot = ((mousePos.x - (Screen.width - bordersMargin)) / bordersMargin) * mouseSensitivity * Time.deltaTime;
-        else if (mousePos.x < bordersMargin)
-            yRot = ((mousePos.x - bordersMargin) / bordersMargin) * mouseSensitivity * Time.deltaTime;
-
-        if (mousePos.y > Screen.height - bordersMargin)
-            xRotation -= ((mousePos.y - (Screen.height - bordersMargin)) / bordersMargin) * mouseSensitivity *
-                         Time.deltaTime;
-        else if (mousePos.y < bordersMargin)
-            xRotation -= ((mousePos.y - bordersMargin) / bordersMargin) * mouseSensitivity * Time.deltaTime;
+        var yRot = GetYRotFromMousePos(mousePos);
+        xRotation -= GetXRotFromMousePos(mousePos);
+        
+        xRotation = Mathf.Clamp(xRotation, -89f, 89f);
 
         playerBody.Rotate(Vector3.up, yRot);
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
+    
+    /// <summary>
+    /// Get y rotation value if mouse is near screen borders
+    /// </summary>
+    /// <param name="mousePos"></param>
+    /// <returns>float</returns>
+    private float GetYRotFromMousePos(Vector3 mousePos)
+    {
+        float yRot = 0;
+        var minX = bordersMargin;
+        var maxX = Screen.width - bordersMargin;
+        
+        if (mousePos.x > maxX)
+            yRot = (mousePos.x - maxX) / bordersMargin;
+        else if (mousePos.x < minX)
+            yRot = (mousePos.x - minX) / bordersMargin;
+        
+        return yRot * mouseSensitivity * Time.deltaTime;
+    }
 
+    /// <summary>
+    /// Get x rotation value if mouse is near screen borders
+    /// </summary>
+    /// <param name="mousePos"></param>
+    /// <returns>float</returns>
+    private float GetXRotFromMousePos(Vector3 mousePos)
+    {
+        float xRot = 0;
+        var minY = bordersMargin;
+        var maxY = Screen.height - bordersMargin;
+
+        if (mousePos.y > maxY)
+            xRot = (mousePos.y - maxY) / bordersMargin;
+        else if (mousePos.y < minY)
+            xRot = (mousePos.y - minY) / bordersMargin;
+        
+        return xRot * mouseSensitivity * Time.deltaTime;
+    }
+
+    /// <summary>
+    /// 'worldMouseDir' Getter
+    /// </summary>
+    /// <returns>Vector3</returns>
     public Vector3 GetWorldMouseDir()
     {
         return worldMouseDir;
     }
 
-    //TODO: Fix - Using Input related logic outside of an input responsible class
+    /// <summary>
+    /// Recieve camera input
+    /// </summary>
+    /// <param name="input"></param>
     public void OnCamera(InputValue input)
     {
-        if (!ads)
-        {
-            //TODO: Fix - Unclear name
-            Vector2 mouse = input.Get<Vector2>();
+        if (aimDownSight) return;
+        
+        var mousePos = input.Get<Vector2>();
 
-            mouse.x /= Screen.width;
-            mouse.y /= Screen.height;
+        mousePos.x /= Screen.width;
+        mousePos.y /= Screen.height;
 
-            xRotation -= mouse.y * mouseSensitivity;
-            xRotation = Mathf.Clamp(xRotation, -89f, 89f);
-            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-            playerBody.Rotate(Vector3.up * mouse.x * mouseSensitivity);
-        }
+        xRotation -= mousePos.y * mouseSensitivity;
+        xRotation = Mathf.Clamp(xRotation, -89f, 89f);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mousePos.x * mouseSensitivity);
     }
 }

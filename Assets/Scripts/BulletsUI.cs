@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +27,10 @@ public class BulletsUI : MonoBehaviour
     {
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
-
+    
+/// <summary>
+/// Gameplay-only update
+/// </summary>
     private void OnUpdate()
     {
         if (player.GetWeapon())
