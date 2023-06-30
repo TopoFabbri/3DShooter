@@ -13,33 +13,33 @@ public class InstancePython : Gun
     private void Start()
     {
         //TODO: Fix - Add [RequireComponentAttribute]
-        rb = GetComponent<Rigidbody>();
-        collider = GetComponent<BoxCollider>();
+        Rb = GetComponent<Rigidbody>();
+        Collider = GetComponent<BoxCollider>();
     }
 
-    private void Update()
+    private void OnUpdate()
     {
-        base.Update();
+        base.OnUpdate();
         sprite.transform.position = transform.position + Vector3.up;
         sprite.transform.LookAt(character.position);
     }
 
     public override void DropGun()
     {
-        rb.useGravity = true;
+        Rb.useGravity = true;
         sprite.SetActive(true);
-        collider.isTrigger = false;
+        Collider.isTrigger = false;
         hand.SetActive(false);
         transform.parent = null;
         //TODO: Fix - Hardcoded value
-        rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
+        Rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
     }
 
     public override void GrabGun(Transform parent)
     {
-        rb.useGravity = false;
+        Rb.useGravity = false;
         sprite.SetActive(false);
-        collider.isTrigger = true;
+        Collider.isTrigger = true;
         hand.SetActive(true);
         transform.parent = parent;
     }
@@ -51,7 +51,7 @@ public class InstancePython : Gun
             Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             anim.Play();
             
-            chamber--;
+            Chamber--;
         }
     }
 }

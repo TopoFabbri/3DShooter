@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
         if (weapon)
         {
-            if (weapon.GetReloading())
+            if (weapon.isReloading)
             {
                 weapon.transform.position = transform.position - transform.forward;
             }

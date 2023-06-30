@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
@@ -5,52 +6,73 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject hand;
     [SerializeField] protected Transform bulletSpawnPoint;
     [SerializeField] protected Animation anim;
+    [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private Id stateId;
 
-    protected Rigidbody rb;
-    protected BoxCollider collider;
-    protected bool isReloading = false;
-    protected int chamber = 0;
+    protected Rigidbody Rb;
+    protected BoxCollider Collider;
+    protected int Chamber;
 
-    private int chamberSize = 6;
-    private float bulletReloadTime = 0f;
-    private float reloadCooldown = 1f;
+    private const int ChamberSize = 6;
+    private float bulletReloadTime;
 
-    protected void Update()
+    public bool isReloading { get; private set; }
+    public int chamber { get; }
+
+    private void OnEnable()
     {
-        if (chamber <= 0)
-            Reload();
-
-        //TODO: Fix - Could be a coroutine
-        if (Time.time > bulletReloadTime)
-            isReloading = false;
+        stateMachine.Subscribe(stateId, OnUpdate);
     }
 
-    //TODO: Fix - Could be a coroutine
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    protected void OnUpdate()
+    {
+        if (Chamber <= 0)
+            Reload();
+    }
+
+    /// <summary>
+    /// Start action reload
+    /// </summary>
     public void Reload()
     {
-        if (!isReloading)
-        {
-            isReloading = true;
-            bulletReloadTime = Time.time + reloadCooldown * (chamberSize - chamber);
-            chamber = chamberSize;
-        }
+        isReloading = true;
+        StartCoroutine(StopReloadOnTime(bulletReloadTime));
+        
+        Chamber = ChamberSize;
     }
-
+        
+    /// <summary>
+    /// Wait for 'time' then stop reload action
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    private IEnumerator StopReloadOnTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isReloading = false;
+    }
+    
+    /// <summary>
+    /// Release grabbed weapon
+    /// </summary>
     public abstract void DropGun();
 
+    /// <summary>
+    /// Try and select a gun from the floor and set as current weapon
+    /// </summary>
+    /// <param name="parent"></param>
     public abstract void GrabGun(Transform parent);
 
+    /// <summary>
+    /// Instantiate bullet
+    /// </summary>
     public abstract void Shoot();
-
-    //TODO: Fix - Should be native Setter/Getter
-    public int GetBullets()
-    {
-        return chamber;
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public bool GetReloading()
-    {
-        return isReloading;
-    }
 }

@@ -36,7 +36,7 @@ public class BulletsUI : MonoBehaviour
         if (player.GetWeapon())
         {
             image.color = Color.white;
-            image.sprite = sprites[player.GetWeapon().GetBullets()];
+            image.sprite = sprites[player.GetWeapon().chamber];
         }
         else
         {

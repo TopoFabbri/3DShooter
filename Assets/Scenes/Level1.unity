@@ -901,6 +901,8 @@ MonoBehaviour:
   - {fileID: 1020246812}
   - {fileID: 531580653}
   enemies: []
+  characterTransform: {fileID: 0}
+  stateMachine: {fileID: 0}
 --- !u!1 &845699835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,9 +1790,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4148408000513766015, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: stateId
+      value: 
+      objectReference: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+    - target: {fileID: 4148408000513766015, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1023690212}
+    - target: {fileID: 4148408000513766015, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: stateMachine
+      value: 
+      objectReference: {fileID: 926507254}
     - target: {fileID: 4997469823575018140, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2394,9 +2404,17 @@ PrefabInstance:
       value: InstancePython
       objectReference: {fileID: 0}
     - target: {fileID: 8914955610770326910, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
+      propertyPath: stateId
+      value: 
+      objectReference: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+    - target: {fileID: 8914955610770326910, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1023690212}
+    - target: {fileID: 8914955610770326910, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
+      propertyPath: stateMachine
+      value: 
+      objectReference: {fileID: 926507254}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
 --- !u!1001 &1523254987

@@ -490,6 +490,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba29d2f07a5450d40993e90a3f2cc5e3, type: 3}
   - {fileID: 21300000, guid: f1b8acdc31f21394680a67af06f58bc0, type: 3}
   player: {fileID: 3828258810575336182}
+  stateMachine: {fileID: 0}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
 --- !u!1 &923398155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,8 +1487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb734b42d4cc734ebb89d1b3b81e345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 9086566704594835636}
   mouseSensitivity: 100
   playerBody: {fileID: 1449900856752445663}
   bordersMargin: 100
-  ads: 0
+  stateMachine: {fileID: 0}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  aimDownSight: 0
