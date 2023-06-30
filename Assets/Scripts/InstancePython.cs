@@ -1,23 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class InstancePython : Gun
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject sprite;
     [SerializeField] private Transform character;
-
-    private void Start()
+    [SerializeField] private Vector3 dropForce;
+    
+    private void OnEnable()
     {
-        //TODO: Fix - Add [RequireComponentAttribute]
-        Rb = GetComponent<Rigidbody>();
-        Collider = GetComponent<BoxCollider>();
+        stateMachine.Subscribe(stateId, OnUpdate);
     }
 
-    private void OnUpdate()
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private new void OnUpdate()
     {
         base.OnUpdate();
         sprite.transform.position = transform.position + Vector3.up;
@@ -30,9 +33,9 @@ public class InstancePython : Gun
         sprite.SetActive(true);
         Collider.isTrigger = false;
         hand.SetActive(false);
-        transform.parent = null;
-        //TODO: Fix - Hardcoded value
-        Rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
+        var trans = transform;
+        trans.parent = null;
+        Rb.AddForce(trans.forward * dropForce.z + trans.up * dropForce.y, ForceMode.Impulse);
     }
 
     public override void GrabGun(Transform parent)

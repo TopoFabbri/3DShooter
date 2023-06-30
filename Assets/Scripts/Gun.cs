@@ -6,8 +6,8 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected GameObject hand;
     [SerializeField] protected Transform bulletSpawnPoint;
     [SerializeField] protected Animation anim;
-    [SerializeField] private StateMachine stateMachine;
-    [SerializeField] private Id stateId;
+    [SerializeField] protected StateMachine stateMachine;
+    [SerializeField] protected Id stateId;
 
     protected Rigidbody Rb;
     protected BoxCollider Collider;
@@ -18,16 +18,6 @@ public abstract class Gun : MonoBehaviour
 
     public bool isReloading { get; private set; }
     public int chamber { get; }
-
-    private void OnEnable()
-    {
-        stateMachine.Subscribe(stateId, OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        stateMachine.UnSubscribe(stateId, OnUpdate);
-    }
 
     /// <summary>
     /// Gameplay-only update
