@@ -11,7 +11,7 @@ public class CameraMovement : MonoBehaviour
 
     private Camera cam;
     private Vector3 worldMouseDir;
-    private float xRotation = 0f;
+    private float xRotation;
 
     public bool aimDownSight;
 
@@ -20,10 +20,6 @@ public class CameraMovement : MonoBehaviour
         InputListener.Camera += OnCamera;
         cam = GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void OnEnable()
-    {
         stateMachine.Subscribe(stateId, OnUpdate);
     }
     

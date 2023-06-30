@@ -8,25 +8,20 @@ public class DevilEnemy : MonoBehaviour
     [SerializeField] private float cooldown = 1f;
     [SerializeField] private float longCooldown = 5f;
     [SerializeField] private GameObject fireBall;
+    [SerializeField] private Id stateId;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private ObstacleEvasion obstacleEvasion;
 
-    private ObstacleEvasion obstacleEvasion;
     private Transform target;
-    private Rigidbody rb;
     private float nextFireTime;
     private int fireCount;
-    [SerializeField] private StateMachine stateMachine;
-    [SerializeField] private Id stateId;
     private const string CharacterName = "Character";
-
-    private void Start()
-    {
-        obstacleEvasion = GetComponent<ObstacleEvasion>();
-        target = GameObject.Find(CharacterName).transform;
-        rb = GetComponent<Rigidbody>();
-    }
+    private StateMachine stateMachine;
 
     private void OnEnable()
     {
+        target = GameObject.Find(CharacterName).transform;
+        stateMachine = FindObjectOfType<StateMachine>();
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 
@@ -42,18 +37,16 @@ public class DevilEnemy : MonoBehaviour
     {
         transform.LookAt(target);
 
-        //TODO: Fix - Could be a coroutine
-        if (Time.time > nextFireTime)
+        if (Time.time < nextFireTime) return;
+        
+        if (Vector3.Distance(transform.position, target.position) > fireDis)
         {
-            if (Vector3.Distance(transform.position, target.position) > fireDis)
-            {
-                obstacleEvasion.CheckAndEvade();
-                rb.velocity = speed * transform.forward;
-            }
-            else
-            {
-                Shoot();
-            }
+            obstacleEvasion.CheckAndEvade();
+            rb.velocity = speed * transform.forward;
+        }
+        else
+        {
+            Shoot();
         }
     }
 

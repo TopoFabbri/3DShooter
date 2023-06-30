@@ -596,6 +596,9 @@ MonoBehaviour:
   pauseScreen: {fileID: 142693917}
   firstSelectedGameObject: {fileID: 1818796066}
   playerInput: {fileID: 944067454}
+  stateMachine: {fileID: 926507254}
+  gameId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  pauseId: {fileID: 11400000, guid: 5aeefa55c11cc3b4d9f66109b4c10eb6, type: 2}
   paused: 0
 --- !u!4 &458424274 stripped
 Transform:

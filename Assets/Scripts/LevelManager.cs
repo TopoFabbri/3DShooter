@@ -10,17 +10,19 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int maxEnemies = 20;
     [SerializeField] private int devilDensity = 4;
     [SerializeField] private float spawnCooldown = 5f;
-    [SerializeField] private List<GameObject> enemyPrefab = new List<GameObject>();
-    [SerializeField] private List<Transform> spawns = new List<Transform>();
-    [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] private List<GameObject> enemyPrefab = new();
+    [SerializeField] private List<Transform> spawns = new();
+    [SerializeField] private List<GameObject> enemies = new();
+    [SerializeField] private Transform characterTransform;
+    [SerializeField] private StateMachine stateMachine;
 
-    private int spawnIndex = 0;
-    private float spawnTime = 0;
+    private int spawnIndex;
+    private float spawnTime;
 
     private void Start()
     {
         Stats.DestroyedEvent += OnEnemyDestroyed;
-        
+
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
     }
@@ -41,16 +43,18 @@ public class LevelManager : MonoBehaviour
 
         if (spawnIndex >= spawns.Count)
             spawnIndex = 0;
-        
-        enemies.Add(Instantiate(enemyPrefab[i], spawns[spawnIndex].position, spawns[spawnIndex].rotation));
+
+        var enemy = Instantiate(enemyPrefab[i], spawns[spawnIndex].position, spawns[spawnIndex].rotation);
+
+        enemies.Add(enemy);
 
         spawnIndex++;
         spawnTime = Time.time + spawnCooldown;
     }
 
-    private void OnEnemyDestroyed(GameObject gameObject)
+    private void OnEnemyDestroyed(GameObject gObject)
     {
-        if (enemies.Contains(gameObject))
-            enemies.Remove(gameObject);
+        if (enemies.Contains(gObject))
+            enemies.Remove(gObject);
     }
 }

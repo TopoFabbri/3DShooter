@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public event Action onGameplayUpdate;
-    public event Action onPauseUpdate;
     [SerializeField] private Id[] stateIds;
     private Dictionary<Id, Action> updatesById = new();
     private Id currentState;
