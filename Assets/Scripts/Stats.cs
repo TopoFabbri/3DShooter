@@ -6,9 +6,12 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     [SerializeField] private float hp = 100f;
-    [SerializeField] private float lifeRegen = 0f;
+    [SerializeField] private bool isCharacter;
     [SerializeField] private Transform life;
+    [SerializeField] private Hud hud;
 
+    private const float LifeRegen = .5f;
+    
     public delegate void ObjectDestroyed(GameObject destroyed);
     public static event ObjectDestroyed DestroyedEvent;
 
@@ -17,7 +20,12 @@ public class Stats : MonoBehaviour
         if (hp <= 0)
             Die();
 
-        hp += lifeRegen * Time.deltaTime;
+        if (isCharacter)
+        {
+            hp += LifeRegen * Time.deltaTime;
+            hud?.SetSlider(hp);
+        }   
+        
         hp = Mathf.Clamp(hp, 0f, 100f);
 
         if (life)
@@ -31,17 +39,14 @@ public class Stats : MonoBehaviour
     public void LoseLife(float damage)
     {
         hp -= damage;
+        
+        if (LifeRegen > 0)
+            hud?.SetSlider(hp);
     }
 
     private void Die()
     {
         Destroy(gameObject);
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public float GetHp()
-    {
-        return hp;
     }
 
     private void OnDestroy()
