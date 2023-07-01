@@ -18,10 +18,14 @@ public class LevelManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
 
-        StartCoroutine(SpawnEnemy());
+        StartCoroutine(SpawnEnemies());
     }
 
-    private IEnumerator SpawnEnemy()
+    /// <summary>
+    /// Spawns enemies on given time
+    /// </summary>
+    /// <returns>IEnumerator</returns>
+    private IEnumerator SpawnEnemies()
     {
         var spawnIndex = 0;
         

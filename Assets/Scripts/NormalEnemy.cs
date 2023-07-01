@@ -1,33 +1,40 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NormalEnemy : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
+    [SerializeField] private float damageTime = 2f;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private Id stateId;
+    [SerializeField] private string characterTag;
 
-    private ObstacleEvasion obstacleEvasion;
+    [SerializeField] private ObstacleEvasion obstacleEvasion;
+    [SerializeField] private Rigidbody rb;
     private Transform target;
-    private Rigidbody rb;
-    //TODO: Fix - Add [SerializeFieldAttribute]
-    private float damageTime = 2f;
     private float cooldown;
-
-    // Start is called before the first frame update
+    private StateMachine stateMachine;
+    private const string CharacterName = "Character";
+    
     private void Start()
     {
-        //TODO: Fix - Add [RequireComponentAttribute]
-        obstacleEvasion = GetComponent<ObstacleEvasion>();
-        //TODO: Fix - Hardcoded value
-        target = GameObject.Find("Character").transform;
-        //TODO: Fix - Add [RequireComponentAttribute]
-        rb = GetComponent<Rigidbody>();
+        target = GameObject.Find(CharacterName).transform;
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void OnEnable()
+    {
+        stateMachine = FindObjectOfType<StateMachine>();
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+    
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private void OnUpdate()
     {
         transform.LookAt(target);
 
@@ -35,22 +42,11 @@ public class NormalEnemy : MonoBehaviour
         rb.velocity = speed * transform.forward;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Character"))
-        {
-            other.gameObject.GetComponent<Stats>().LoseLife(10f);
-            cooldown = Time.time + damageTime;
-        }
-    }
-
     private void OnCollisionStay(Collision other)
     {
-        //TODO: Fix - Hardcoded value
-        if (Time.time > cooldown && other.gameObject.CompareTag("Character"))
-        {
-            other.gameObject.GetComponent<Stats>().LoseLife(10f);
-            cooldown = Time.time + damageTime;
-        }
+        if (!(Time.time > cooldown) || !other.gameObject.CompareTag(characterTag)) return;
+        
+        other.gameObject.GetComponent<Stats>().LoseLife(damage);
+        cooldown = Time.time + damageTime;
     }
 }

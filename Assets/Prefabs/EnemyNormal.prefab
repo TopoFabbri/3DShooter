@@ -196,8 +196,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  leftRayOrigin: {fileID: 0}
-  rightRayOrigin: {fileID: 0}
+  damageTime: 2
+  damage: 10
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  characterTag: Character
+  obstacleEvasion: {fileID: 6324731538647066611}
+  rb: {fileID: 4259751715390509325}
 --- !u!114 &6625045434142015474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,8 +215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  lifeRegen: 0
+  isCharacter: 0
   life: {fileID: 724345844084816989}
+  hud: {fileID: 0}
 --- !u!114 &6324731538647066611
 MonoBehaviour:
   m_ObjectHideFlags: 0
