@@ -8,23 +8,21 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected Animation anim;
     [SerializeField] protected StateMachine stateMachine;
     [SerializeField] protected Id stateId;
-
-    protected Rigidbody Rb;
-    protected BoxCollider Collider;
-    protected int Chamber;
+    [SerializeField] protected Rigidbody rb;
+    [SerializeField] protected BoxCollider boxCollider;
+    [SerializeField] private float bulletReloadTime;
 
     private const int ChamberSize = 6;
-    private float bulletReloadTime;
 
     public bool isReloading { get; private set; }
-    public int chamber { get; }
+    public int chamber { get; protected set; }
 
     /// <summary>
     /// Gameplay-only update
     /// </summary>
-    protected void OnUpdate()
+    protected void CheckReload()
     {
-        if (Chamber <= 0)
+        if (chamber <= 0)
             Reload();
     }
 
@@ -34,9 +32,9 @@ public abstract class Gun : MonoBehaviour
     public void Reload()
     {
         isReloading = true;
-        StartCoroutine(StopReloadOnTime(bulletReloadTime));
+        StartCoroutine(StopReloadOnTime(bulletReloadTime * (ChamberSize - chamber)));
         
-        Chamber = ChamberSize;
+        chamber = ChamberSize;
     }
         
     /// <summary>

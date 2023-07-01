@@ -8,18 +8,12 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private Id[] stateIds;
     private Dictionary<Id, Action> updatesById = new();
     private Id currentState;
+    private bool isInitialized;
 
     private void Awake()
     {
-        foreach (var id in stateIds)
-        {
-            updatesById.Add(id, delegate { });
-        }
-
-        if(stateIds.Any())
-        {
-            currentState = stateIds.First();
-        }
+        if (!isInitialized)
+            Initialize();
     }
 
     private void Update()
@@ -29,6 +23,9 @@ public class StateMachine : MonoBehaviour
 
     public void Subscribe(Id stateId, Action updateMethod)
     {
+        if (!isInitialized)
+            Initialize();
+
         if (updatesById.ContainsKey(stateId))
         {
             updatesById[stateId] += updateMethod;
@@ -47,5 +44,20 @@ public class StateMachine : MonoBehaviour
         {
             currentState = stateId;
         }
+    }
+
+    private void Initialize()
+    {
+        foreach (var id in stateIds)
+        {
+            updatesById.Add(id, delegate { });
+        }
+
+        if(stateIds.Any())
+        {
+            currentState = stateIds.First();
+        }
+
+        isInitialized = true;
     }
 }

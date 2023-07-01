@@ -1,23 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
-    [Header("Enemies:")]
-    [SerializeField] private int maxEnemies = 20;
     [SerializeField] private int devilDensity = 4;
     [SerializeField] private float spawnCooldown = 5f;
     [SerializeField] private List<GameObject> enemyPrefab = new();
-    [SerializeField] private List<Transform> spawns = new();
+    [SerializeField] private List<Transform> spawnPoints = new();
     [SerializeField] private List<GameObject> enemies = new();
-    [SerializeField] private Transform characterTransform;
-    [SerializeField] private StateMachine stateMachine;
-
-    private int spawnIndex;
-    private float spawnTime;
+    [SerializeField] private PauseMenu pauseMenu;
 
     private void Start()
     {
@@ -25,31 +17,36 @@ public class LevelManager : MonoBehaviour
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+
+        StartCoroutine(SpawnEnemy());
     }
 
-    private void Update()
+    private IEnumerator SpawnEnemy()
     {
-        //TODO: Fix - Could be a coroutine
-        if (Time.time > spawnTime && enemies.Count < maxEnemies)
-            SpawnEnemy();
-    }
+        var spawnIndex = 0;
+        
+        while (gameObject.activeSelf)
+        {
+            var enemyIndex = 0;
 
-    private void SpawnEnemy()
-    {
-        int i = 0;
+            if (enemies.Count > 0 && enemies.Count % devilDensity == 0)
+                enemyIndex = 1;
 
-        if (enemies.Count > 0 && enemies.Count % devilDensity == 0)
-            i = 1;
+            if (spawnIndex >= spawnPoints.Count)
+                spawnIndex = 0;
 
-        if (spawnIndex >= spawns.Count)
-            spawnIndex = 0;
+            var enemy = Instantiate(enemyPrefab[enemyIndex], spawnPoints[spawnIndex].position,
+                spawnPoints[spawnIndex].rotation);
 
-        var enemy = Instantiate(enemyPrefab[i], spawns[spawnIndex].position, spawns[spawnIndex].rotation);
+            enemies.Add(enemy);
 
-        enemies.Add(enemy);
+            spawnIndex++;
 
-        spawnIndex++;
-        spawnTime = Time.time + spawnCooldown;
+            yield return new WaitForSeconds(spawnCooldown);
+
+            if (pauseMenu.paused)
+                yield return new WaitUntil(() => !pauseMenu.paused);
+        }
     }
 
     private void OnEnemyDestroyed(GameObject gObject)

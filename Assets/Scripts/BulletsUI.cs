@@ -14,12 +14,8 @@ public class BulletsUI : MonoBehaviour
 
     private void Start()
     {
-        stateMachine = FindObjectOfType<StateMachine>();
         image = GetComponent<Image>();
-    }
-
-    private void OnEnable()
-    {
+        stateMachine = FindObjectOfType<StateMachine>();
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 

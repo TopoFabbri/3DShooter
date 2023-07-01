@@ -13,13 +13,13 @@ public class RayPython : Gun
     private void Start()
     {
         //TODO: Fix - Add [RequireComponentAttribute]
-        Rb = GetComponent<Rigidbody>();
-        Collider = GetComponent<BoxCollider>();
+        rb = GetComponent<Rigidbody>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     private void Update()
     {
-        base.OnUpdate();
+        base.CheckReload();
         sprite.transform.position = transform.position + Vector3.up;
         sprite.transform.LookAt(character.position);
     }
@@ -27,20 +27,20 @@ public class RayPython : Gun
     public override void DropGun()
     {
         //TODO: Fix - Repeated code
-        Rb.useGravity = true;
+        rb.useGravity = true;
         sprite.SetActive(true);
-        Collider.isTrigger = false;
+        boxCollider.isTrigger = false;
         hand.SetActive(false);
         transform.parent = null;
-        Rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
+        rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
     }
 
     public override void GrabGun(Transform parent)
     {
         //TODO: Fix - Repeated code
-        Rb.useGravity = false;
+        rb.useGravity = false;
         sprite.SetActive(false);
-        Collider.isTrigger = true;
+        boxCollider.isTrigger = true;
         hand.SetActive(true);
         transform.parent = parent;
     }
@@ -68,7 +68,7 @@ public class RayPython : Gun
             anim.Play();
 
             //TODO: Fix - OOP
-            Chamber--;
+            chamber--;
         }
     }
 }

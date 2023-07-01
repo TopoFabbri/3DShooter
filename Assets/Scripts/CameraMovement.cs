@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,9 +21,13 @@ public class CameraMovement : MonoBehaviour
         InputListener.Camera += OnCamera;
         cam = GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void OnEnable()
+    {
         stateMachine.Subscribe(stateId, OnUpdate);
     }
-    
+
     private void OnDisable()
     {
         stateMachine.UnSubscribe(stateId, OnUpdate);
@@ -72,13 +77,13 @@ public class CameraMovement : MonoBehaviour
 
         var yRot = GetYRotFromMousePos(mousePos);
         xRotation -= GetXRotFromMousePos(mousePos);
-        
+
         xRotation = Mathf.Clamp(xRotation, -89f, 89f);
 
         playerBody.Rotate(Vector3.up, yRot);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
-    
+
     /// <summary>
     /// Get y rotation value if mouse is near screen borders
     /// </summary>
@@ -89,12 +94,12 @@ public class CameraMovement : MonoBehaviour
         float yRot = 0;
         var minX = bordersMargin;
         var maxX = Screen.width - bordersMargin;
-        
+
         if (mousePos.x > maxX)
             yRot = (mousePos.x - maxX) / bordersMargin;
         else if (mousePos.x < minX)
             yRot = (mousePos.x - minX) / bordersMargin;
-        
+
         return yRot * mouseSensitivity * Time.deltaTime;
     }
 
@@ -113,7 +118,7 @@ public class CameraMovement : MonoBehaviour
             xRot = (mousePos.y - maxY) / bordersMargin;
         else if (mousePos.y < minY)
             xRot = (mousePos.y - minY) / bordersMargin;
-        
+
         return xRot * mouseSensitivity * Time.deltaTime;
     }
 
@@ -133,7 +138,7 @@ public class CameraMovement : MonoBehaviour
     public void OnCamera(InputValue input)
     {
         if (aimDownSight) return;
-        
+
         var mousePos = input.Get<Vector2>();
 
         mousePos.x /= Screen.width;
