@@ -5,18 +5,20 @@ public abstract class Gun : MonoBehaviour
 {
     [SerializeField] protected GameObject hand;
     [SerializeField] protected Transform bulletSpawnPoint;
-    [SerializeField] protected Animation anim;
     [SerializeField] protected StateMachine stateMachine;
     [SerializeField] protected Id stateId;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected BoxCollider boxCollider;
-    [SerializeField] protected ParticleSystem particleSys;
-    [SerializeField] private float bulletReloadTime;
+    [SerializeField] protected GameObject sprite;
+    [SerializeField] protected WeaponVFX weaponVFX;
 
+    [SerializeField] private float bulletReloadTime;
+    [SerializeField] private Vector3 dropForce;
+    
     private const int ChamberSize = 6;
 
     public bool isReloading { get; private set; }
-    public int chamber { get; protected set; }
+    public int chamber { get; private set; }
 
     /// <summary>
     /// Gameplay-only update
@@ -52,16 +54,40 @@ public abstract class Gun : MonoBehaviour
     /// <summary>
     /// Release grabbed weapon
     /// </summary>
-    public abstract void DropGun();
+
+    public void DropGun()
+    {
+        var trans = transform;
+        
+        rb.useGravity = true;
+        sprite.SetActive(true);
+        boxCollider.isTrigger = false;
+        hand.SetActive(false);
+        trans.parent = null;
+        rb.AddForce(trans.forward * dropForce.z + trans.up * dropForce.y, ForceMode.Impulse);
+    }
 
     /// <summary>
     /// Try and select a gun from the floor and set as current weapon
     /// </summary>
     /// <param name="parent"></param>
-    public abstract void GrabGun(Transform parent);
+
+    public void GrabGun(Transform parent)
+    {
+        rb.useGravity = false;
+        sprite.SetActive(false);
+        boxCollider.isTrigger = true;
+        hand.SetActive(true);
+        transform.parent = parent;
+    }
 
     /// <summary>
-    /// Instantiate bullet
+    /// Call action shoot
     /// </summary>
-    public abstract void Shoot();
+    public virtual void Shoot()
+    {
+        chamber--;
+        
+        weaponVFX.Shoot();
+    }
 }

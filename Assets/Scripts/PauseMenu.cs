@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id gameId;
     [SerializeField] private Id pauseId;
+    [SerializeField] private PlayerController player;
 
     public bool paused;
 
@@ -43,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         pauseScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        player.StopMovement();
     }
 
     /// <summary>

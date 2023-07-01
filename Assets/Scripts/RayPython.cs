@@ -1,75 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RayPython : Gun
 {
     [SerializeField] private float strength = 10f;
-    [SerializeField] private GameObject ps;
-    [SerializeField] private GameObject sprite;
+    [FormerlySerializedAs("ps")] [SerializeField] private GameObject particleSystemPrefab;
     [SerializeField] private Transform character;
     [SerializeField] private float damage = 50f;
-
-    private void Start()
+    
+    private void OnEnable()
     {
-        //TODO: Fix - Add [RequireComponentAttribute]
-        rb = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
+        stateMachine.Subscribe(stateId, OnUpdate);
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        base.CheckReload();
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+    
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private void OnUpdate()
+    {
+        CheckReload();
         sprite.transform.position = transform.position + Vector3.up;
         sprite.transform.LookAt(character.position);
     }
     
-    public override void DropGun()
-    {
-        //TODO: Fix - Repeated code
-        rb.useGravity = true;
-        sprite.SetActive(true);
-        boxCollider.isTrigger = false;
-        hand.SetActive(false);
-        transform.parent = null;
-        rb.AddForce(transform.forward * 2 + transform.up, ForceMode.Impulse);
-    }
-
-    public override void GrabGun(Transform parent)
-    {
-        //TODO: Fix - Repeated code
-        rb.useGravity = false;
-        sprite.SetActive(false);
-        boxCollider.isTrigger = true;
-        hand.SetActive(true);
-        transform.parent = parent;
-    }
-
     public override void Shoot()
     {
-        //TODO: Fix - OOP
-        if (!isReloading)
-        {
-            Ray ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
-            RaycastHit hit = new RaycastHit();
+        if (isReloading) return;
+        
+        var ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                Instantiate(ps, hit.point, Quaternion.identity);
+        base.Shoot();
 
-                if (hit.transform.gameObject.GetComponent<Stats>())
-                    hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
+        if (!Physics.Raycast(ray, out var hit)) return;
+        
+        weaponVFX.PlayHitExplosion(hit.point);
 
-                if (hit.transform.gameObject.GetComponent<Rigidbody>())
-                    hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
-            }
-            
-            //TODO: Fix - OOP
-            anim.Play();
-            particleSys.Play();
+        if (hit.transform.gameObject.GetComponent<Stats>())
+            hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
 
-            //TODO: Fix - OOP
-            chamber--;
-        }
+        if (hit.transform.gameObject.GetComponent<Rigidbody>())
+            hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
     }
 }

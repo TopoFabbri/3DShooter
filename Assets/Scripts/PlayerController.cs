@@ -199,6 +199,14 @@ public class PlayerController : MonoBehaviour
                Vector3.Distance(hit.transform.position, transform.position) < grabDis;
     }
 
+    /// <summary>
+    /// Sets player velocity to 0
+    /// </summary>
+    public void StopMovement()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
     private void OnDestroy()
     {
         Destroyed?.Invoke();
