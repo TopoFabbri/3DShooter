@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 450f;
     [SerializeField] private Rigidbody rb;
 
-    [FormerlySerializedAs("ps")] [SerializeField] private GameObject particleSystem;
+    [SerializeField] private GameObject particleSys;
     [SerializeField] private float damage = 50f;
     [FormerlySerializedAs("life")] [SerializeField] private float lifeTime = 5f;
     [SerializeField] private bool addPlayerVel;
@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(particleSystem, transform.position, Quaternion.identity);
+        Instantiate(particleSys, transform.position, Quaternion.identity);
 
         if (collision.gameObject.GetComponent<Stats>())
             collision.gameObject.GetComponent<Stats>().LoseLife(damage);

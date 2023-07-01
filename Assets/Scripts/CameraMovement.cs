@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -88,7 +87,7 @@ public class CameraMovement : MonoBehaviour
     /// Get y rotation value if mouse is near screen borders
     /// </summary>
     /// <param name="mousePos"></param>
-    /// <returns>float</returns>
+    /// <returns>Get camera y rotation</returns>
     private float GetYRotFromMousePos(Vector3 mousePos)
     {
         float yRot = 0;
@@ -107,7 +106,7 @@ public class CameraMovement : MonoBehaviour
     /// Get x rotation value if mouse is near screen borders
     /// </summary>
     /// <param name="mousePos"></param>
-    /// <returns>float</returns>
+    /// <returns>Camera rotation on x axis</returns>
     private float GetXRotFromMousePos(Vector3 mousePos)
     {
         float xRot = 0;
@@ -125,7 +124,7 @@ public class CameraMovement : MonoBehaviour
     /// <summary>
     /// 'worldMouseDir' Getter
     /// </summary>
-    /// <returns>Vector3</returns>
+    /// <returns></returns>
     public Vector3 GetWorldMouseDir()
     {
         return worldMouseDir;
