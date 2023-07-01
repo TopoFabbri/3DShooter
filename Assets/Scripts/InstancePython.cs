@@ -53,6 +53,7 @@ public class InstancePython : Gun
         {
             Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             anim.Play();
+            particleSys.Play();
             
             chamber--;
         }

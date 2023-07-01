@@ -480,9 +480,14 @@ MonoBehaviour:
   anim: {fileID: 543434074}
   stateMachine: {fileID: 0}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  rb: {fileID: 5968411035550672685}
+  boxCollider: {fileID: 4528350694815874131}
+  particleSys: {fileID: 0}
+  bulletReloadTime: 0.2
   bulletPrefab: {fileID: 2776646117404197337, guid: 80e13d194d2d7644cbf224c5aee59687, type: 3}
   sprite: {fileID: 6285167013497632853}
   character: {fileID: 0}
+  dropForce: {x: 0, y: 1, z: 2}
 --- !u!111 &543434074
 Animation:
   m_ObjectHideFlags: 0

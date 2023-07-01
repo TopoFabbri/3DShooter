@@ -232,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.5
   detectionDis: 1
+  wallsTag: Walls
 --- !u!1001 &3170238141101934861
 PrefabInstance:
   m_ObjectHideFlags: 0

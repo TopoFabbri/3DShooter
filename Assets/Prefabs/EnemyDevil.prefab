@@ -9795,8 +9795,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  lifeRegen: 0
+  isCharacter: 0
   life: {fileID: 8341668384956792066}
+  hud: {fileID: 0}
 --- !u!114 &1165602744406655865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9811,6 +9812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.5
   detectionDis: 1
+  wallsTag: Walls
 --- !u!1001 &6274736317127878824
 PrefabInstance:
   m_ObjectHideFlags: 0

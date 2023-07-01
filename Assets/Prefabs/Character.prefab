@@ -242,7 +242,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 506723983}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
 --- !u!1 &506723983
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 203050438}
   frames: {fileID: 1235885236}
-  stats: {fileID: 3973310374492301881}
   pickUpTxt: {fileID: 932818298}
 --- !u!1 &640243161
 GameObject:
@@ -1208,13 +1219,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4f799db1afd07498dc96013f89739d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 1761868204606840452}
   moveSpeed: 500
   maxSpeed: 5
-  recoil: 10
+  grabDis: 3
+  gunTag: Gun
   weapon: {fileID: 0}
+  cameraMovement: {fileID: 252957150103741249}
+  rb: {fileID: 4613373557657892372}
   crosshair: {fileID: 46686953}
   hud: {fileID: 3838418102426732605}
+  stateMachine: {fileID: 0}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
 --- !u!114 &3973310374492301881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,8 +1243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  lifeRegen: 0.5
+  isCharacter: 1
   life: {fileID: 0}
+  hud: {fileID: 3838418102426732605}
 --- !u!54 &4613373557657892372
 Rigidbody:
   m_ObjectHideFlags: 0

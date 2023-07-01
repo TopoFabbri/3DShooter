@@ -10,6 +10,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField] protected Id stateId;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected BoxCollider boxCollider;
+    [SerializeField] protected ParticleSystem particleSys;
     [SerializeField] private float bulletReloadTime;
 
     private const int ChamberSize = 6;

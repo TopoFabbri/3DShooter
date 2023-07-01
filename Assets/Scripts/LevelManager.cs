@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,14 +11,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints = new();
     [SerializeField] private List<GameObject> enemies = new();
     [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private SceneId menu;
 
     private void Start()
     {
         Stats.DestroyedEvent += OnEnemyDestroyed;
-
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
-
+        PlayerController.Destroyed += CharacterDestroyed;
         StartCoroutine(SpawnEnemies());
     }
 
@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator SpawnEnemies()
     {
         var spawnIndex = 0;
-        
+
         while (gameObject.activeSelf)
         {
             var enemyIndex = 0;
@@ -53,9 +53,21 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes destroyed enemies from list
+    /// </summary>
+    /// <param name="gObject"></param>
     private void OnEnemyDestroyed(GameObject gObject)
     {
         if (enemies.Contains(gObject))
             enemies.Remove(gObject);
+    }
+
+    /// <summary>
+    /// Load menu when character dies
+    /// </summary>
+    private void CharacterDestroyed()
+    {
+        sceneLoader.LoadScene(menu);
     }
 }

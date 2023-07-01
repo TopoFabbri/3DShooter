@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Id gameId;
     [SerializeField] private Id pauseId;
 
-    public bool paused = false;
+    public bool paused;
 
     private EventSystem eventSystem;
     private const string MapUI = "UI";
@@ -32,6 +31,9 @@ public class PauseMenu : MonoBehaviour
             eventSystem.SetSelectedGameObject(firstSelectedGameObject);
     }
 
+    /// <summary>
+    /// Call pause action
+    /// </summary>
     public void OnPause()
     {
         paused = true;
@@ -43,6 +45,9 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
     }
 
+    /// <summary>
+    /// Call action resume
+    /// </summary>
     public void OnResume()
     {
         paused = false;
@@ -51,11 +56,6 @@ public class PauseMenu : MonoBehaviour
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 
     public void OnQuit()

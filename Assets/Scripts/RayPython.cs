@@ -66,6 +66,7 @@ public class RayPython : Gun
             
             //TODO: Fix - OOP
             anim.Play();
+            particleSys.Play();
 
             //TODO: Fix - OOP
             chamber--;

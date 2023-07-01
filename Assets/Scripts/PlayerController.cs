@@ -1,28 +1,41 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour                                                                
 {
-    [SerializeField] private Transform head;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float maxSpeed;
-    //TODO: TP2 - Syntax - Fix declaration order
-    [SerializeField] private float recoil = 10f;
+    [SerializeField] private float moveSpeed = 500f;
+    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float grabDis = 3f;
+    [SerializeField] private string gunTag = "Gun";
 
-    [Header("Objects:")][SerializeField] private Gun weapon;
+    [Header("Objects:")]
+    [SerializeField] private Gun weapon;
+    [SerializeField] private CameraMovement cameraMovement;
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private Hud hud;
+    [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private Id stateId;
 
-    private ParticleSystem ps;
-    private CameraMovement cameraMovement;
-    private Rigidbody rb;
-    private bool ads;
     private Vector3 movement;
-    private bool hasShot = false;
+    private bool ads;
+    private bool hasShot;
 
+    public static event Action Destroyed;
+
+    public Gun getWeapon => weapon;
+
+    private void OnEnable()
+    {
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+    
     private void Start()
     {
         // Action subscriptions
@@ -32,113 +45,127 @@ public class PlayerController : MonoBehaviour
         InputListener.Drop += OnDrop;
         InputListener.Grab += OnGrab;
         InputListener.Reload += OnReload;
-        
-        cameraMovement = GetComponentInChildren<CameraMovement>();
-        //TODO: Fix - Add [RequireComponentAttribute]
-        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce((movement.x * transform.right + movement.z * transform.forward) * Time.fixedDeltaTime,
+        var trans = transform;
+        rb.AddForce((movement.x * trans.right + movement.z * trans.forward) * Time.fixedDeltaTime,
             ForceMode.Acceleration);
-        Vector2 tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
+        var tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
         rb.velocity = new Vector3(tmp.x, rb.velocity.y, tmp.y);
     }
 
-    private void Update()
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private void OnUpdate()
     {
         if (ads)
             AimStart();
         else
             AimStop();
 
-        if (weapon)
+        if (getWeapon)
         {
-            if (weapon.isReloading)
+            if (getWeapon.isReloading)
             {
-                weapon.transform.position = transform.position - transform.forward;
+                var trans = transform;
+                getWeapon.transform.position = trans.position - trans.forward;
             }
             else
             {
-                weapon.transform.position = cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
-                weapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
+                getWeapon.transform.position = cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
+                getWeapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
             }
         }
 
-        hud.SetTextActive(PointingAtGun());
+        hud.SetTextActive(PointingAtGun(out _));
     }
 
-    //TODO: Fix - Using Input related logic outside of an input responsible class
+    /// <summary>
+    /// Call character move action
+    /// </summary>
+    /// <param name="input"></param>
     public void OnMove(InputValue input)
     {
         var direction = input.Get<Vector2>();
         movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
     }
 
-    //TODO: Fix - Using Input related logic outside of an input responsible class
-    public void OnShoot(InputValue value)
+    /// <summary>
+    /// Call character shoot action
+    /// </summary>
+    /// <param name="input"></param>
+    public void OnShoot(InputValue input)
     {
-        hasShot = value.isPressed;
+        hasShot = input.isPressed;
 
-        if (hasShot && weapon)
-        {
-            weapon.GetComponent<Gun>().Shoot();
-            ps.Play();
-        }
+        if (hasShot && getWeapon)
+            getWeapon.GetComponent<Gun>().Shoot();
     }
 
-    //TODO: Fix - Using Input related logic outside of an input responsible class
+    /// <summary>
+    /// Call character aim action
+    /// </summary>
+    /// <param name="input"></param>
     public void OnAim(InputValue input)
     {
         ads = input.isPressed;
     }
 
+    /// <summary>
+    /// Call character drop weapon action
+    /// </summary>
     public void OnDrop()
     {
-        weapon.DropGun();
+        getWeapon.DropGun();
         weapon = null;
-        ps = null;
     }
 
+    /// <summary>
+    /// Call character pickup weapon action
+    /// </summary>
     public void OnGrab()
     {
-        Ray ray = new Ray(cameraMovement.gameObject.transform.position, cameraMovement.gameObject.transform.forward);
-        RaycastHit hit = new RaycastHit();
-
-        if (Physics.Raycast(ray, out hit))
+        if (!PointingAtGun(out var hit))
+            return;
+        
+        if (getWeapon)
         {
-            //TODO: Fix - Hardcoded value
-            if (hit.transform.gameObject.CompareTag("Gun") &&
-                Vector3.Distance(hit.transform.position, transform.position) < 3f)
-            {
-                if (weapon)
-                {
-                    weapon.DropGun();
-                    weapon = null;
-                    ps = null;
-                }
-
-                hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
-                weapon = hit.transform.gameObject.GetComponent<Gun>();
-                ps = weapon.GetComponentInChildren<ParticleSystem>();
-            }
+            getWeapon.DropGun();
+            weapon = null;
         }
+
+        hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
+        weapon = hit.transform.gameObject.GetComponent<Gun>();
     }
 
+    /// <summary>
+    /// Call character reload weapon action
+    /// </summary>
     public void OnReload()
     {
-        if (weapon)
-            weapon.Reload();
+        if (getWeapon)
+            getWeapon.Reload();
     }
 
-    private Vector2 ClampPlaneVelocity(Vector3 vel, float clampValue)
+    /// <summary>
+    /// Clamp x - z velocity
+    /// </summary>
+    /// <param name="vel"></param>
+    /// <param name="clampValue"></param>
+    /// <returns>x & z velocity normalized within 'clampValue'</returns>
+    private static Vector2 ClampPlaneVelocity(Vector3 vel, float clampValue)
     {
-        Vector2 res = new Vector2(vel.x, vel.z);
+        var res = new Vector2(vel.x, vel.z);
         res = Vector2.ClampMagnitude(res, clampValue);
         return res;
     }
 
+    /// <summary>
+    /// Set up state 'aiming'
+    /// </summary>
     private void AimStart()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -146,6 +173,9 @@ public class PlayerController : MonoBehaviour
         cameraMovement.aimDownSight = true;
     }
 
+    /// <summary>
+    /// End character state 'aiming'
+    /// </summary>
     private void AimStop()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -153,31 +183,24 @@ public class PlayerController : MonoBehaviour
         cameraMovement.aimDownSight = false;
     }
 
-    public Gun GetWeapon()
+    /// <summary>
+    /// Check if can grab gun
+    /// </summary>
+    /// <param name="hit"></param>
+    /// <returns></returns>
+    private bool PointingAtGun(out RaycastHit hit)
     {
-        return weapon;
+        var cam = cameraMovement.gameObject.transform;
+        var ray = new Ray(cam.position, cam.forward);
+
+        if (!Physics.Raycast(ray, out hit)) return false;
+        
+        return hit.transform.gameObject.CompareTag(gunTag) &&
+               Vector3.Distance(hit.transform.position, transform.position) < grabDis;
     }
 
-    //TODO: TP2 - SOLID
     private void OnDestroy()
     {
-        SceneManager.LoadScene(4);
-    }
-
-    private bool PointingAtGun()
-    {
-        Ray ray = new Ray(cameraMovement.gameObject.transform.position, cameraMovement.gameObject.transform.forward);
-        RaycastHit hit = new RaycastHit();
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.gameObject.CompareTag("Gun") &&
-                Vector3.Distance(hit.transform.position, transform.position) < 3f)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        Destroyed?.Invoke();
     }
 }

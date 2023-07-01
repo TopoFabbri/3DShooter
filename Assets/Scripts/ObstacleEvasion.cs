@@ -4,7 +4,7 @@ public class ObstacleEvasion : MonoBehaviour
 {
     [SerializeField] private float radius = .5f;
     [SerializeField] private float detectionDis = 1f;
-    [SerializeField] private string wallsTag;
+    [SerializeField] private string wallsTag = "Walls";
 
     public void CheckAndEvade()
     {
