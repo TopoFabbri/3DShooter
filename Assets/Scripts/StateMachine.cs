@@ -6,7 +6,7 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     [SerializeField] private Id[] stateIds;
-    private Dictionary<Id, Action> updatesById = new();
+    private readonly Dictionary<Id, Action> updatesById = new();
     private Id currentState;
     private bool isInitialized;
 
@@ -21,6 +21,11 @@ public class StateMachine : MonoBehaviour
         updatesById[currentState]?.Invoke();
     }
 
+    /// <summary>
+    /// Subscribe method to action
+    /// </summary>
+    /// <param name="stateId"></param>
+    /// <param name="updateMethod"></param>
     public void Subscribe(Id stateId, Action updateMethod)
     {
         if (!isInitialized)
@@ -32,12 +37,21 @@ public class StateMachine : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Unsubscribe method from action
+    /// </summary>
+    /// <param name="stateId"></param>
+    /// <param name="updateMethod"></param>
     public void UnSubscribe(Id stateId, Action updateMethod)
     {
         if (updatesById.ContainsKey(stateId))
             updatesById[stateId] -= updateMethod;
     }
 
+    /// <summary>
+    /// Set current state
+    /// </summary>
+    /// <param name="stateId"></param>
     public void ChangeState(Id stateId)
     {
         if(updatesById.ContainsKey(stateId))
@@ -46,6 +60,9 @@ public class StateMachine : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initialize state machine
+    /// </summary>
     private void Initialize()
     {
         foreach (var id in stateIds)
