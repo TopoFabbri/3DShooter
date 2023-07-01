@@ -1,46 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleEvasion : MonoBehaviour
 {
-    [SerializeField]private float radius = .5f;
-    [SerializeField]private float detectionDis = 1f;
+    [SerializeField] private float radius = .5f;
+    [SerializeField] private float detectionDis = 1f;
+    [SerializeField] private string wallsTag;
 
     public void CheckAndEvade()
     {
-        Vector3 leftRayOrigin = transform.position - transform.right * radius;
-        Vector3 rightRayOrigin = transform.position + transform.right * radius;
-        
-        Ray ray = new Ray(leftRayOrigin, transform.forward);
-        RaycastHit hit;
-        
-        //TODO: Fix - Hardcoded value
-        if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag("Walls"))
+        var trans = transform;
+        var position = trans.position;
+        var right = trans.right;
+        var leftRayOrigin = position - right * radius;
+        var rightRayOrigin = position + right * radius;
+
+        var ray = new Ray(leftRayOrigin, trans.forward);
+        Vector3 dir;
+
+        if (Physics.Raycast(ray, out var hit, detectionDis) && hit.transform.CompareTag(wallsTag))
         {
-            Vector3 dir = Vector3.Cross(Vector3.up, hit.normal);
+            dir = Vector3.Cross(Vector3.up, hit.normal);
             transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
-            //TODO: Fix - Use return; to avoid nasty nesting
+            return;
         }
-        else
+
+        ray.origin = rightRayOrigin;
+
+        if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag(wallsTag))
         {
-            ray.origin = rightRayOrigin;
-
-            if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag("Walls"))
-            {
-                Vector3 dir = Vector3.Cross(Vector3.up, hit.normal);
-                transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
-            }
-            else
-            {
-                ray.origin = transform.position;
-
-                if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag("Walls"))
-                {
-                    Vector3 dir = Vector3.Cross(Vector3.up, hit.normal);
-                    transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
-                }
-            }
+            dir = Vector3.Cross(Vector3.up, hit.normal);
+            transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
+            return;
         }
+
+        ray.origin = transform.position;
+
+        if (!Physics.Raycast(ray, out hit, detectionDis) || !hit.transform.CompareTag(wallsTag)) return;
+
+        dir = Vector3.Cross(Vector3.up, hit.normal);
+        transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
     }
 }
