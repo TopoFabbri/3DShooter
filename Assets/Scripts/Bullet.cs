@@ -9,7 +9,10 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private GameObject particleSys;
     [SerializeField] private float damage = 50f;
-    [FormerlySerializedAs("life")] [SerializeField] private float lifeTime = 5f;
+
+    [FormerlySerializedAs("life")] [SerializeField]
+    private float lifeTime = 5f;
+
     [SerializeField] private bool addPlayerVel;
 
     private Transform character;

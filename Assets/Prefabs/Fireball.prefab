@@ -94,8 +94,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  lifeRegen: 0
+  isCharacter: 0
   life: {fileID: 0}
+  hud: {fileID: 0}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  stateMachine: {fileID: 0}
 --- !u!1 &7417589161733308157
 GameObject:
   m_ObjectHideFlags: 0

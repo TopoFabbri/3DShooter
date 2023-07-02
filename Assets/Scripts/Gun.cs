@@ -34,6 +34,8 @@ public abstract class Gun : MonoBehaviour
     /// </summary>
     public void Reload()
     {
+        if (isReloading) return;
+    
         isReloading = true;
         StartCoroutine(StopReloadOnTime(bulletReloadTime * (ChamberSize - chamber)));
         
@@ -54,7 +56,6 @@ public abstract class Gun : MonoBehaviour
     /// <summary>
     /// Release grabbed weapon
     /// </summary>
-
     public void DropGun()
     {
         var trans = transform;
@@ -71,7 +72,6 @@ public abstract class Gun : MonoBehaviour
     /// Try and select a gun from the floor and set as current weapon
     /// </summary>
     /// <param name="parent"></param>
-
     public void GrabGun(Transform parent)
     {
         rb.useGravity = false;

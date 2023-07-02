@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int devilDensity = 4;
+    [SerializeField] private int devilFrequency = 4;
     [SerializeField] private float spawnCooldown = 5f;
     [SerializeField] private List<GameObject> enemyPrefab = new();
     [SerializeField] private List<Transform> spawnPoints = new();
@@ -13,6 +12,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private SceneId menu;
+
+    private int spawnedEnemies;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class LevelManager : MonoBehaviour
         {
             var enemyIndex = 0;
 
-            if (enemies.Count > 0 && enemies.Count % devilDensity == 0)
+            if (spawnedEnemies > 0 && spawnedEnemies % devilFrequency == 0)
                 enemyIndex = 1;
 
             if (spawnIndex >= spawnPoints.Count)
@@ -45,6 +46,7 @@ public class LevelManager : MonoBehaviour
             enemies.Add(enemy);
 
             spawnIndex++;
+            spawnedEnemies++;
 
             yield return new WaitForSeconds(spawnCooldown);
 

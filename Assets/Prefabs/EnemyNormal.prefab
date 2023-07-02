@@ -218,6 +218,8 @@ MonoBehaviour:
   isCharacter: 0
   life: {fileID: 724345844084816989}
   hud: {fileID: 0}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  stateMachine: {fileID: 0}
 --- !u!114 &6324731538647066611
 MonoBehaviour:
   m_ObjectHideFlags: 0
