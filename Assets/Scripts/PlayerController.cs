@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        hud.SetTextActive(PointingAtGun(out _));
+        hud.SetPickupTextActive(PointingAtGun(out _));
     }
 
     /// <summary>
