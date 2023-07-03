@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
         playerInput.SwitchCurrentActionMap(MapUI);
         eventSystem.SetSelectedGameObject(firstSelectedGameObject);
         pauseScreen.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         player.StopMovement();
     }
@@ -69,7 +69,6 @@ public class PauseMenu : MonoBehaviour
         playerInput.SwitchCurrentActionMap(MapWorld);
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     /// <summary>

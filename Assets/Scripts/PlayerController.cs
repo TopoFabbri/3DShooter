@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [Header("Objects:")] [SerializeField] private Gun weapon;
     [SerializeField] private CameraMovement cameraMovement;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private GameObject crosshair;
     [SerializeField] private Hud hud;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
@@ -186,7 +185,7 @@ public class PlayerController : MonoBehaviour
     private void AimStart()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        crosshair.SetActive(false);
+        Cursor.visible = true;
         cameraMovement.aimDownSight = true;
     }
 
@@ -196,7 +195,7 @@ public class PlayerController : MonoBehaviour
     private void AimStop()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        crosshair.SetActive(true);
+        Cursor.visible = true;
         cameraMovement.aimDownSight = false;
     }
 
