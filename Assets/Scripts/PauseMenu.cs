@@ -70,12 +70,4 @@ public class PauseMenu : MonoBehaviour
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-    /// <summary>
-    /// Quit application
-    /// </summary>
-    public void OnQuit()
-    {
-        Application.Quit();
-    }
 }
