@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         eventSystem = EventSystem.current;
-        eventSystem.SetSelectedGameObject(firstSelection);
+    }
+
+    private void Update()
+    {
+        if (!eventSystem.currentSelectedGameObject)
+            eventSystem.SetSelectedGameObject(firstSelection);
     }
 
     /// <summary>
