@@ -48,7 +48,9 @@ MonoBehaviour:
   rooms:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   changeRoomTriggers:
+  - {fileID: 0}
   - {fileID: 0}
   stateMachine: {fileID: 5405977087533315833}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
@@ -146,12 +148,8 @@ MonoBehaviour:
     buildIndex: 0
   - scene: {fileID: 11400000, guid: 350b53eeaacde254b9c29b5dcd82d6b1, type: 2}
     buildIndex: 1
-  - scene: {fileID: 11400000, guid: fa7ee4ffb09006e4c83604c8984be170, type: 2}
-    buildIndex: 2
-  - scene: {fileID: 11400000, guid: ad6d6b30cb26b674fba1046ac376c961, type: 2}
-    buildIndex: 3
   - scene: {fileID: 11400000, guid: 680c30d3508b0744c99a821814fb0d3e, type: 2}
-    buildIndex: 4
+    buildIndex: 2
 --- !u!1 &5405977087312840050
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +274,7 @@ MonoBehaviour:
   - 2
   - 2
   - 1
-  maxEnemies: 100000003200000064000000
+  maxEnemies: 100000001900000032000000
   enemyPrefab:
   - {fileID: 4611229226745734839, guid: 9e57ae7e69180c64da805973433c255f, type: 3}
   - {fileID: 4611229226745734839, guid: 068f92f40d7e85b4ebee48a42dd0d90c, type: 3}
@@ -288,6 +286,7 @@ MonoBehaviour:
   sceneLoader: {fileID: 5405977086720011509}
   menu: {fileID: 11400000, guid: 26fef78e75ee9ed4aa108c721960051a, type: 2}
   roomManager: {fileID: 42497258}
+  winCanvas: {fileID: 0}
 --- !u!1 &5405977087533315834
 GameObject:
   m_ObjectHideFlags: 0

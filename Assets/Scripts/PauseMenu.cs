@@ -72,6 +72,9 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
     }
 
+    /// <summary>
+    /// Quit application
+    /// </summary>
     public void OnQuit()
     {
         Application.Quit();

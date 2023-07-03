@@ -14,7 +14,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private SceneId menu;
     [SerializeField] private RoomManager roomManager;
-    
+    [SerializeField] private GameObject winCanvas;
+
     public int enemyCount => enemies.Count;
 
     private int spawnedEnemies;
@@ -91,6 +92,10 @@ public class LevelManager : MonoBehaviour
         sceneLoader.LoadScene(menu);
     }
 
+    /// <summary>
+    /// Call action player entered next room
+    /// </summary>
+    /// <param name="newSpawns"></param>
     private void OnRoomChanged(List<Transform> newSpawns)
     {
         spawnPoints.Clear();
@@ -98,5 +103,13 @@ public class LevelManager : MonoBehaviour
         spawnedEnemies = 0;
         
         StartCoroutine(SpawnEnemies());
+    }
+
+    /// <summary>
+    /// Activate win canvas
+    /// </summary>
+    public void ShowWinScreen()
+    {
+        winCanvas.SetActive(true);
     }
 }

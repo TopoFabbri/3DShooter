@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -68,6 +67,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnUpdate()
     {
+        
         if (ads)
             AimStart();
         else

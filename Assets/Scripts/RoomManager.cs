@@ -11,7 +11,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private Id stateId;
 
     public static event Action<List<Transform>> OnRoomChanged;
-    
+
     public int current { get; private set; }
 
     private void OnEnable()
@@ -24,12 +24,22 @@ public class RoomManager : MonoBehaviour
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
     private void OnUpdate()
     {
         if (levelManager.enemyCount <= 0 && current < changeRoomTriggers.Length)
             changeRoomTriggers[current].SetActive(true);
+        else if (levelManager.enemyCount <= 0)
+            levelManager.ShowWinScreen();
+
     }
 
+    /// <summary>
+    /// Switch rooms
+    /// </summary>
+    /// <param name="newSpawns"></param>
     public void NextRoom(List<Transform> newSpawns)
     {
         if (current + 1 < rooms.Length)
@@ -37,7 +47,7 @@ public class RoomManager : MonoBehaviour
 
         rooms[current - 1].SetActive(false);
         rooms[current].SetActive(true);
-        
+
         OnRoomChanged?.Invoke(newSpawns);
     }
 }

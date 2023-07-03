@@ -484,7 +484,7 @@ MonoBehaviour:
   boxCollider: {fileID: 4528350694815874131}
   sprite: {fileID: 6285167013497632853}
   weaponVFX: {fileID: 5973804702884371985}
-  bulletReloadTime: 0.2
+  bulletReloadTime: 0.4
   dropForce: {x: 0, y: 1, z: 2}
   bulletPrefab: {fileID: 2776646117404197337, guid: 80e13d194d2d7644cbf224c5aee59687, type: 3}
   character: {fileID: 0}
