@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.25
+  m_fontSize: 63.7
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1497,6 +1497,7 @@ MonoBehaviour:
   moveSpeed: 500
   maxSpeed: 5
   grabDis: 3
+  barrelDis: 2
   gunTag: Gun
   weapon: {fileID: 0}
   cameraMovement: {fileID: 252957150103741249}
@@ -1505,6 +1506,7 @@ MonoBehaviour:
   hud: {fileID: 3838418102426732605}
   stateMachine: {fileID: 0}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  lethalPrefab: {fileID: 8764917934442121572, guid: c66a69e698697824280f838fab36a556, type: 3}
 --- !u!114 &3973310374492301881
 MonoBehaviour:
   m_ObjectHideFlags: 0

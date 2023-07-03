@@ -1,22 +1,24 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour                                                                
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 500f;
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float grabDis = 3f;
+    [SerializeField] private float barrelDis = 2f;
     [SerializeField] private string gunTag = "Gun";
 
-    [Header("Objects:")]
-    [SerializeField] private Gun weapon;
+    [Header("Objects:")] [SerializeField] private Gun weapon;
     [SerializeField] private CameraMovement cameraMovement;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject crosshair;
     [SerializeField] private Hud hud;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
+    [SerializeField] private GameObject lethalPrefab;
 
     private Vector3 movement;
     private bool ads;
@@ -35,18 +37,20 @@ public class PlayerController : MonoBehaviour
         InputListener.Drop += OnDrop;
         InputListener.Grab += OnGrab;
         InputListener.Reload += OnReload;
+        InputListener.DropLethal += OnDropLethal;
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 
     private void OnDisable()
     {
-        // Action subscriptions
+        // Action unsubscriptions
         InputListener.Move -= OnMove;
         InputListener.Shoot -= OnShoot;
         InputListener.Aim -= OnAim;
         InputListener.Drop -= OnDrop;
         InputListener.Grab -= OnGrab;
         InputListener.Reload -= OnReload;
+        InputListener.DropLethal += OnDropLethal;
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
@@ -78,7 +82,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                getWeapon.transform.position = cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
+                getWeapon.transform.position =
+                    cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
                 getWeapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
             }
         }
@@ -133,7 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!PointingAtGun(out var hit))
             return;
-        
+
         if (getWeapon)
         {
             getWeapon.DropGun();
@@ -151,6 +156,15 @@ public class PlayerController : MonoBehaviour
     {
         if (getWeapon)
             getWeapon.Reload();
+    }
+
+    /// <summary>
+    /// Call place equipped lethal
+    /// </summary>
+    private void OnDropLethal()
+    {
+        var trans = transform;
+        Instantiate(lethalPrefab, trans.position + trans.forward * barrelDis, trans.rotation);
     }
 
     /// <summary>
@@ -197,7 +211,7 @@ public class PlayerController : MonoBehaviour
         var ray = new Ray(cam.position, cam.forward);
 
         if (!Physics.Raycast(ray, out hit)) return false;
-        
+
         return hit.transform.gameObject.CompareTag(gunTag) &&
                Vector3.Distance(hit.transform.position, transform.position) < grabDis;
     }

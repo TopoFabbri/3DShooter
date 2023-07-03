@@ -13,6 +13,7 @@ public class InputListener : MonoBehaviour
     public static event Action Drop;
     public static event Action Grab;
     public static event Action Reload;
+    public static event Action DropLethal; 
 
     // UI
     public static event Action Pause;
@@ -72,5 +73,10 @@ public class InputListener : MonoBehaviour
     private void OnNavigate()
     {
         Navigate?.Invoke();
+    }
+
+    private void OnDropLethal()
+    {
+        DropLethal?.Invoke();
     }
 }
