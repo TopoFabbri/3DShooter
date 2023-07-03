@@ -1,17 +1,30 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
     [SerializeField] private float speed = 1f;
     [SerializeField] private float damage = 25f;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private Id stateId;
 
-    private void Start()
+    private void OnEnable()
     {
-        rb.velocity = transform.forward * speed;
+        stateMachine = FindObjectOfType<StateMachine>();
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+
+    private void OnDisable()
+    {
+        stateMachine.UnSubscribe(stateId, OnUpdate);
+    }
+
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
+    private void OnUpdate()
+    {
+        var trans = transform;
+        trans.position += trans.forward * speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision other)

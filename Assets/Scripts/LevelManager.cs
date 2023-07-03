@@ -1,18 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int devilFrequency = 4;
-    [SerializeField] private float spawnCooldown = 5f;
+    [SerializeField] private int[] devilFrequency;
+    [SerializeField] private float[] spawnCooldown;
+    [SerializeField] private int[] maxEnemies;
     [SerializeField] private List<GameObject> enemyPrefab = new();
     [SerializeField] private List<Transform> spawnPoints = new();
     [SerializeField] private List<GameObject> enemies = new();
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private SceneId menu;
+    [SerializeField] private RoomManager roomManager;
+    
+    public int enemyCount => enemies.Count;
 
     private int spawnedEnemies;
 
@@ -26,6 +29,7 @@ public class LevelManager : MonoBehaviour
         DevilEnemy.DevilDestroyed += OnEnemyDestroyed;
         NormalEnemy.ZombieDestroyed += OnEnemyDestroyed;
         PlayerController.Destroyed += CharacterDestroyed;
+        RoomManager.OnRoomChanged += OnRoomChanged;
     }
 
     private void OnDisable()
@@ -33,6 +37,7 @@ public class LevelManager : MonoBehaviour
         DevilEnemy.DevilDestroyed -= OnEnemyDestroyed;
         NormalEnemy.ZombieDestroyed -= OnEnemyDestroyed;
         PlayerController.Destroyed -= CharacterDestroyed;
+        RoomManager.OnRoomChanged -= OnRoomChanged;
     }
 
     /// <summary>
@@ -43,11 +48,11 @@ public class LevelManager : MonoBehaviour
     {
         var spawnIndex = 0;
 
-        while (gameObject.activeSelf)
+        while (spawnedEnemies < maxEnemies[roomManager.current])
         {
             var enemyIndex = 0;
 
-            if (spawnedEnemies > 0 && spawnedEnemies % devilFrequency == 0)
+            if (spawnedEnemies > 0 && spawnedEnemies % devilFrequency[roomManager.current] == 0)
                 enemyIndex = 1;
 
             if (spawnIndex >= spawnPoints.Count)
@@ -61,7 +66,7 @@ public class LevelManager : MonoBehaviour
             spawnIndex++;
             spawnedEnemies++;
 
-            yield return new WaitForSeconds(spawnCooldown);
+            yield return new WaitForSeconds(spawnCooldown[roomManager.current]);
 
             if (pauseMenu.paused)
                 yield return new WaitUntil(() => !pauseMenu.paused);
@@ -84,5 +89,14 @@ public class LevelManager : MonoBehaviour
     private void CharacterDestroyed()
     {
         sceneLoader.LoadScene(menu);
+    }
+
+    private void OnRoomChanged(List<Transform> newSpawns)
+    {
+        spawnPoints.Clear();
+        spawnPoints = newSpawns;
+        spawnedEnemies = 0;
+        
+        StartCoroutine(SpawnEnemies());
     }
 }
