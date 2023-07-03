@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,8 +13,19 @@ public class ScoringSystem : MonoBehaviour
 
     private void Start()
     {
-        Stats.DestroyedEvent += OnEnemyDestroyed;
         StartCoroutine(TimeScore());
+    }
+
+    private void OnEnable()
+    {
+        DevilEnemy.DevilDestroyed += OnEnemyDestroyed;
+        NormalEnemy.ZombieDestroyed += OnEnemyDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        DevilEnemy.DevilDestroyed -= OnEnemyDestroyed;
+        NormalEnemy.ZombieDestroyed -= OnEnemyDestroyed;
     }
 
     private IEnumerator TimeScore()
@@ -32,5 +44,6 @@ public class ScoringSystem : MonoBehaviour
     private void OnEnemyDestroyed(GameObject gObject)
     {
         score++;
+        hud.UpdateScore(score);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +18,21 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Stats.DestroyedEvent += OnEnemyDestroyed;
-        PlayerController.Destroyed += CharacterDestroyed;
         StartCoroutine(SpawnEnemies());
+    }
+
+    private void OnEnable()
+    {
+        DevilEnemy.DevilDestroyed += OnEnemyDestroyed;
+        NormalEnemy.ZombieDestroyed += OnEnemyDestroyed;
+        PlayerController.Destroyed += CharacterDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        DevilEnemy.DevilDestroyed -= OnEnemyDestroyed;
+        NormalEnemy.ZombieDestroyed -= OnEnemyDestroyed;
+        PlayerController.Destroyed -= CharacterDestroyed;
     }
 
     /// <summary>

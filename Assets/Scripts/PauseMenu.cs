@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -20,10 +21,21 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        eventSystem = EventSystem.current;
+    }
+
+    private void OnEnable()
+    {
         InputListener.Pause += OnPause;
         InputListener.Resume += OnResume;
         InputListener.Navigate += OnNavigate;
-        eventSystem = EventSystem.current;
+    }
+
+    private void OnDisable()
+    {
+        InputListener.Pause -= OnPause;
+        InputListener.Resume -= OnResume;
+        InputListener.Navigate -= OnNavigate;
     }
 
     private void OnNavigate()

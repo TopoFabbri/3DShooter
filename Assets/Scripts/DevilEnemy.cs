@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
-[RequireComponent(typeof(ObstacleEvasion))]
 public class DevilEnemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 20f;
+    [SerializeField] private float maxSpeed = 2f;
     [SerializeField] private float fireDis = 5f;
     [SerializeField] private float cooldown = 1f;
     [SerializeField] private float longCooldown = 5f;
@@ -17,6 +18,8 @@ public class DevilEnemy : MonoBehaviour
     private int fireCount;
     private const string CharacterName = "Character";
     private StateMachine stateMachine;
+
+    public static event Action<GameObject> DevilDestroyed;
 
     private void OnEnable()
     {
@@ -42,7 +45,8 @@ public class DevilEnemy : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) > fireDis)
         {
             obstacleEvasion.CheckAndEvade();
-            rb.velocity = speed * transform.forward;
+            rb.AddForce(speed * transform.forward, ForceMode.Acceleration);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
         else
         {
@@ -64,5 +68,10 @@ public class DevilEnemy : MonoBehaviour
 
         var trans = transform;
         Instantiate(fireBall, trans.position + trans.forward, trans.rotation);
+    }
+    
+    private void OnDestroy()
+    {
+        DevilDestroyed?.Invoke(gameObject);
     }
 }

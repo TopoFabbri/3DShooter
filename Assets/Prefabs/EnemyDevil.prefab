@@ -9760,7 +9760,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &3727829341014317724
 MonoBehaviour:
@@ -9774,7 +9774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ec8bca7455d334284c55e777e800d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 20
+  maxSpeed: 2
   fireDis: 8
   cooldown: 1
   longCooldown: 5
@@ -9794,12 +9795,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36df391d40cfc5a499d79d5c7028a741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 500
   isCharacter: 0
   life: {fileID: 8341668384956792066}
   hud: {fileID: 0}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stateMachine: {fileID: 0}
+  initialHp: 500
 --- !u!114 &1165602744406655865
 MonoBehaviour:
   m_ObjectHideFlags: 0

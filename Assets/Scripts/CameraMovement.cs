@@ -4,31 +4,38 @@ using UnityEngine.InputSystem;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private float gamepadSensitivity = 1f;
     [SerializeField] private Transform playerBody;
     [SerializeField] private float bordersMargin = 20f;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
 
+    private bool gamepad;
     private Camera cam;
     private Vector3 worldMouseDir;
     private float xRotation;
+    private float yRotation;
+    private Vector3 rotation;
 
     public bool aimDownSight;
 
     private void Start()
     {
-        InputListener.Camera += OnCamera;
         cam = GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
     {
+        InputListener.Camera += OnCamera;
+        InputListener.GamepadCamera += OnGamepadCamera;
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 
     private void OnDisable()
     {
+        InputListener.Camera -= OnCamera;
+        InputListener.GamepadCamera -= OnGamepadCamera;
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
@@ -51,6 +58,11 @@ public class CameraMovement : MonoBehaviour
     {
         var camTransform = cam.transform;
         var ray = new Ray(camTransform.position, camTransform.forward);
+
+        rotation.x = Mathf.Clamp(rotation.x - xRotation, -89f, 89f);
+
+        playerBody.Rotate(Vector3.up, yRotation);
+        transform.localRotation = Quaternion.Euler(rotation);
 
         if (Physics.Raycast(ray, out var hit, 100f, ~(1 << 7)))
             worldMouseDir = hit.point;
@@ -134,18 +146,27 @@ public class CameraMovement : MonoBehaviour
     /// Recieve camera input
     /// </summary>
     /// <param name="input"></param>
-    public void OnCamera(InputValue input)
+    private void OnCamera(InputValue input)
     {
         if (aimDownSight) return;
 
-        var mousePos = input.Get<Vector2>();
+        var mouseInput = input.Get<Vector2>();
 
-        mousePos.x /= Screen.width;
-        mousePos.y /= Screen.height;
+        xRotation = mouseInput.y * mouseSensitivity * Time.timeScale;
+        yRotation = mouseInput.x * mouseSensitivity * Time.timeScale;
+    }
 
-        xRotation -= mousePos.y * mouseSensitivity;
-        xRotation = Mathf.Clamp(xRotation, -89f, 89f);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mousePos.x * mouseSensitivity);
+    /// <summary>
+    /// Take gamepad camera input
+    /// </summary>
+    /// <param name="input"></param>
+    private void OnGamepadCamera(InputValue input)
+    {
+        if (aimDownSight) return;
+
+        var analogInput = input.Get<Vector2>();
+
+        xRotation = analogInput.y * gamepadSensitivity * Time.timeScale;
+        yRotation = analogInput.x * gamepadSensitivity * Time.timeScale;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Draw : MonoBehaviour
 {
-    public static Color Color = Color.white;
+    private static Color Color = Color.white;
     private static float pointDestroyTime;
     private static Vector3 pointPos;
 

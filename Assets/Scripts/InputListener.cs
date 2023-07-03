@@ -9,6 +9,7 @@ public class InputListener : MonoBehaviour
     public static event Action<InputValue> Shoot;
     public static event Action<InputValue> Aim;
     public static event Action<InputValue> Camera;
+    public static event Action<InputValue> GamepadCamera;
     public static event Action Drop;
     public static event Action Grab;
     public static event Action Reload;
@@ -16,7 +17,6 @@ public class InputListener : MonoBehaviour
     // UI
     public static event Action Pause;
     public static event Action Resume;
-
     public static event Action Navigate;
 
     private void OnMove(InputValue input)
@@ -37,6 +37,11 @@ public class InputListener : MonoBehaviour
     private void OnCamera(InputValue input)
     {
         Camera?.Invoke(input);
+    }
+
+    private void OnGamepadCamera(InputValue input)
+    {
+        GamepadCamera?.Invoke(input);
     }
     
     private void OnDrop()

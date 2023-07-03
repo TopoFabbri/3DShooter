@@ -28,16 +28,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        stateMachine.Subscribe(stateId, OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        stateMachine.UnSubscribe(stateId, OnUpdate);
-    }
-    
-    private void Start()
-    {
         // Action subscriptions
         InputListener.Move += OnMove;
         InputListener.Shoot += OnShoot;
@@ -45,6 +35,19 @@ public class PlayerController : MonoBehaviour
         InputListener.Drop += OnDrop;
         InputListener.Grab += OnGrab;
         InputListener.Reload += OnReload;
+        stateMachine.Subscribe(stateId, OnUpdate);
+    }
+
+    private void OnDisable()
+    {
+        // Action subscriptions
+        InputListener.Move -= OnMove;
+        InputListener.Shoot -= OnShoot;
+        InputListener.Aim -= OnAim;
+        InputListener.Drop -= OnDrop;
+        InputListener.Grab -= OnGrab;
+        InputListener.Reload -= OnReload;
+        stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
     private void FixedUpdate()

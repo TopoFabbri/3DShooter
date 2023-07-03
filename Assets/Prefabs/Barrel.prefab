@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3860572388836237646}
   - component: {fileID: 1331065243}
+  - component: {fileID: 190450616620912376}
+  - component: {fileID: -4855920488352569565}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -49,6 +51,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &190450616620912376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764917934442121572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36df391d40cfc5a499d79d5c7028a741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCharacter: 0
+  life: {fileID: 0}
+  hud: {fileID: 0}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  stateMachine: {fileID: 0}
+  initialHp: 1
+--- !u!114 &-4855920488352569565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764917934442121572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a67020937671d4481c2db6e54dfae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelExplosion: {fileID: 1435055755710598891, guid: ed2eb48665fc7cf4489eb7bbaa1e0aff, type: 3}
 --- !u!1001 &8293516199524472189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52792546d6f488c45abcec52284531d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2876
+      value: 0.579
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52792546d6f488c45abcec52284531d0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -114,6 +147,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 52792546d6f488c45abcec52284531d0, type: 3}
       propertyPath: m_Name
+      value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52792546d6f488c45abcec52284531d0, type: 3}
+      propertyPath: m_TagString
       value: Barrel
       objectReference: {fileID: 0}
     m_RemovedComponents: []

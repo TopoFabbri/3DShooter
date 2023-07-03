@@ -649,7 +649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press 'F' to pick up
+  m_text: Press 'F' or button 'b' to pick up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.85
+  m_fontSize: 61.25
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1517,12 +1517,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36df391d40cfc5a499d79d5c7028a741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
   isCharacter: 1
   life: {fileID: 0}
   hud: {fileID: 3838418102426732605}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stateMachine: {fileID: 0}
+  initialHp: 200
 --- !u!54 &4613373557657892372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1780,7 +1780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb734b42d4cc734ebb89d1b3b81e345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 0.15
+  gamepadSensitivity: 2
   playerBody: {fileID: 1449900856752445663}
   bordersMargin: 100
   stateMachine: {fileID: 0}

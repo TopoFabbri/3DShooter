@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    [SerializeField] private float hp = 100f;
     [SerializeField] private bool isCharacter;
     [SerializeField] private Transform life;
     [SerializeField] private Hud hud;
     [SerializeField] private Id stateId;
     [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private float initialHp = 100f;
 
+    private float hp;
     private const float LifeRegen = .5f;
-    
-    public delegate void ObjectDestroyed(GameObject destroyed);
-    public static event ObjectDestroyed DestroyedEvent;
-    
+
     private void OnEnable()
     {
+        hp = initialHp;
+        
         if (!stateMachine)
             stateMachine = FindObjectOfType<StateMachine>();
-        
+
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 
@@ -26,7 +26,7 @@ public class Stats : MonoBehaviour
     {
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
-    
+
     /// <summary>
     /// Gameplay-only update
     /// </summary>
@@ -39,16 +39,16 @@ public class Stats : MonoBehaviour
         {
             hp += LifeRegen * Time.deltaTime;
             hud?.SetSlider(hp);
-        }   
-        
-        hp = Mathf.Clamp(hp, 0f, 100f);
+        }
+
+        hp = Mathf.Clamp(hp, 0f, initialHp);
 
         if (!life) return;
 
         var lifeTrans = life.transform;
         var scale = lifeTrans.localScale;
-        
-        scale.x = hp / 1000f;
+
+        scale.x = hp / (initialHp * 10f);
         lifeTrans.localScale = scale;
     }
 
@@ -59,8 +59,8 @@ public class Stats : MonoBehaviour
     public void LoseLife(float damage)
     {
         hp -= damage;
-        
-        if (LifeRegen > 0)
+
+        if (isCharacter)
             hud?.SetSlider(hp);
     }
 
@@ -69,11 +69,8 @@ public class Stats : MonoBehaviour
     /// </summary>
     private void Die()
     {
+        GetComponent<Barrel>()?.Explode();
+        
         Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        DestroyedEvent?.Invoke(gameObject);
     }
 }

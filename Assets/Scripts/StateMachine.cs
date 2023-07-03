@@ -32,9 +32,7 @@ public class StateMachine : MonoBehaviour
             Initialize();
 
         if (updatesById.ContainsKey(stateId))
-        {
             updatesById[stateId] += updateMethod;
-        }
     }
     
     /// <summary>
