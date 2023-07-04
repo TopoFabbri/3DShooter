@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         InputListener.Drop -= OnDrop;
         InputListener.Grab -= OnGrab;
         InputListener.Reload -= OnReload;
-        InputListener.DropLethal += OnDropLethal;
+        InputListener.DropLethal -= OnDropLethal;
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
