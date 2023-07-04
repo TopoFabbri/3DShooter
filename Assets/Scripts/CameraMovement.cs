@@ -5,6 +5,7 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField] private float gamepadSensitivity = 1f;
+    [SerializeField] private float cursorSensitivity = 10f;
     [SerializeField] private Transform playerBody;
     [SerializeField] private float bordersMargin = 20f;
     [SerializeField] private StateMachine stateMachine;
@@ -87,12 +88,12 @@ public class CameraMovement : MonoBehaviour
             worldMouseDir = worldMouse.origin + worldMouse.direction * 100f;
 
         var yRot = GetYRotFromMousePos(mousePos);
-        xRotation -= GetXRotFromMousePos(mousePos);
+        rotation.x -= GetXRotFromMousePos(mousePos);
 
-        xRotation = Mathf.Clamp(xRotation, -89f, 89f);
+        rotation.x = Mathf.Clamp(rotation.x, -89f, 89f);
 
         playerBody.Rotate(Vector3.up, yRot);
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(rotation);
     }
 
     /// <summary>
@@ -111,7 +112,7 @@ public class CameraMovement : MonoBehaviour
         else if (mousePos.x < minX)
             yRot = (mousePos.x - minX) / bordersMargin;
 
-        return yRot * mouseSensitivity * Time.deltaTime;
+        return yRot * cursorSensitivity * Time.deltaTime;
     }
 
     /// <summary>
@@ -130,7 +131,7 @@ public class CameraMovement : MonoBehaviour
         else if (mousePos.y < minY)
             xRot = (mousePos.y - minY) / bordersMargin;
 
-        return xRot * mouseSensitivity * Time.deltaTime;
+        return xRot * cursorSensitivity * Time.deltaTime;
     }
 
     /// <summary>

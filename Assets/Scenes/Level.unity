@@ -28903,6 +28903,10 @@ PrefabInstance:
       propertyPath: stateMachine
       value: 
       objectReference: {fileID: 926507254}
+    - target: {fileID: 252957150103741249, guid: 5d510a099eb141146863b9430c1a467a, type: 3}
+      propertyPath: bordersMargin
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 1449900856752445663, guid: 5d510a099eb141146863b9430c1a467a, type: 3}
       propertyPath: m_RootOrder
       value: 0
