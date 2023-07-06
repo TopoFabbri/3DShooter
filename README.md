@@ -11,7 +11,7 @@ You can play the game with a keyboard and mouse or a gamepad. The controls are:
 - Right click/Left trigger: free aim
 - F/Button B: pick up weapon
 - G/Button Y: drop weapon
-- Q/LB: place barrel
+- Q/RB: place barrel
 - Esc/Start: pause/resume
 
 ## Installation
