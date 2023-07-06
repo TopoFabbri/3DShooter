@@ -5306,6 +5306,26 @@ PrefabInstance:
       propertyPath: stateMachine
       value: 
       objectReference: {fileID: 926507254}
+    - target: {fileID: 4528350694815874131, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: m_Size.y
+      value: 0.25847605
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528350694815874131, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: m_Size.z
+      value: 0.49396932
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528350694815874131, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: m_Center.x
+      value: 0.005598397
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528350694815874131, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: m_Center.y
+      value: 0.08474884
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528350694815874131, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0336399
+      objectReference: {fileID: 0}
     - target: {fileID: 4997469823575018140, guid: dc1eb17bf611a0c418325e11ae7fe131, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -28903,10 +28923,6 @@ PrefabInstance:
       propertyPath: stateMachine
       value: 
       objectReference: {fileID: 926507254}
-    - target: {fileID: 252957150103741249, guid: 5d510a099eb141146863b9430c1a467a, type: 3}
-      propertyPath: bordersMargin
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 1449900856752445663, guid: 5d510a099eb141146863b9430c1a467a, type: 3}
       propertyPath: m_RootOrder
       value: 0

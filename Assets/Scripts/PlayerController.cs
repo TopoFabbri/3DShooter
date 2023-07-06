@@ -126,7 +126,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnDrop()
     {
-        getWeapon.DropGun();
+        if (getWeapon)
+            getWeapon.DropGun();
+        
         weapon = null;
     }
 
