@@ -8,6 +8,7 @@ public class Stats : MonoBehaviour
     [SerializeField] private Id stateId;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private float initialHp = 100f;
+    [SerializeField] private LevelManager levelManager;
 
     private float hp;
     private const float LifeRegen = .5f;
@@ -38,7 +39,8 @@ public class Stats : MonoBehaviour
         if (isCharacter)
         {
             hp += LifeRegen * Time.deltaTime;
-            hud?.SetSlider(hp);
+            if (hud)
+                hud.SetSlider(hp);
         }
 
         hp = Mathf.Clamp(hp, 0f, initialHp);
@@ -60,8 +62,8 @@ public class Stats : MonoBehaviour
     {
         hp -= damage;
 
-        if (isCharacter)
-            hud?.SetSlider(hp);
+        if (isCharacter && hud)
+            hud.SetSlider(hp);
     }
 
     /// <summary>
@@ -69,8 +71,13 @@ public class Stats : MonoBehaviour
     /// </summary>
     private void Die()
     {
-        GetComponent<Barrel>()?.Explode();
+        if (isCharacter)
+        {
+            levelManager.Lose();
+            return;
+        }      
         
+        GetComponent<Barrel>()?.Explode();
         Destroy(gameObject);
     }
 }

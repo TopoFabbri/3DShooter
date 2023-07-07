@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,16 +15,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private SceneId menu;
+    [SerializeField] private SceneId credits;
     [SerializeField] private RoomManager roomManager;
     [SerializeField] private GameObject winCanvas;
-
+    [SerializeField] private GameObject loseScreen;
+    
     public int enemyCount => enemies.Count;
 
     private int spawnedEnemies;
 
     private void Start()
     {
-        
         StartCoroutine(SpawnEnemies());
     }
 
@@ -113,5 +115,31 @@ public class LevelManager : MonoBehaviour
     public void ShowWinScreen()
     {
         winCanvas.SetActive(true);
+    }
+
+    /// <summary>
+    /// Start event player lose
+    /// </summary>
+    public void Lose()
+    {
+        StartCoroutine(WaitAndChangeScene(1, credits));
+    }
+
+    /// <summary>
+    /// Change scene on given time
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <param name="sceneId"></param>
+    /// <returns></returns>
+    private IEnumerator WaitAndChangeScene(int seconds, [NotNull] SceneId sceneId)
+    {
+        if (!sceneId) throw new ArgumentNullException(nameof(sceneId));
+        
+        loseScreen.SetActive(true);
+        
+        yield return new WaitForSeconds(seconds);
+        
+        if (sceneLoader)
+            sceneLoader.LoadScene(sceneId);
     }
 }

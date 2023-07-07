@@ -1451,6 +1451,7 @@ MonoBehaviour:
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stateMachine: {fileID: 0}
   initialHp: 200
+  levelManager: {fileID: 0}
 --- !u!54 &4613373557657892372
 Rigidbody:
   m_ObjectHideFlags: 0
