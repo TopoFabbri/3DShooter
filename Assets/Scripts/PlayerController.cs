@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -103,12 +104,9 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Call character shoot action
     /// </summary>
-    /// <param name="input"></param>
-    public void OnShoot(InputValue input)
+    public void OnShoot()
     {
-        hasShot = input.isPressed;
-
-        if (hasShot && getWeapon)
+        if (getWeapon)
             getWeapon.GetComponent<Gun>().Shoot();
     }
 

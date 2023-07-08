@@ -330,17 +330,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2eb02644-9f0f-43ee-bcf7-2ee79d35c2e3",
-                    "path": "<Touchscreen>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "446ce4d2-133c-4dab-891b-053614bf9a76",
                     "path": "<Gamepad>/start",
                     "interactions": "Press",

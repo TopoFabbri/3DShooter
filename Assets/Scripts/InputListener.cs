@@ -6,7 +6,7 @@ public class InputListener : MonoBehaviour
 {
     // World
     public static event Action<InputValue> Move;
-    public static event Action<InputValue> Shoot;
+    public static event Action Shoot;
     public static event Action<InputValue> Aim;
     public static event Action<InputValue> Camera;
     public static event Action<InputValue> GamepadCamera;
@@ -26,9 +26,9 @@ public class InputListener : MonoBehaviour
         Move?.Invoke(input);
     }
 
-    public void OnShoot(InputValue input)
+    public void OnShoot()
     {
-        Shoot?.Invoke(input);
+        Shoot?.Invoke();
     }
 
     private void OnAim(InputValue input)
@@ -51,17 +51,17 @@ public class InputListener : MonoBehaviour
         Drop?.Invoke();
     }
     
-    private void OnGrab()
+    public void OnGrab()
     {
         Grab?.Invoke();
     }
     
-    private void OnReload()
+    public void OnReload()
     {
         Reload?.Invoke();
     }
     
-    private void OnPause()
+    public void OnPause()
     {
         Pause?.Invoke();
     }
