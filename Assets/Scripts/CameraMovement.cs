@@ -10,13 +10,15 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float bordersMargin = 20f;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
-
+    private float cursorSpeed = 20f;
+    
     private bool gamepad;
     private Camera cam;
     private Vector3 worldMouseDir;
     private float xRotation;
     private float yRotation;
     private Vector3 rotation;
+    private Vector2 cursorVel;
 
     public bool aimDownSight;
 
@@ -76,6 +78,8 @@ public class CameraMovement : MonoBehaviour
     /// </summary>
     private void CursorAim()
     {
+        Mouse.current.WarpCursorPosition((Vector2)Input.mousePosition + cursorVel);
+        
         var mousePos = Input.mousePosition;
         mousePos.z = cam.nearClipPlane + 5;
         var worldPos = cam.ScreenToWorldPoint(mousePos);
@@ -163,10 +167,14 @@ public class CameraMovement : MonoBehaviour
     /// <param name="input"></param>
     private void OnGamepadCamera(InputValue input)
     {
-        if (aimDownSight) return;
-
         var analogInput = input.Get<Vector2>();
 
+        if (aimDownSight)
+        {
+            cursorVel = analogInput * cursorSpeed;
+            return;
+        }
+        
         xRotation = analogInput.y * gamepadSensitivity * Time.timeScale;
         yRotation = analogInput.x * gamepadSensitivity * Time.timeScale;
     }

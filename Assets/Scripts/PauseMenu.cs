@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -12,12 +11,14 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Id gameId;
     [SerializeField] private Id pauseId;
     [SerializeField] private PlayerController player;
+    [SerializeField] private float cursorSpeed = 20f;
 
     public bool paused;
 
     private EventSystem eventSystem;
     private const string MapUI = "UI";
     private const string MapWorld = "World";
+    private Vector2 cursorVel;
 
     private void Start()
     {
@@ -26,9 +27,11 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        stateMachine.Subscribe(pauseId, OnUpdate);
         InputListener.Pause += OnPause;
         InputListener.Resume += OnResume;
         InputListener.Navigate += OnNavigate;
+        InputListener.MoveCursor += OnCursor;
     }
 
     private void OnDisable()
@@ -36,8 +39,17 @@ public class PauseMenu : MonoBehaviour
         InputListener.Pause -= OnPause;
         InputListener.Resume -= OnResume;
         InputListener.Navigate -= OnNavigate;
+        InputListener.MoveCursor -= OnCursor;
     }
 
+    private void OnUpdate()
+    {
+        Mouse.current.WarpCursorPosition((Vector2)Input.mousePosition + cursorVel);
+    }
+
+    /// <summary>
+    /// Call action navigate
+    /// </summary>
     private void OnNavigate()
     {
         if (!eventSystem.currentSelectedGameObject)
@@ -69,5 +81,14 @@ public class PauseMenu : MonoBehaviour
         playerInput.SwitchCurrentActionMap(MapWorld);
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    /// <summary>
+    /// Call action move cursor
+    /// </summary>
+    /// <param name="input"></param>
+    private void OnCursor(InputValue input)
+    {
+        cursorVel = input.Get<Vector2>() * cursorSpeed;
     }
 }

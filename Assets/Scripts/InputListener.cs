@@ -19,13 +19,14 @@ public class InputListener : MonoBehaviour
     public static event Action Pause;
     public static event Action Resume;
     public static event Action Navigate;
+    public static event Action<InputValue> MoveCursor;
 
     private void OnMove(InputValue input)
     {
         Move?.Invoke(input);
     }
 
-    private void OnShoot(InputValue input)
+    public void OnShoot(InputValue input)
     {
         Shoot?.Invoke(input);
     }
@@ -75,8 +76,13 @@ public class InputListener : MonoBehaviour
         Navigate?.Invoke();
     }
 
-    private void OnDropLethal()
+    public void OnDropLethal()
     {
         DropLethal?.Invoke();
+    }
+
+    private void OnCursor(InputValue input)
+    {
+        MoveCursor?.Invoke(input);
     }
 }

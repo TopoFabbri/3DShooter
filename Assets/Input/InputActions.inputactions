@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "Shoot",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "04ae192a-30e5-48df-8fb5-380ce4d57a54",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -330,6 +330,17 @@
                 },
                 {
                     "name": "",
+                    "id": "2eb02644-9f0f-43ee-bcf7-2ee79d35c2e3",
+                    "path": "<Touchscreen>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "446ce4d2-133c-4dab-891b-053614bf9a76",
                     "path": "<Gamepad>/start",
                     "interactions": "Press",
@@ -459,6 +470,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cursor",
+                    "type": "Value",
+                    "id": "59ebb18b-f89b-4352-9033-d29b6aab1f6a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -659,6 +679,61 @@
                     "action": "Resume",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "7b5a929b-1a20-4852-a361-55dae652cf00",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "f039a970-cd9c-4e7a-947e-7ce0d2e96ab0",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "e32fa86e-4195-4736-bd7f-35f30bbaead1",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "5f25f20f-ac14-4c75-be68-a0f918baaa45",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "8b605fc5-4525-4949-b201-f1dd58b203f6",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cursor",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
