@@ -10,21 +10,23 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float bordersMargin = 20f;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
+    
     private const float CursorSpeed = 20f;
 
     private bool gamepad;
     private Camera cam;
-    private Vector3 worldMouseDir;
     private float xRotation;
     private float yRotation;
     private Vector3 rotation;
     private Vector2 cursorVel;
 
     public bool aimDownSight;
+    
+    public Vector3 worldMouseDir { get; private set; }
 
     private void Start()
     {
-        cam = GetComponent<Camera>();
+        cam = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -135,15 +137,6 @@ public class CameraMovement : MonoBehaviour
             xRot = (mousePos.y - minY) / bordersMargin;
 
         return xRot * cursorSensitivity * Time.deltaTime;
-    }
-
-    /// <summary>
-    /// 'worldMouseDir' Getter
-    /// </summary>
-    /// <returns></returns>
-    public Vector3 GetWorldMouseDir()
-    {
-        return worldMouseDir;
     }
 
     /// <summary>

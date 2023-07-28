@@ -23,10 +23,10 @@ public class BulletsUI : MonoBehaviour
     {
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
-    
-/// <summary>
-/// Gameplay-only update
-/// </summary>
+
+    /// <summary>
+    /// Gameplay-only update
+    /// </summary>
     private void OnUpdate()
     {
         if (player.getWeapon)

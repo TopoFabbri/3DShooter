@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnUpdate()
     {
-        
         if (ads)
             AimStart();
         else
@@ -81,9 +80,10 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                Transform cameraMovementTransform;
                 getWeapon.transform.position =
-                    cameraMovement.transform.TransformPoint(new Vector3(.26f, -.234f, .561f));
-                getWeapon.transform.LookAt(cameraMovement.GetWorldMouseDir() + cameraMovement.transform.up * -0.1597f);
+                    (cameraMovementTransform = cameraMovement.transform).TransformPoint(new Vector3(.26f, -.234f, .561f));
+                getWeapon.transform.LookAt(cameraMovement.worldMouseDir + cameraMovementTransform.up * -0.1597f);
             }
         }
 
