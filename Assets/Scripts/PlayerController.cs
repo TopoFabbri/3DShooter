@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        // Action unsubscriptions
+        // Action unsubscription
         InputListener.Move -= OnMove;
         InputListener.Shoot -= OnShoot;
         InputListener.Aim -= OnAim;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -28,6 +27,10 @@ public class ScoringSystem : MonoBehaviour
         NormalEnemy.ZombieDestroyed -= OnEnemyDestroyed;
     }
 
+    /// <summary>
+    /// Increase score by time
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator TimeScore()
     {
         while (gameObject.activeSelf)
@@ -41,6 +44,10 @@ public class ScoringSystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increase score by destroying enemies
+    /// </summary>
+    /// <param name="gObject">Enemy</param>
     private void OnEnemyDestroyed(GameObject gObject)
     {
         score++;

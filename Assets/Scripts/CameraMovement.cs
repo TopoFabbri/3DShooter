@@ -10,8 +10,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float bordersMargin = 20f;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
-    private float cursorSpeed = 20f;
-    
+    private const float CursorSpeed = 20f;
+
     private bool gamepad;
     private Camera cam;
     private Vector3 worldMouseDir;
@@ -47,7 +47,6 @@ public class CameraMovement : MonoBehaviour
     /// </summary>
     private void OnUpdate()
     {
-        //TODO: TP2 - Strategy
         if (!aimDownSight)
             CenterAim();
         else
@@ -148,7 +147,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Recieve camera input
+    /// Receive camera input
     /// </summary>
     /// <param name="input"></param>
     private void OnCamera(InputValue input)
@@ -171,7 +170,7 @@ public class CameraMovement : MonoBehaviour
 
         if (aimDownSight)
         {
-            cursorVel = analogInput * cursorSpeed;
+            cursorVel = analogInput * CursorSpeed;
             return;
         }
         

@@ -52,11 +52,18 @@ public class Hud : MonoBehaviour
             pickUpTxt.SetActive(active && barrelTutorialFinished);
     }
 
+    /// <summary>
+    /// Update score text
+    /// </summary>
+    /// <param name="newScore">New score to display</param>
     public void UpdateScore(int newScore)
     {
         score.SetText(newScore.ToString());
     }
 
+    /// <summary>
+    /// Stop barrel tutorial on barrel placed
+    /// </summary>
     private void OnDropLethal()
     {
         barrelTutorialFinished = true;

@@ -6,6 +6,9 @@ public class ObstacleEvasion : MonoBehaviour
     [SerializeField] private float detectionDis = 1f;
     [SerializeField] private string wallsTag = "Walls";
 
+    /// <summary>
+    /// Update character rotation to evade obstacles
+    /// </summary>
     public void CheckAndEvade()
     {
         var trans = transform;

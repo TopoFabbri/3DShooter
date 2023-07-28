@@ -1,13 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class RayPython : Gun
 {
     [SerializeField] private float strength = 10f;
-    [FormerlySerializedAs("ps")] [SerializeField] private GameObject particleSystemPrefab;
     [SerializeField] private Transform character;
     [SerializeField] private float damage = 50f;
-    
+
     private void OnEnable()
     {
         stateMachine.Subscribe(stateId, OnUpdate);
