@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public static event Action Destroyed;
 
-    public Gun getWeapon => weapon;
+    public Gun GetWeapon => weapon;
 
     private void OnEnable()
     {
@@ -71,19 +71,19 @@ public class PlayerController : MonoBehaviour
         else
             AimStop();
 
-        if (getWeapon)
+        if (GetWeapon)
         {
-            if (getWeapon.isReloading)
+            if (GetWeapon.isReloading)
             {
                 var trans = transform;
-                getWeapon.transform.position = trans.position - trans.forward;
+                GetWeapon.transform.position = trans.position - trans.forward;
             }
             else
             {
                 Transform cameraMovementTransform;
-                getWeapon.transform.position =
+                GetWeapon.transform.position =
                     (cameraMovementTransform = cameraMovement.transform).TransformPoint(new Vector3(.26f, -.234f, .561f));
-                getWeapon.transform.LookAt(cameraMovement.worldMouseDir + cameraMovementTransform.up * -0.1597f);
+                GetWeapon.transform.LookAt(cameraMovement.worldMouseDir + cameraMovementTransform.up * -0.1597f);
             }
         }
 
@@ -105,8 +105,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnShoot()
     {
-        if (getWeapon)
-            getWeapon.GetComponent<Gun>().Shoot();
+        if (GetWeapon)
+            GetWeapon.GetComponent<Gun>().Shoot();
     }
 
     /// <summary>
@@ -123,8 +123,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnDrop()
     {
-        if (getWeapon)
-            getWeapon.DropGun();
+        if (GetWeapon)
+            GetWeapon.DropGun();
         
         weapon = null;
     }
@@ -137,9 +137,9 @@ public class PlayerController : MonoBehaviour
         if (!PointingAtGun(out var hit))
             return;
 
-        if (getWeapon)
+        if (GetWeapon)
         {
-            getWeapon.DropGun();
+            GetWeapon.DropGun();
             weapon = null;
         }
 
@@ -152,8 +152,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnReload()
     {
-        if (getWeapon)
-            getWeapon.Reload();
+        if (GetWeapon)
+            GetWeapon.Reload();
     }
 
     /// <summary>

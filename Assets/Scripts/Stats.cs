@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
@@ -8,10 +9,11 @@ public class Stats : MonoBehaviour
     [SerializeField] private Id stateId;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private float initialHp = 100f;
-    [SerializeField] private LevelManager levelManager;
 
     private float hp;
     private const float LifeRegen = .5f;
+
+    public event Action OnDie;
 
     private void OnEnable()
     {
@@ -72,12 +74,8 @@ public class Stats : MonoBehaviour
     private void Die()
     {
         if (isCharacter)
-        {
-            levelManager.Lose();
-            return;
-        }      
+            LevelManager.Instance.Lose();
         
-        GetComponent<Barrel>()?.Explode();
-        Destroy(gameObject);
+        OnDie?.Invoke();
     }
 }

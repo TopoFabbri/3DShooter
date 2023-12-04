@@ -9776,13 +9776,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   maxSpeed: 2
+  rb: {fileID: 4259751715390509325}
+  obstacleEvasion: {fileID: 1165602744406655865}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  stats: {fileID: 1723215673720494278}
   fireDis: 8
   cooldown: 1
   longCooldown: 5
   fireBall: {fileID: 830139795630244789, guid: a94d7f4634d755147afb8a513f01aaa5, type: 3}
-  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
-  rb: {fileID: 4259751715390509325}
-  obstacleEvasion: {fileID: 1165602744406655865}
 --- !u!114 &1723215673720494278
 MonoBehaviour:
   m_ObjectHideFlags: 0

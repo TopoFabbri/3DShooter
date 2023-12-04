@@ -13,9 +13,14 @@ public static class BarrelManager
 
         if (!barrelInstance) return Factory.Spawn(barrel, pos, rot);
         
-        barrel.transform.position = pos;
-        barrel.transform.rotation = rot;
+        barrelInstance.transform.position = pos;
+        barrelInstance.transform.rotation = rot;
             
         return barrelInstance;
+    }
+    
+    public static void RecycleBarrel(GameObject barrel)
+    {
+        Pool.Release(barrel);
     }
 }

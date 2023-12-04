@@ -203,6 +203,7 @@ MonoBehaviour:
   characterTag: Character
   obstacleEvasion: {fileID: 6324731538647066611}
   rb: {fileID: 4259751715390509325}
+  stats: {fileID: 6625045434142015474}
 --- !u!114 &6625045434142015474
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,10 +29,10 @@ public class BulletsUI : MonoBehaviour
     /// </summary>
     private void OnUpdate()
     {
-        if (player.getWeapon)
+        if (player.GetWeapon)
         {
             image.color = Color.white;
-            image.sprite = sprites[player.getWeapon.chamber];
+            image.sprite = sprites[player.GetWeapon.chamber];
         }
         else
         {

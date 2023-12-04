@@ -1,44 +1,25 @@
 using System;
 using UnityEngine;
 
-public class DevilEnemy : MonoBehaviour
+public class DevilEnemy : Enemy
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float maxSpeed = 2f;
+    [Header("Devil:")]
     [SerializeField] private float fireDis = 5f;
     [SerializeField] private float cooldown = 1f;
     [SerializeField] private float longCooldown = 5f;
     [SerializeField] private GameObject fireBall;
-    [SerializeField] private Id stateId;
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private ObstacleEvasion obstacleEvasion;
 
-    private Transform target;
     private float nextFireTime;
     private int fireCount;
-    private const string CharacterName = "Character";
-    private StateMachine stateMachine;
 
     public static event Action<GameObject> DevilDestroyed;
-
-    private void OnEnable()
-    {
-        target = GameObject.Find(CharacterName).transform;
-        stateMachine = FindObjectOfType<StateMachine>();
-        stateMachine.Subscribe(stateId, OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        stateMachine.UnSubscribe(stateId, OnUpdate);
-    }
     
     /// <summary>
     /// Gameplay-only update
     /// </summary>
-    private void OnUpdate()
+    protected override void OnUpdate()
     {
-        transform.LookAt(target);
+        base.OnUpdate();
 
         if (Time.time < nextFireTime) return;
         
@@ -70,8 +51,11 @@ public class DevilEnemy : MonoBehaviour
         Instantiate(fireBall, trans.position + trans.forward, trans.rotation);
     }
     
-    private void OnDestroy()
+    protected override void DieHandler()
     {
+        base.DieHandler();
+        
         DevilDestroyed?.Invoke(gameObject);
+        Destroy(gameObject);
     }
 }

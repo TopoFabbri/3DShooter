@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    private static LevelManager instance;
+    
     [SerializeField] private int[] devilFrequency;
     [SerializeField] private float[] spawnCooldown;
     [SerializeField] private int[] maxEnemies;
@@ -19,10 +21,32 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private RoomManager roomManager;
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseScreen;
+
+    public static LevelManager Instance
+    {
+        get
+        {
+            if (!instance)
+                instance = FindObjectOfType<LevelManager>();
+            
+            if (!instance)
+                instance = new GameObject("LevelManager").AddComponent<LevelManager>();
+            
+            return instance;
+        }
+    }
     
     public int EnemyCount => enemies.Count;
 
     private int spawnedEnemies;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+            DestroyImmediate(gameObject);
+        else
+            instance = this;
+    }
 
     private void Start()
     {
@@ -141,5 +165,11 @@ public class LevelManager : MonoBehaviour
         
         if (sceneLoader)
             sceneLoader.LoadScene(sceneId);
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
     }
 }
