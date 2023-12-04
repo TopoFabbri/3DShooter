@@ -29,9 +29,9 @@ public class RoomManager : MonoBehaviour
     /// </summary>
     private void OnUpdate()
     {
-        if (levelManager.enemyCount <= 0 && current < changeRoomTriggers.Length)
+        if (levelManager.EnemyCount <= 0 && current < changeRoomTriggers.Length)
             changeRoomTriggers[current].SetActive(true);
-        else if (levelManager.enemyCount <= 0)
+        else if (levelManager.EnemyCount <= 0)
             levelManager.ShowWinScreen();
 
     }

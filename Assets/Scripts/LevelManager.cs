@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseScreen;
     
-    public int enemyCount => enemies.Count;
+    public int EnemyCount => enemies.Count;
 
     private int spawnedEnemies;
 

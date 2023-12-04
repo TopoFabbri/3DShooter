@@ -162,7 +162,10 @@ public class PlayerController : MonoBehaviour
     private void OnDropLethal()
     {
         var trans = transform;
-        Instantiate(lethalPrefab, trans.position + trans.forward * barrelDis, trans.rotation);
+        var position = trans.position;
+        var rotation = trans.rotation;
+        
+        BarrelManager.SpawnBarrel(lethalPrefab, position + trans.forward * barrelDis, rotation);
     }
 
     /// <summary>
