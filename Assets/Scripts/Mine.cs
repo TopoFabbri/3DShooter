@@ -11,7 +11,8 @@ public class Mine : MonoBehaviour
     private void Explode()
     {
         var trans = transform;
-        Instantiate(explosion, trans.position, trans.rotation);
+        
+        BarrelExplosionManager.Instance.SpawnObject(explosion, trans.position, trans.rotation);
         Destroy(gameObject);
     }
     

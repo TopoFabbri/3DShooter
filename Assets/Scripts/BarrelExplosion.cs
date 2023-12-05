@@ -1,23 +1,14 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BarrelExplosion : MonoBehaviour
 {
     [SerializeField] private float duration = 3f;
     [SerializeField] private float damage = 20f;
     [SerializeField] private float forceWave = 10f;
-    [SerializeField] private ParticleSystem ps;
-
-    private void Awake()
-    {
-        StartCoroutine(DestroyAfterTime(duration));
-    }
 
     private void OnEnable()
     {
-        ps.Play();
         StartCoroutine(DestroyAfterTime(duration));
     }
 
@@ -29,7 +20,7 @@ public class BarrelExplosion : MonoBehaviour
     private IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        BarrelExplosionManager.Instance.RecycleObject(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
