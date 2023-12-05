@@ -30,7 +30,7 @@ public class InstancePython : Gun
         if (isReloading) return;
         
         base.Shoot();
-        
-        Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+
+        BulletManager.Instance.SpawnObject(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
     }
 }

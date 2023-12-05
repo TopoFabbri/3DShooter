@@ -18,9 +18,12 @@ public class Bullet : MonoBehaviour
     private Transform character;
     private const string CharacterObjectName = "Character";
 
-    private void Start()
+
+    private void OnEnable()
     {
-        character = GameObject.Find(CharacterObjectName).GetComponentInChildren<Gun>().transform;
+        if (!character)
+            character = GameObject.Find(CharacterObjectName).GetComponentInChildren<Gun>().transform;
+            
         rb.velocity = transform.forward * speed;
 
         if (addPlayerVel)
@@ -37,7 +40,7 @@ public class Bullet : MonoBehaviour
     private IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        BulletManager.Instance.RecycleObject(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

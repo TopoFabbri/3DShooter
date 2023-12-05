@@ -32,6 +32,6 @@ public class Barrel : MonoBehaviour
         var trans = transform;
         
         Instantiate(barrelExplosion, trans.position, trans.rotation);
-        BarrelManager.RecycleBarrel(gameObject);
+        BarrelManager.Instance.RecycleObject(gameObject);
     }
 }

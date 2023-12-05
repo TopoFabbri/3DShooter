@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
         var position = trans.position;
         var rotation = trans.rotation;
         
-        BarrelManager.SpawnBarrel(lethalPrefab, position + trans.forward * barrelDis, rotation);
+        BarrelManager.Instance.SpawnObject(lethalPrefab, position + trans.forward * barrelDis, rotation);
     }
 
     /// <summary>

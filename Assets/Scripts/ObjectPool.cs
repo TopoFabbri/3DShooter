@@ -16,9 +16,6 @@ public class ObjectPool
     {
         GameObject obj = pool.Count == 0 ? null : pool.Dequeue();
 
-        if (obj != null)
-            obj.SetActive(true);
-
         return obj;
     }
 
