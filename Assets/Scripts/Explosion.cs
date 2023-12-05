@@ -6,7 +6,7 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private int duration = 3;
     
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(DestroyOnTime(duration));
     }
@@ -14,6 +14,6 @@ public class Explosion : MonoBehaviour
     private IEnumerator DestroyOnTime(int time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        ExplosionManager.Instance.RecycleObject(gameObject);
     }
 }

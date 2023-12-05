@@ -32,6 +32,6 @@ public class Fireball : MonoBehaviour
         if (other.gameObject.TryGetComponent<Stats>(out var stats))
             stats.LoseLife(damage);
         
-        Destroy(gameObject);
+        FireballManager.Instance.RecycleObject(gameObject);
     }
 }

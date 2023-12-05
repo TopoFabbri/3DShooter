@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(particleSys, transform.position, Quaternion.identity);
+        ExplosionManager.Instance.SpawnObject(particleSys, transform.position, Quaternion.identity);
 
         if (collision.gameObject.GetComponent<Stats>())
             collision.gameObject.GetComponent<Stats>().LoseLife(damage);
