@@ -87,8 +87,7 @@ public class LevelManager : MonoBehaviour
             if (spawnIndex >= spawnPoints.Count)
                 spawnIndex = 0;
 
-            var enemy = Instantiate(enemyPrefab[enemyIndex], spawnPoints[spawnIndex].position,
-                spawnPoints[spawnIndex].rotation);
+            var enemy = EnemyManager.Instance.SpawnObject(enemyPrefab[enemyIndex], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
 
             enemies.Add(enemy);
 

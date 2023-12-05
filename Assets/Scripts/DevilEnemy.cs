@@ -48,7 +48,8 @@ public class DevilEnemy : Enemy
             fireCount = 0;
 
         var trans = transform;
-        Instantiate(fireBall, trans.position + trans.forward, trans.rotation);
+        
+        FireballManager.Instance.SpawnObject(fireBall, trans.position + trans.forward, trans.rotation);
     }
     
     protected override void DieHandler()
@@ -56,6 +57,6 @@ public class DevilEnemy : Enemy
         base.DieHandler();
         
         DevilDestroyed?.Invoke(gameObject);
-        Destroy(gameObject);
+        EnemyManager.Instance.RecycleObject(gameObject);
     }
 }
