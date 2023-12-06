@@ -1252,6 +1252,7 @@ MonoBehaviour:
   gameId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   pauseId: {fileID: 11400000, guid: 5aeefa55c11cc3b4d9f66109b4c10eb6, type: 2}
   player: {fileID: 0}
+  cursorSpeed: 10
   paused: 0
 --- !u!1 &8295470212449857050
 GameObject:

@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
         InputListener.Reload += OnReload;
         InputListener.DropLethal += OnDropLethal;
         InputListener.ChangeLethal += OnChangeLethal;
+
+        lethalController.LethalCountChanged += OnChangeLethalCount;
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
         InputListener.Reload -= OnReload;
         InputListener.DropLethal -= OnDropLethal;
         InputListener.ChangeLethal -= OnChangeLethal;
+        
+        lethalController.LethalCountChanged -= OnChangeLethalCount;
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
@@ -187,8 +191,13 @@ public class PlayerController : MonoBehaviour
                 lethalController.CurrentLethal--;
                 break;
         }
+        
+        OnChangeLethalCount(lethalController.LethalCount);
+    }
 
-        hud.UpdateLethalCount(lethalController.LethalCount);
+    private void OnChangeLethalCount(int qty)
+    {
+        hud.UpdateLethalCount(qty);
     }
 
     /// <summary>

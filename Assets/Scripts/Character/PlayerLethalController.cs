@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ObjectManagers;
@@ -14,6 +15,8 @@ namespace Character
         [SerializeField] private int defaultLethalQty;
 
         private readonly Dictionary<GameObject, int> lethalObjects = new();
+        
+        public event Action<int> LethalCountChanged;
 
         private int currentLethal;
     
@@ -49,6 +52,8 @@ namespace Character
                 lethalObjects.Add(obj, 5);
             else
                 lethalObjects[obj] += 5;
+            
+            LethalCountChanged?.Invoke(LethalCount);
         }
 
         /// <summary>
@@ -64,6 +69,8 @@ namespace Character
 
             if (lethalObjects[obj] <= 0)
                 RemoveAndCheck(obj);
+            
+            LethalCountChanged?.Invoke(LethalCount);
         }
 
         /// <summary>

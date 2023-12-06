@@ -1,3 +1,4 @@
+using Lethals;
 using UnityEngine;
 
 public class Mine : Lethal

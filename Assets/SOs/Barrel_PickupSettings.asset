@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4015223375ba5b439e9f970babfbe44, type: 3}
-  m_Name: Bomb_PickupSettings
+  m_Name: Barrel_PickupSettings
   m_EditorClassIdentifier: 
-  lethalPrefab: {fileID: 8569971434374469277, guid: 42928b6a7d2258145b553e77c88c30ee, type: 3}
-  mesh: {fileID: 4711208715938537054, guid: 8d852e5df82600147b9f6d56740cf932, type: 3}
-  lightColor: {r: 1, g: 0, b: 0, a: 0.078431375}
+  lethalPrefab: {fileID: 8764917934442121572, guid: c66a69e698697824280f838fab36a556, type: 3}
+  mesh: {fileID: 2534964839176971238, guid: 52792546d6f488c45abcec52284531d0, type: 3}
+  lightColor: {r: 1, g: 0.8608516, b: 0, a: 0.078431375}

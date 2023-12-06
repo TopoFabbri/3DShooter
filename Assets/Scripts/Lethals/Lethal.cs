@@ -2,30 +2,33 @@ using ObjectManagers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Lethal : MonoBehaviour
+namespace Lethals
 {
-    [FormerlySerializedAs("barrelExplosion")] [SerializeField] protected GameObject explosionPrefab;
-
-    protected Rigidbody rb;
-
-    protected virtual void Awake()
+    public class Lethal : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        [FormerlySerializedAs("barrelExplosion")] [SerializeField] protected GameObject explosionPrefab;
 
-    protected virtual void OnDisable()
-    {
-        rb.velocity = Vector3.zero;
-    }
+        protected Rigidbody rb;
 
-    /// <summary>
-    /// Instantiate explosion
-    /// </summary>
-    protected virtual void Explode()
-    {
-        var trans = transform;
+        protected virtual void Awake()
+        {
+            rb = GetComponent<Rigidbody>();
+        }
 
-        LethalExplosionManager.Instance.Spawn(explosionPrefab, trans.position, trans.rotation);
-        LethalManager.Instance.Recycle(gameObject);
+        protected virtual void OnDisable()
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+        /// <summary>
+        /// Instantiate explosion
+        /// </summary>
+        protected virtual void Explode()
+        {
+            var trans = transform;
+
+            LethalExplosionManager.Instance.Spawn(explosionPrefab, trans.position, trans.rotation);
+            LethalManager.Instance.Recycle(gameObject);
+        }
     }
 }

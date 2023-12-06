@@ -9,11 +9,23 @@ namespace Lethals
         [SerializeField] private LethalPickupSettings settings;
         [SerializeField] private ParticleSystem pSystem;
         [SerializeField] private MeshFilter lethalMesh;
+
+        public LethalPickupSettings Settings
+        {
+            set
+            {
+                settings = value; 
+                UpdateObject();
+            }
+        }
         
         private void Start()
         {
-            if (!settings) return;
-            
+            UpdateObject();
+        }
+
+        private void UpdateObject()
+        {
             pSystem.startColor = settings.lightColor;
             lethalMesh.mesh = settings.mesh;
             gameObject.name = settings.lethalPrefab.name + "Pickup";

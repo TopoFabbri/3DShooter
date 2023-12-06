@@ -1,3 +1,5 @@
+using ObjectManagers;
+
 /// <summary>
 /// Controller for all the lethal explosions in the game
 /// </summary>

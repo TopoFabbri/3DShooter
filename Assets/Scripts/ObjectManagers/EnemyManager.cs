@@ -1,3 +1,5 @@
+using ObjectManagers;
+
 /// <summary>
 /// Controller for all the enemies in the game
 /// </summary>
