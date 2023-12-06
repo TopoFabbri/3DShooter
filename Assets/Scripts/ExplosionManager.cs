@@ -4,12 +4,16 @@
 public class ExplosionManager : ObjectManager
 {
     private static ExplosionManager instance;
-    
+
+    private ExplosionManager(string id) : base(id)
+    {
+    }
+
     public static ExplosionManager Instance
     {
         get
         {
-            instance ??= new ExplosionManager();
+            instance ??= new ExplosionManager("Explosion");
 
             return instance;
         }

@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjectManager
 {
+    protected string id;
     private struct ScenePool
     {
         public readonly ObjectPool pool;
@@ -20,6 +21,11 @@ public abstract class ObjectManager
     
     private readonly Dictionary<string, ScenePool> pools = new();
     private GameObject parent;
+
+    protected ObjectManager(string id = "<Group>Pool")
+    {
+        this.id = id;
+    }
 
     public virtual GameObject SpawnObject(GameObject obj, Vector3 pos, Quaternion rot)
     {
@@ -52,7 +58,7 @@ public abstract class ObjectManager
     protected virtual void InitParent(GameObject prefab)
     {
         if (!parent)
-            parent = new GameObject(prefab.name + "Pool");
+            parent = new GameObject(id + "Pool");
     }
 
     private void CheckPool(GameObject obj)

@@ -4,12 +4,16 @@
 public class EnemyManager : ObjectManager
 {
     private static EnemyManager instance;
-    
+
+    private EnemyManager(string id) : base(id)  
+    {
+    }
+
     public static EnemyManager Instance
     {
         get
         {
-            instance ??= new EnemyManager();
+            instance ??= new EnemyManager("Enemy");
 
             return instance;
         }

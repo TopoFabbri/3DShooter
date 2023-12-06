@@ -161,11 +161,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnDropLethal()
     {
-        var trans = transform;
-        var position = trans.position;
-        var rotation = trans.rotation;
-        
-        BarrelManager.Instance.SpawnObject(lethalPrefab, position + trans.forward * barrelDis, rotation);
+        var position = transform.position;
+        var camTrans = cameraMovement.transform;
+
+        LethalManager.Instance.SpawnObject(lethalPrefab, position + camTrans.forward * barrelDis, camTrans.rotation);
     }
 
     /// <summary>

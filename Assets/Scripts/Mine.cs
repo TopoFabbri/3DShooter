@@ -1,18 +1,17 @@
 using UnityEngine;
 
-public class Mine : MonoBehaviour
+public class Mine : Lethal
 {
     [SerializeField] private string characterTag = "Character";
-    [SerializeField] private GameObject explosion;
 
     /// <summary>
     /// Start action explode
     /// </summary>
-    private void Explode()
+    protected override void Explode()
     {
         var trans = transform;
         
-        BarrelExplosionManager.Instance.SpawnObject(explosion, trans.position, trans.rotation);
+        LethalExplosionManager.Instance.SpawnObject(explosionPrefab, trans.position, trans.rotation);
         Destroy(gameObject);
     }
     

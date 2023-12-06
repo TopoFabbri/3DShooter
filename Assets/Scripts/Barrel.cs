@@ -1,37 +1,18 @@
 using UnityEngine;
 
-public class Barrel : MonoBehaviour
+public class Barrel : Lethal
 {
-    [SerializeField] private GameObject barrelExplosion;
     [SerializeField] private Stats stats;
-    
-    private Rigidbody rb;
-    
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
     
     private void OnEnable()
     {
         stats.OnDie += Explode;
     }
-    
-    private void OnDisable()
-    {
-        stats.OnDie -= Explode;
-        
-        rb.velocity = Vector3.zero;
-    }
-    
-    /// <summary>
-    /// Instantiate explosion
-    /// </summary>
-    private void Explode()
-    {
-        var trans = transform;
 
-        BarrelExplosionManager.Instance.SpawnObject(barrelExplosion, trans.position, trans.rotation);
-        BarrelManager.Instance.RecycleObject(gameObject);
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        
+        stats.OnDie -= Explode;
     }
 }

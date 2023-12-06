@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769490495d0e5d64b8b3cf26b4845794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1435055755710598891, guid: ed2eb48665fc7cf4489eb7bbaa1e0aff, type: 3}
   characterTag: Character
-  explosion: {fileID: 1435055755710598891, guid: ed2eb48665fc7cf4489eb7bbaa1e0aff, type: 3}
 --- !u!33 &6355894557745145177
 MeshFilter:
   m_ObjectHideFlags: 0

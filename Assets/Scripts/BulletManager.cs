@@ -4,12 +4,16 @@
 public class BulletManager : ObjectManager
 {
     private static BulletManager instance;
-    
+
+    private BulletManager(string id) : base(id)
+    {
+    }
+
     public static BulletManager Instance
     {
         get
         {
-            instance ??= new BulletManager();
+            instance ??= new BulletManager("Bullet");
 
             return instance;
         }
