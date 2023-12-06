@@ -21,6 +21,6 @@ public class WeaponVFX : MonoBehaviour
     /// <param name="pos"></param>
     public void PlayHitExplosion(Vector3 pos)
     {
-        ExplosionManager.Instance.SpawnObject(particleSysPrefab, pos, Quaternion.identity);
+        ExplosionManager.Instance.Spawn(particleSysPrefab, pos, Quaternion.identity);
     }
 }

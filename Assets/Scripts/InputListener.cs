@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class InputListener : MonoBehaviour
@@ -14,6 +15,8 @@ public class InputListener : MonoBehaviour
     public static event Action Grab;
     public static event Action Reload;
     public static event Action DropLethal; 
+    
+    public static event Action<float> ChangeLethal;
 
     // UI
     public static event Action Pause;
@@ -84,5 +87,10 @@ public class InputListener : MonoBehaviour
     private void OnCursor(InputValue input)
     {
         MoveCursor?.Invoke(input);
+    }
+
+    private static void OnChangeLethal(InputValue input)
+    {
+        ChangeLethal?.Invoke(input.Get<float>());
     }
 }

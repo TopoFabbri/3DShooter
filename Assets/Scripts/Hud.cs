@@ -9,6 +9,7 @@ public class Hud : MonoBehaviour
     [SerializeField] private TextMeshProUGUI time;
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI dropLethal;
+    [SerializeField] private TextMeshProUGUI lethalCount;
     [SerializeField] private GameObject pickUpTxt;
     [SerializeField] private GameTimeCounter gameTimeCounter;
 
@@ -67,5 +68,10 @@ public class Hud : MonoBehaviour
     private void OnDropLethal()
     {
         barrelTutorialFinished = true;
+    }
+    
+    public void UpdateLethalCount(int lethalCount)
+    {
+        this.lethalCount.SetText(lethalCount.ToString());
     }
 }

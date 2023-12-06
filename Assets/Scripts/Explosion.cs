@@ -14,6 +14,6 @@ public class Explosion : MonoBehaviour
     private IEnumerator DestroyOnTime(int time)
     {
         yield return new WaitForSeconds(time);
-        ExplosionManager.Instance.RecycleObject(gameObject);
+        ExplosionManager.Instance.Recycle(gameObject);
     }
 }

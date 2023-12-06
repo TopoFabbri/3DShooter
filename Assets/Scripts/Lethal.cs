@@ -24,7 +24,7 @@ public class Lethal : MonoBehaviour
     {
         var trans = transform;
 
-        LethalExplosionManager.Instance.SpawnObject(explosionPrefab, trans.position, trans.rotation);
-        LethalManager.Instance.RecycleObject(gameObject);
+        LethalExplosionManager.Instance.Spawn(explosionPrefab, trans.position, trans.rotation);
+        LethalManager.Instance.Recycle(gameObject);
     }
 }

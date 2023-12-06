@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Controller for all the lethals in the game
 /// </summary>

@@ -39,6 +39,6 @@ public class NormalEnemy : Enemy
         base.DieHandler();
         
         ZombieDestroyed?.Invoke(gameObject);
-        EnemyManager.Instance.RecycleObject(gameObject);
+        EnemyManager.Instance.Recycle(gameObject);
     }
 }

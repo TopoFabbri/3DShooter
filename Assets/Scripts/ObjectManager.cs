@@ -27,7 +27,7 @@ public abstract class ObjectManager
         this.id = id;
     }
 
-    public virtual GameObject SpawnObject(GameObject obj, Vector3 pos, Quaternion rot)
+    public virtual GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
         InitParent(obj);
 
@@ -46,7 +46,7 @@ public abstract class ObjectManager
         return objInstance;
     }
     
-    public virtual void RecycleObject(GameObject obj)
+    public virtual void Recycle(GameObject obj)
     {
         string poolName = obj.name;
         if (poolName.Contains("(Clone)"))

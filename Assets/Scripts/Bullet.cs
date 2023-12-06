@@ -40,12 +40,12 @@ public class Bullet : MonoBehaviour
     private IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        BulletManager.Instance.RecycleObject(gameObject);
+        BulletManager.Instance.Recycle(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        ExplosionManager.Instance.SpawnObject(particleSys, transform.position, Quaternion.identity);
+        ExplosionManager.Instance.Spawn(particleSys, transform.position, Quaternion.identity);
 
         if (collision.gameObject.GetComponent<Stats>())
             collision.gameObject.GetComponent<Stats>().LoseLife(damage);

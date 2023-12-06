@@ -20,7 +20,7 @@ public class BarrelExplosion : MonoBehaviour
     private IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        LethalExplosionManager.Instance.RecycleObject(gameObject);
+        LethalExplosionManager.Instance.Recycle(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)

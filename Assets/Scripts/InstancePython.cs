@@ -31,6 +31,6 @@ public class InstancePython : Gun
         
         base.Shoot();
 
-        BulletManager.Instance.SpawnObject(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        BulletManager.Instance.Spawn(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
     }
 }

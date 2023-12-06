@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private Id stateId;
     [SerializeField] private GameObject lethalPrefab;
-
+    [SerializeField] private PlayerLethalController lethalController;
+    
     private Vector3 movement;
     private bool ads;
     private bool hasShot;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         InputListener.Grab += OnGrab;
         InputListener.Reload += OnReload;
         InputListener.DropLethal += OnDropLethal;
+        InputListener.ChangeLethal += OnChangeLethal;
         stateMachine.Subscribe(stateId, OnUpdate);
     }
 
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
         InputListener.Grab -= OnGrab;
         InputListener.Reload -= OnReload;
         InputListener.DropLethal -= OnDropLethal;
+        InputListener.ChangeLethal -= OnChangeLethal;
         stateMachine.UnSubscribe(stateId, OnUpdate);
     }
 
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="input"></param>
     public void OnMove(InputValue input)
     {
-        var direction = input.Get<Vector2>();
+        Vector2 direction = input.Get<Vector2>();
         movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
     }
 
@@ -164,7 +167,22 @@ public class PlayerController : MonoBehaviour
         var position = transform.position;
         var camTrans = cameraMovement.transform;
 
-        LethalManager.Instance.SpawnObject(lethalPrefab, position + camTrans.forward * barrelDis, camTrans.rotation);
+        lethalController.SpawnLethal(position + camTrans.forward * barrelDis, camTrans.rotation);
+        hud.UpdateLethalCount(lethalController.LethalCount);
+    }
+    
+    /// <summary>
+    /// Call change lethal
+    /// </summary>
+    /// <param name="diff">Amount scrolled</param>
+    private void OnChangeLethal(float diff)
+    {
+        if (diff > 0)
+            lethalController.Next();
+        else
+            lethalController.Prev();
+        
+        hud.UpdateLethalCount(lethalController.LethalCount);
     }
 
     /// <summary>

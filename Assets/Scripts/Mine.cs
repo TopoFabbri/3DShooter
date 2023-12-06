@@ -11,7 +11,7 @@ public class Mine : Lethal
     {
         var trans = transform;
         
-        LethalExplosionManager.Instance.SpawnObject(explosionPrefab, trans.position, trans.rotation);
+        LethalExplosionManager.Instance.Spawn(explosionPrefab, trans.position, trans.rotation);
         Destroy(gameObject);
     }
     

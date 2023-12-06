@@ -99,7 +99,7 @@
                     "name": "ChangeLethal",
                     "type": "Value",
                     "id": "327b0c54-2bf4-429b-a91a-2cc39df13cab",
-                    "expectedControlType": "Delta",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
