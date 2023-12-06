@@ -1,4 +1,5 @@
 using System;
+using Character;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -177,11 +178,16 @@ public class PlayerController : MonoBehaviour
     /// <param name="diff">Amount scrolled</param>
     private void OnChangeLethal(float diff)
     {
-        if (diff > 0)
-            lethalController.Next();
-        else
-            lethalController.Prev();
-        
+        switch (diff)
+        {
+            case > 0:
+                lethalController.CurrentLethal++;
+                break;
+            case < 0:
+                lethalController.CurrentLethal--;
+                break;
+        }
+
         hud.UpdateLethalCount(lethalController.LethalCount);
     }
 

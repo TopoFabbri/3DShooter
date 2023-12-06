@@ -89,8 +89,9 @@ public class InputListener : MonoBehaviour
         MoveCursor?.Invoke(input);
     }
 
-    private static void OnChangeLethal(InputValue input)
+    private void OnChangeLethal(InputValue input)
     {
-        ChangeLethal?.Invoke(input.Get<float>());
+        float diff = input.Get<Vector2>().normalized.y;
+        ChangeLethal?.Invoke(diff);
     }
 }

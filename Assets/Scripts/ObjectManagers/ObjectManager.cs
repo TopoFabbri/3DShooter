@@ -29,8 +29,6 @@ public abstract class ObjectManager
 
     public virtual GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
-        InitParent(obj);
-
         CheckPool(obj);
         
         GameObject objInstance = pools[obj.name].pool.Get();
@@ -52,6 +50,8 @@ public abstract class ObjectManager
         if (poolName.Contains("(Clone)"))
             poolName = poolName.Substring(0, poolName.Length - 7);
         
+        CheckPool(obj);
+        
         pools[poolName].pool.Release(obj);
     }
 
@@ -63,6 +63,8 @@ public abstract class ObjectManager
 
     private void CheckPool(GameObject obj)
     {
+        InitParent(obj);
+
         if (pools.ContainsKey(obj.name))
         {
             if (!pools[obj.name].parent)
