@@ -11,12 +11,12 @@ namespace Level.Spawn
 
         private void OnEnable()
         {
-            action += Spawn;
+            action += Build;
         }
         
         private void OnDisable()
         {
-            action -= Spawn;
+            action -= Build;
         }
     }
 }

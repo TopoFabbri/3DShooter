@@ -1,29 +1,27 @@
 using System;
 using System.Collections.Generic;
-using ObjectManagers;
+using Abstracts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Level.Spawn
 {
-    public abstract class Spawner : MonoBehaviour
+    public class Spawner : MonoBehaviour
     {
         [Serializable]
-        protected struct Spawnable
+        public struct Spawnable
         {
-            public Recyclable recyclable;
-            public int amount;
+            public SpawnableObject recyclable;
+            public SpawnableSettings settings;
         }
-        
-        [FormerlySerializedAs("recyclables")]
-        [Header("Recyclables:")]
+    
         [SerializeField] protected List<Spawnable> spawnables;
 
-        protected GameObject spawned;
-        
-        protected virtual void Spawn(int index)
+        protected void Build(int index)
         {
-            spawned = spawnables[index].recyclable.Get(transform.position, transform.rotation);
+            Transform trans = transform;
+            
+            spawnables[index].recyclable
+                .SpawnWithSettings(spawnables[index].settings, trans.position, trans.rotation);
         }
     }
 }

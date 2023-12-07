@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc68c05d845b264388ab6a2dab757a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
   pSystem: {fileID: 7053987426352346439}
   lethalMesh: {fileID: 5487041431562139319}
 --- !u!1 &6805192461733083179
@@ -402,7 +401,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.09803922}
+      maxColor: {r: 1, g: 0, b: 0, a: 0.078431375}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
