@@ -1,4 +1,6 @@
 using System;
+using Enemies;
+using ObjectManagers;
 using UnityEngine;
 
 public class NormalEnemy : Enemy
@@ -29,15 +31,13 @@ public class NormalEnemy : Enemy
     {
         if (!(Time.time > cooldown && other.gameObject.CompareTag(characterTag))) return;
         
-        if (other.gameObject.TryGetComponent<Stats>(out var otherStats))
+        if (other.gameObject.TryGetComponent<Stats.Stats>(out var otherStats))
             otherStats.LoseLife(damage);
         cooldown = Time.time + damageTime;
     }
     
     protected override void DieHandler()
     {
-        base.DieHandler();
-        
         ZombieDestroyed?.Invoke(gameObject);
         EnemyManager.Instance.Recycle(gameObject);
     }

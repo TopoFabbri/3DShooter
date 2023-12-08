@@ -1,77 +1,89 @@
+using GameStats;
+using Patterns;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hud : MonoBehaviour
+namespace HUD
 {
-    [SerializeField] private Slider slider;
-    [SerializeField] private TextMeshProUGUI frames;
-    [SerializeField] private TextMeshProUGUI time;
-    [SerializeField] private TextMeshProUGUI score;
-    [SerializeField] private TextMeshProUGUI dropLethal;
-    [SerializeField] private TextMeshProUGUI lethalCount;
-    [SerializeField] private GameObject pickUpTxt;
-    [SerializeField] private GameTimeCounter gameTimeCounter;
-
-    private bool barrelTutorialFinished;
-    private const string TimeText = "Time: ";
-
-    private void OnEnable()
+    /// <summary>
+    /// Hud controller class
+    /// </summary>
+    public class Hud : MonoBehaviour
     {
-        InputListener.DropLethal += OnDropLethal;
-    }
+        [SerializeField] private Slider slider;
+        [SerializeField] private TextMeshProUGUI frames;
+        [SerializeField] private TextMeshProUGUI time;
+        [SerializeField] private TextMeshProUGUI score;
+        [SerializeField] private TextMeshProUGUI dropLethal;
+        [SerializeField] private TextMeshProUGUI lethalCount;
+        [SerializeField] private GameObject pickUpTxt;
+        [SerializeField] private GameTimeCounter gameTimeCounter;
 
-    private void OnDisable()
-    {
-        InputListener.DropLethal -= OnDropLethal;
-    }
+        private bool barrelTutorialFinished;
+        private const string TimeText = "Time: ";
 
-    private void Update()
-    {
-        if (barrelTutorialFinished)
-            dropLethal.gameObject.SetActive(false);
+        private void OnEnable()
+        {
+            InputListener.DropLethal += OnDropLethal;
+        }
+
+        private void OnDisable()
+        {
+            InputListener.DropLethal -= OnDropLethal;
+        }
+
+        private void Update()
+        {
+            if (barrelTutorialFinished)
+                dropLethal.gameObject.SetActive(false);
         
-        frames.SetText(((int)(1f / Time.deltaTime)).ToString());
-        time.SetText(TimeText + gameTimeCounter.gameTime);
-    }
+            frames.SetText(((int)(1f / Time.deltaTime)).ToString());
+            time.SetText(TimeText + gameTimeCounter.GameTime);
+        }
 
-    /// <summary>
-    /// Set slider value based on hp
-    /// </summary>
-    /// <param name="hp"></param>
-    public void SetSlider(float hp)
-    {
-        slider.value = hp;
-    }
+        /// <summary>
+        /// Set slider value based on hp
+        /// </summary>
+        /// <param name="hp"></param>
+        public void SetSlider(float hp)
+        {
+            slider.value = hp;
+        }
 
-    /// <summary>
-    /// Show or hide 'pickup' text
-    /// </summary>
-    /// <param name="active"></param>
-    public void SetPickupTextActive(bool active)
-    {
+        /// <summary>
+        /// Show or hide 'pickup' text
+        /// </summary>
+        /// <param name="active"></param>
+        public void SetPickupTextActive(bool active)
+        {
             pickUpTxt.SetActive(active && barrelTutorialFinished);
-    }
+        }
 
-    /// <summary>
-    /// Update score text
-    /// </summary>
-    /// <param name="newScore">New score to display</param>
-    public void UpdateScore(int newScore)
-    {
-        score.SetText(newScore.ToString());
-    }
+        /// <summary>
+        /// Update score text
+        /// </summary>
+        /// <param name="newScore">New score to display</param>
+        public void UpdateScore(int newScore)
+        {
+            score.SetText(newScore.ToString());
+        }
 
-    /// <summary>
-    /// Stop barrel tutorial on barrel placed
-    /// </summary>
-    private void OnDropLethal()
-    {
-        barrelTutorialFinished = true;
-    }
+        /// <summary>
+        /// Stop barrel tutorial on barrel placed
+        /// </summary>
+        private void OnDropLethal()
+        {
+            barrelTutorialFinished = true;
+        }
     
-    public void UpdateLethalCount(int lethalCount)
-    {
-        this.lethalCount.SetText(lethalCount.ToString());
+        /// <summary>
+        /// Set new text for amount of lethals left
+        /// </summary>
+        /// <param name="lethalCount">Lethals left</param>
+        public void UpdateLethalCount(int lethalCount)
+        {
+            this.lethalCount.SetText(lethalCount.ToString());
+        }
     }
 }

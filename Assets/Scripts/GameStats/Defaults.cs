@@ -1,10 +1,16 @@
 using UnityEngine;
 
-public class Defaults : MonoBehaviour
+namespace GameStats
 {
-    private void Awake()
+    /// <summary>
+    /// Set default values
+    /// </summary>
+    public class Defaults : MonoBehaviour
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        private void Awake()
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+        }
     }
 }

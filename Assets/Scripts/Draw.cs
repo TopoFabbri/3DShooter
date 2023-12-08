@@ -1,10 +1,14 @@
 using UnityEngine;
 
+/// <summary>
+/// Debug draw tools
+/// </summary>
 public class Draw : MonoBehaviour
 {
-    private static Color Color = Color.white;
     private static float pointDestroyTime;
     private static Vector3 pointPos;
+    
+    public static Color Color { private get; set; } = Color.white;
 
     /// <summary>
     /// Draw a cube only edges

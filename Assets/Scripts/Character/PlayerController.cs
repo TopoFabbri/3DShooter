@@ -1,264 +1,276 @@
 using System;
-using Character;
+using Patterns;
+using Patterns.SM;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
-public class PlayerController : MonoBehaviour
+namespace Character
 {
-    [SerializeField] private float moveSpeed = 500f;
-    [SerializeField] private float maxSpeed = 5f;
-    [SerializeField] private float grabDis = 3f;
-    [SerializeField] private float barrelDis = 2f;
-    [SerializeField] private string gunTag = "Gun";
-
-    [Header("Objects:")] [SerializeField] private Gun weapon;
-    [SerializeField] private CameraMovement cameraMovement;
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private Hud hud;
-    [SerializeField] private StateMachine stateMachine;
-    [SerializeField] private Id stateId;
-    [SerializeField] private GameObject lethalPrefab;
-    [SerializeField] private PlayerLethalController lethalController;
-    
-    private Vector3 movement;
-    private bool ads;
-    private bool hasShot;
-
-    public static event Action Destroyed;
-
-    public Gun GetWeapon => weapon;
-
-    private void OnEnable()
-    {
-        // Action subscriptions
-        InputListener.Move += OnMove;
-        InputListener.Shoot += OnShoot;
-        InputListener.Aim += OnAim;
-        InputListener.Drop += OnDrop;
-        InputListener.Grab += OnGrab;
-        InputListener.Reload += OnReload;
-        InputListener.DropLethal += OnDropLethal;
-        InputListener.ChangeLethal += OnChangeLethal;
-
-        lethalController.LethalCountChanged += OnChangeLethalCount;
-        stateMachine.Subscribe(stateId, OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        // Action unsubscription
-        InputListener.Move -= OnMove;
-        InputListener.Shoot -= OnShoot;
-        InputListener.Aim -= OnAim;
-        InputListener.Drop -= OnDrop;
-        InputListener.Grab -= OnGrab;
-        InputListener.Reload -= OnReload;
-        InputListener.DropLethal -= OnDropLethal;
-        InputListener.ChangeLethal -= OnChangeLethal;
-        
-        lethalController.LethalCountChanged -= OnChangeLethalCount;
-        stateMachine.UnSubscribe(stateId, OnUpdate);
-    }
-
-    private void FixedUpdate()
-    {
-        var trans = transform;
-        rb.AddForce((movement.x * trans.right + movement.z * trans.forward) * Time.fixedDeltaTime,
-            ForceMode.Acceleration);
-        var tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
-        rb.velocity = new Vector3(tmp.x, rb.velocity.y, tmp.y);
-    }
-
     /// <summary>
-    /// Gameplay-only update
+    /// Character controller class
     /// </summary>
-    private void OnUpdate()
+    public class PlayerController : MonoBehaviour
     {
-        if (ads)
-            AimStart();
-        else
-            AimStop();
+        [SerializeField] private float moveSpeed = 500f;
+        [SerializeField] private float maxSpeed = 5f;
+        [SerializeField] private float grabDis = 3f;
+        [SerializeField] private float barrelDis = 2f;
+        [SerializeField] private string gunTag = "Gun";
 
-        if (GetWeapon)
+        [Header("Objects:")] [SerializeField] private Gun weapon;
+        [SerializeField] private CameraMovement cameraMovement;
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private HUD.Hud hud;
+        [SerializeField] private StateMachine stateMachine;
+        [SerializeField] private Id stateId;
+        [SerializeField] private GameObject lethalPrefab;
+        [SerializeField] private PlayerLethalController lethalController;
+    
+        private Vector3 movement;
+        private bool ads;
+        private bool hasShot;
+
+        public static event Action Destroyed;
+
+        public Gun GetWeapon => weapon;
+
+        private void OnEnable()
         {
-            if (GetWeapon.isReloading)
-            {
-                var trans = transform;
-                GetWeapon.transform.position = trans.position - trans.forward;
-            }
-            else
-            {
-                Transform cameraMovementTransform;
-                GetWeapon.transform.position =
-                    (cameraMovementTransform = cameraMovement.transform).TransformPoint(new Vector3(.26f, -.234f, .561f));
-                GetWeapon.transform.LookAt(cameraMovement.worldMouseDir + cameraMovementTransform.up * -0.1597f);
-            }
+            // Action subscriptions
+            InputListener.Move += OnMove;
+            InputListener.Shoot += OnShoot;
+            InputListener.Aim += OnAim;
+            InputListener.Drop += OnDrop;
+            InputListener.Grab += OnGrab;
+            InputListener.Reload += OnReload;
+            InputListener.DropLethal += OnDropLethal;
+            InputListener.ChangeLethal += OnChangeLethal;
+
+            lethalController.LethalCountChanged += OnChangeLethalCount;
+            stateMachine.Subscribe(stateId, OnUpdate);
         }
 
-        hud.SetPickupTextActive(PointingAtGun(out _));
-    }
-
-    /// <summary>
-    /// Call character move action
-    /// </summary>
-    /// <param name="input"></param>
-    public void OnMove(InputValue input)
-    {
-        Vector2 direction = input.Get<Vector2>();
-        movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
-    }
-
-    /// <summary>
-    /// Call character shoot action
-    /// </summary>
-    public void OnShoot()
-    {
-        if (GetWeapon)
-            GetWeapon.GetComponent<Gun>().Shoot();
-    }
-
-    /// <summary>
-    /// Call character aim action
-    /// </summary>
-    /// <param name="input"></param>
-    public void OnAim(InputValue input)
-    {
-        ads = input.isPressed;
-    }
-
-    /// <summary>
-    /// Call character drop weapon action
-    /// </summary>
-    public void OnDrop()
-    {
-        if (GetWeapon)
-            GetWeapon.DropGun();
-        
-        weapon = null;
-    }
-
-    /// <summary>
-    /// Call character pickup weapon action
-    /// </summary>
-    public void OnGrab()
-    {
-        if (!PointingAtGun(out var hit))
-            return;
-
-        if (GetWeapon)
+        private void OnDisable()
         {
-            GetWeapon.DropGun();
+            // Action unsubscription
+            InputListener.Move -= OnMove;
+            InputListener.Shoot -= OnShoot;
+            InputListener.Aim -= OnAim;
+            InputListener.Drop -= OnDrop;
+            InputListener.Grab -= OnGrab;
+            InputListener.Reload -= OnReload;
+            InputListener.DropLethal -= OnDropLethal;
+            InputListener.ChangeLethal -= OnChangeLethal;
+        
+            lethalController.LethalCountChanged -= OnChangeLethalCount;
+            stateMachine.UnSubscribe(stateId, OnUpdate);
+        }
+
+        private void FixedUpdate()
+        {
+            var trans = transform;
+            rb.AddForce((movement.x * trans.right + movement.z * trans.forward) * Time.fixedDeltaTime,
+                ForceMode.Acceleration);
+            var tmp = ClampPlaneVelocity(rb.velocity, maxSpeed);
+            rb.velocity = new Vector3(tmp.x, rb.velocity.y, tmp.y);
+        }
+
+        /// <summary>
+        /// Gameplay-only update
+        /// </summary>
+        private void OnUpdate()
+        {
+            if (ads)
+                AimStart();
+            else
+                AimStop();
+
+            if (GetWeapon)
+            {
+                if (GetWeapon.isReloading)
+                {
+                    var trans = transform;
+                    GetWeapon.transform.position = trans.position - trans.forward;
+                }
+                else
+                {
+                    Transform cameraMovementTransform;
+                    GetWeapon.transform.position =
+                        (cameraMovementTransform = cameraMovement.transform).TransformPoint(new Vector3(.26f, -.234f, .561f));
+                    GetWeapon.transform.LookAt(cameraMovement.worldMouseDir + cameraMovementTransform.up * -0.1597f);
+                }
+            }
+
+            hud.SetPickupTextActive(PointingAtGun(out _));
+        }
+
+        /// <summary>
+        /// Call character move action
+        /// </summary>
+        /// <param name="input"></param>
+        public void OnMove(InputValue input)
+        {
+            Vector2 direction = input.Get<Vector2>();
+            movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
+        }
+
+        /// <summary>
+        /// Call character shoot action
+        /// </summary>
+        public void OnShoot()
+        {
+            if (GetWeapon)
+                GetWeapon.GetComponent<Gun>().Shoot();
+        }
+
+        /// <summary>
+        /// Call character aim action
+        /// </summary>
+        /// <param name="input"></param>
+        public void OnAim(InputValue input)
+        {
+            ads = input.isPressed;
+        }
+
+        /// <summary>
+        /// Call character drop weapon action
+        /// </summary>
+        public void OnDrop()
+        {
+            if (GetWeapon)
+                GetWeapon.DropGun();
+        
             weapon = null;
         }
 
-        hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
-        weapon = hit.transform.gameObject.GetComponent<Gun>();
-    }
-
-    /// <summary>
-    /// Call character reload weapon action
-    /// </summary>
-    public void OnReload()
-    {
-        if (GetWeapon)
-            GetWeapon.Reload();
-    }
-
-    /// <summary>
-    /// Call place equipped lethal
-    /// </summary>
-    private void OnDropLethal()
-    {
-        var position = transform.position;
-        var camTrans = cameraMovement.transform;
-
-        lethalController.SpawnLethal(position + camTrans.forward * barrelDis, camTrans.rotation);
-        hud.UpdateLethalCount(lethalController.LethalCount);
-    }
-    
-    /// <summary>
-    /// Call change lethal
-    /// </summary>
-    /// <param name="diff">Amount scrolled</param>
-    private void OnChangeLethal(float diff)
-    {
-        switch (diff)
+        /// <summary>
+        /// Call character pickup weapon action
+        /// </summary>
+        public void OnGrab()
         {
-            case > 0:
-                lethalController.CurrentLethal++;
-                break;
-            case < 0:
-                lethalController.CurrentLethal--;
-                break;
+            if (!PointingAtGun(out var hit))
+                return;
+
+            if (GetWeapon)
+            {
+                GetWeapon.DropGun();
+                weapon = null;
+            }
+
+            hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
+            weapon = hit.transform.gameObject.GetComponent<Gun>();
         }
+
+        /// <summary>
+        /// Call character reload weapon action
+        /// </summary>
+        public void OnReload()
+        {
+            if (GetWeapon)
+                GetWeapon.Reload();
+        }
+
+        /// <summary>
+        /// Call place equipped lethal
+        /// </summary>
+        private void OnDropLethal()
+        {
+            var position = transform.position;
+            var camTrans = cameraMovement.transform;
+
+            lethalController.SpawnLethal(position + camTrans.forward * barrelDis, camTrans.rotation);
+            hud.UpdateLethalCount(lethalController.LethalCount);
+        }
+    
+        /// <summary>
+        /// Call change lethal
+        /// </summary>
+        /// <param name="diff">Amount scrolled</param>
+        private void OnChangeLethal(float diff)
+        {
+            switch (diff)
+            {
+                case > 0:
+                    lethalController.CurrentLethal++;
+                    break;
+                case < 0:
+                    lethalController.CurrentLethal--;
+                    break;
+            }
         
-        OnChangeLethalCount(lethalController.LethalCount);
-    }
+            OnChangeLethalCount(lethalController.LethalCount);
+        }
 
-    private void OnChangeLethalCount(int qty)
-    {
-        hud.UpdateLethalCount(qty);
-    }
+        /// <summary>
+        /// Lethal count modified handler
+        /// </summary>
+        /// <param name="qty"></param>
+        private void OnChangeLethalCount(int qty)
+        {
+            hud.UpdateLethalCount(qty);
+        }
 
-    /// <summary>
-    /// Clamp x - z velocity
-    /// </summary>
-    /// <param name="vel"></param>
-    /// <param name="clampValue"></param>
-    /// <returns>x & z velocity normalized within 'clampValue'</returns>
-    private static Vector2 ClampPlaneVelocity(Vector3 vel, float clampValue)
-    {
-        var res = new Vector2(vel.x, vel.z);
-        res = Vector2.ClampMagnitude(res, clampValue);
-        return res;
-    }
+        /// <summary>
+        /// Clamp x - z velocity
+        /// </summary>
+        /// <param name="vel"></param>
+        /// <param name="clampValue"></param>
+        /// <returns>x & z velocity normalized within 'clampValue'</returns>
+        private static Vector2 ClampPlaneVelocity(Vector3 vel, float clampValue)
+        {
+            var res = new Vector2(vel.x, vel.z);
+            res = Vector2.ClampMagnitude(res, clampValue);
+            return res;
+        }
 
-    /// <summary>
-    /// Set up state 'aiming'
-    /// </summary>
-    private void AimStart()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-        cameraMovement.aimDownSight = true;
-    }
+        /// <summary>
+        /// Set up state 'aiming'
+        /// </summary>
+        private void AimStart()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            cameraMovement.aimDownSight = true;
+        }
 
-    /// <summary>
-    /// End character state 'aiming'
-    /// </summary>
-    private void AimStop()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
-        cameraMovement.aimDownSight = false;
-    }
+        /// <summary>
+        /// End character state 'aiming'
+        /// </summary>
+        private void AimStop()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
+            cameraMovement.aimDownSight = false;
+        }
 
-    /// <summary>
-    /// Check if can grab gun
-    /// </summary>
-    /// <param name="hit"></param>
-    /// <returns></returns>
-    private bool PointingAtGun(out RaycastHit hit)
-    {
-        var cam = cameraMovement.gameObject.transform;
-        var ray = new Ray(cam.position, cam.forward);
+        /// <summary>
+        /// Check if can grab gun
+        /// </summary>
+        /// <param name="hit"></param>
+        /// <returns></returns>
+        private bool PointingAtGun(out RaycastHit hit)
+        {
+            var cam = cameraMovement.gameObject.transform;
+            var ray = new Ray(cam.position, cam.forward);
 
-        if (!Physics.Raycast(ray, out hit)) return false;
+            if (!Physics.Raycast(ray, out hit)) return false;
 
-        return hit.transform.gameObject.CompareTag(gunTag) &&
-               Vector3.Distance(hit.transform.position, transform.position) < grabDis;
-    }
+            return hit.transform.gameObject.CompareTag(gunTag) &&
+                   Vector3.Distance(hit.transform.position, transform.position) < grabDis;
+        }
 
-    /// <summary>
-    /// Sets player velocity to 0
-    /// </summary>
-    public void StopMovement()
-    {
-        rb.velocity = Vector3.zero;
-    }
+        /// <summary>
+        /// Sets player velocity to 0
+        /// </summary>
+        public void StopMovement()
+        {
+            rb.velocity = Vector3.zero;
+        }
 
-    private void OnDestroy()
-    {
-        Destroyed?.Invoke();
+        private void OnDestroy()
+        {
+            Destroyed?.Invoke();
+        }
     }
 }

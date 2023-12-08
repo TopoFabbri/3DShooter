@@ -1,23 +1,24 @@
-using ObjectManagers;
-
-/// <summary>
-/// Controller for all the lethal explosions in the game
-/// </summary>
-public class LethalExplosionManager : ObjectManager
+namespace ObjectManagers
 {
-    private static LethalExplosionManager instance;
-
-    private LethalExplosionManager(string id) : base(id)
+    /// <summary>
+    /// Controller for all the lethal explosions in the game
+    /// </summary>
+    public class LethalExplosionManager : ObjectManager
     {
-    }
+        private static LethalExplosionManager instance;
 
-    public static LethalExplosionManager Instance
-    {
-        get
+        private LethalExplosionManager(string id) : base(id)
         {
-            instance ??= new LethalExplosionManager("LethalExplosion");
+        }
 
-            return instance;
+        public static LethalExplosionManager Instance
+        {
+            get
+            {
+                instance ??= new LethalExplosionManager("LethalExplosion");
+
+                return instance;
+            }
         }
     }
 }

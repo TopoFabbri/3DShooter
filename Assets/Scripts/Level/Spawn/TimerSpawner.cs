@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 namespace Level.Spawn
 {
+    /// <summary>
+    /// Class to spawn objects by time
+    /// </summary>
     public class TimerSpawner : Spawner
     {
         [Serializable]
@@ -25,12 +28,18 @@ namespace Level.Spawn
             }
         }
         
+        /// <summary>
+        /// Wait for time, then spawn object
+        /// </summary>
+        /// <param name="index">Number on the list of the object to spawn</param>
+        /// <param name="time">Delay between spawning</param>
+        /// <returns></returns>
         private IEnumerator SpawnLoop(int index, float time)
         {
             for (int i = 0; i < spawnableTimeSettings[index].amount; i++)
             {
                 yield return new WaitForSeconds(time);
-                Build(index);
+                Spawn(index);
             }
         }
     }

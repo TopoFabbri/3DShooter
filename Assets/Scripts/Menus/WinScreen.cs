@@ -1,34 +1,41 @@
+using Patterns;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class WinScreen : MonoBehaviour
+namespace Menus
 {
-    [SerializeField] private GameObject image;
-
-    private EventSystem eventSystem;
-    
-    private void OnEnable()
-    {
-        eventSystem = EventSystem.current;
-        InputListener.Navigate += OnNavigate;
-    }
-
-    private void OnDisable()
-    {
-        InputListener.Navigate -= OnNavigate;
-    }
-
-    private void Update()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
     /// <summary>
-    /// Call action navigate
+    /// Win screen menu controller
     /// </summary>
-    private void OnNavigate()
+    public class WinScreen : MonoBehaviour
     {
-        if (!eventSystem.currentSelectedGameObject)
-            eventSystem.SetSelectedGameObject(image);
+        [SerializeField] private GameObject image;
+
+        private EventSystem eventSystem;
+    
+        private void OnEnable()
+        {
+            eventSystem = EventSystem.current;
+            InputListener.Navigate += OnNavigate;
+        }
+
+        private void OnDisable()
+        {
+            InputListener.Navigate -= OnNavigate;
+        }
+
+        private void Update()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        /// <summary>
+        /// Call action navigate
+        /// </summary>
+        private void OnNavigate()
+        {
+            if (!eventSystem.currentSelectedGameObject)
+                eventSystem.SetSelectedGameObject(image);
+        }
     }
 }

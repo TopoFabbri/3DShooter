@@ -1,23 +1,24 @@
-using ObjectManagers;
-
-/// <summary>
-/// Controller for all the enemies in the game
-/// </summary>
-public class EnemyManager : ObjectManager
+namespace ObjectManagers
 {
-    private static EnemyManager instance;
-
-    private EnemyManager(string id) : base(id)  
+    /// <summary>
+    /// Controller for all the enemies in the game
+    /// </summary>
+    public class EnemyManager : ObjectManager
     {
-    }
+        private static EnemyManager instance;
 
-    public static EnemyManager Instance
-    {
-        get
+        private EnemyManager(string id) : base(id)  
         {
-            instance ??= new EnemyManager("Enemy");
+        }
 
-            return instance;
+        public static EnemyManager Instance
+        {
+            get
+            {
+                instance ??= new EnemyManager("Enemy");
+
+                return instance;
+            }
         }
     }
 }

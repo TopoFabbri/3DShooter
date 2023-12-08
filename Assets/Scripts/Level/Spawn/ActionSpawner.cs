@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Level.Spawn
 {
+    /// <summary>
+    /// Class to spawn objects by an action
+    /// </summary>
     public class ActionSpawner : Spawner
     {
         [SerializeField] private Action<int> action;
@@ -11,12 +14,12 @@ namespace Level.Spawn
 
         private void OnEnable()
         {
-            action += Build;
+            action += Spawn;
         }
         
         private void OnDisable()
         {
-            action -= Build;
+            action -= Spawn;
         }
     }
 }

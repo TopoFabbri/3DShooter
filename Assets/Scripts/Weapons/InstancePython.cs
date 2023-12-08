@@ -1,36 +1,43 @@
+using ObjectManagers;
 using UnityEngine;
 
-public class InstancePython : Gun
+namespace Weapons
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform character;
-
-    private void OnEnable()
-    {
-        stateMachine.Subscribe(stateId, OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        stateMachine.UnSubscribe(stateId, OnUpdate);
-    }
-
     /// <summary>
-    /// Gameplay-only update
+    /// Instanced bullet gun controller
     /// </summary>
-    private void OnUpdate()
+    public class InstancePython : Gun
     {
-        CheckReload();
-        sprite.transform.position = transform.position + Vector3.up;
-        sprite.transform.LookAt(character.position);
-    }
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private Transform character;
 
-    public override void Shoot()
-    {
-        if (isReloading) return;
+        private void OnEnable()
+        {
+            stateMachine.Subscribe(stateId, OnUpdate);
+        }
+
+        private void OnDisable()
+        {
+            stateMachine.UnSubscribe(stateId, OnUpdate);
+        }
+
+        /// <summary>
+        /// Gameplay-only update
+        /// </summary>
+        private void OnUpdate()
+        {
+            CheckReload();
+            sprite.transform.position = transform.position + Vector3.up;
+            sprite.transform.LookAt(character.position);
+        }
+
+        public override void Shoot()
+        {
+            if (isReloading) return;
         
-        base.Shoot();
+            base.Shoot();
 
-        BulletManager.Instance.Spawn(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            BulletManager.Instance.Spawn(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        }
     }
 }

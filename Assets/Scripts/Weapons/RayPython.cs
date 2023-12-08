@@ -1,47 +1,53 @@
 using UnityEngine;
 
-public class RayPython : Gun
+namespace Weapons
 {
-    [SerializeField] private float strength = 10f;
-    [SerializeField] private Transform character;
-    [SerializeField] private float damage = 50f;
-
-    private void OnEnable()
-    {
-        stateMachine.Subscribe(stateId, OnUpdate);
-    }
-
-    private void OnDisable()
-    {
-        stateMachine.UnSubscribe(stateId, OnUpdate);
-    }
-    
     /// <summary>
-    /// Gameplay-only update
+    /// Raycast bullet weapon controller
     /// </summary>
-    private void OnUpdate()
+    public class RayPython : Gun
     {
-        CheckReload();
-        sprite.transform.position = transform.position + Vector3.up;
-        sprite.transform.LookAt(character.position);
-    }
+        [SerializeField] private float strength = 10f;
+        [SerializeField] private Transform character;
+        [SerializeField] private float damage = 50f;
+
+        private void OnEnable()
+        {
+            stateMachine.Subscribe(stateId, OnUpdate);
+        }
+
+        private void OnDisable()
+        {
+            stateMachine.UnSubscribe(stateId, OnUpdate);
+        }
     
-    public override void Shoot()
-    {
-        if (isReloading) return;
+        /// <summary>
+        /// Gameplay-only update
+        /// </summary>
+        private void OnUpdate()
+        {
+            CheckReload();
+            sprite.transform.position = transform.position + Vector3.up;
+            sprite.transform.LookAt(character.position);
+        }
+    
+        public override void Shoot()
+        {
+            if (isReloading) return;
         
-        var ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
+            var ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
 
-        base.Shoot();
+            base.Shoot();
 
-        if (!Physics.Raycast(ray, out var hit)) return;
+            if (!Physics.Raycast(ray, out var hit)) return;
         
-        weaponVFX.PlayHitExplosion(hit.point);
+            weaponVFX.PlayHitExplosion(hit.point);
 
-        if (hit.transform.gameObject.GetComponent<Stats>())
-            hit.transform.gameObject.GetComponent<Stats>().LoseLife(damage);
+            if (hit.transform.gameObject.GetComponent<Stats.Stats>())
+                hit.transform.gameObject.GetComponent<Stats.Stats>().LoseLife(damage);
 
-        if (hit.transform.gameObject.GetComponent<Rigidbody>())
-            hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
+            if (hit.transform.gameObject.GetComponent<Rigidbody>())
+                hit.transform.gameObject.GetComponent<Rigidbody>().AddForce((hit.transform.position - hit.point).normalized * strength, ForceMode.Impulse);
+        }
     }
 }

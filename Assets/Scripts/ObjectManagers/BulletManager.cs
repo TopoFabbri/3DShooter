@@ -1,23 +1,24 @@
-using ObjectManagers;
-
-/// <summary>
-/// Controller for all bullet objects
-/// </summary>
-public class BulletManager : ObjectManager
+namespace ObjectManagers
 {
-    private static BulletManager instance;
-
-    private BulletManager(string id) : base(id)
+    /// <summary>
+    /// Controller for all bullet objects
+    /// </summary>
+    public class BulletManager : ObjectManager
     {
-    }
+        private static BulletManager instance;
 
-    public static BulletManager Instance
-    {
-        get
+        private BulletManager(string id) : base(id)
         {
-            instance ??= new BulletManager("Bullet");
+        }
 
-            return instance;
+        public static BulletManager Instance
+        {
+            get
+            {
+                instance ??= new BulletManager("Bullet");
+
+                return instance;
+            }
         }
     }
 }

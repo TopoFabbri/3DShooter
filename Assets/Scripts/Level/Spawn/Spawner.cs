@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Level.Spawn
 {
+    /// <summary>
+    /// Class to spawn objects with settings
+    /// </summary>
     public class Spawner : MonoBehaviour
     {
         [Serializable]
@@ -16,7 +19,11 @@ namespace Level.Spawn
     
         [SerializeField] protected List<Spawnable> spawnables;
 
-        protected void Build(int index)
+        /// <summary>
+        /// Spawn object by index
+        /// </summary>
+        /// <param name="index">Position in list of object to spawn</param>
+        protected void Spawn(int index)
         {
             Transform trans = transform;
             

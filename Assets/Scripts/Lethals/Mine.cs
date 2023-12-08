@@ -1,24 +1,30 @@
-using Lethals;
+using ObjectManagers;
 using UnityEngine;
 
-public class Mine : Lethal
+namespace Lethals
 {
-    [SerializeField] private string characterTag = "Character";
-
     /// <summary>
-    /// Start action explode
+    /// Mine lethal controller
     /// </summary>
-    protected override void Explode()
+    public class Mine : Lethal
     {
-        var trans = transform;
+        [SerializeField] private string characterTag = "Character";
+
+        /// <summary>
+        /// Start action explode
+        /// </summary>
+        protected override void Explode()
+        {
+            var trans = transform;
         
-        LethalExplosionManager.Instance.Spawn(explosionPrefab, trans.position, trans.rotation);
-        Destroy(gameObject);
-    }
+            LethalExplosionManager.Instance.Spawn(explosionPrefab, trans.position, trans.rotation);
+            Destroy(gameObject);
+        }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(characterTag))
-            Explode();
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag(characterTag))
+                Explode();
+        }
     }
 }

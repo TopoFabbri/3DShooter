@@ -4,6 +4,9 @@ using UnityEngine.Serialization;
 
 namespace Lethals
 {
+    /// <summary>
+    /// Base class for lethal controllers
+    /// </summary>
     public class Lethal : MonoBehaviour
     {
         [FormerlySerializedAs("barrelExplosion")] [SerializeField] protected GameObject explosionPrefab;

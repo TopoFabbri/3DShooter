@@ -2,28 +2,34 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace Level
 {
-    [Serializable] private struct SceneWithBuildIndex
-    {
-        public SceneId scene;
-        public int buildIndex;
-    }
-    
-    [SerializeField] private SceneWithBuildIndex[] scenesIndex;
-
     /// <summary>
-    /// Load scene from scene id
+    /// Load scenes by SceneId
     /// </summary>
-    /// <param name="scene"></param>
-    public void LoadScene(SceneId scene)
+    public class SceneLoader : MonoBehaviour
     {
-        foreach (var sceneWithIndex in scenesIndex)
+        [Serializable] private struct SceneWithBuildIndex
         {
-            if (sceneWithIndex.scene != scene) continue;
+            public SceneId scene;
+            public int buildIndex;
+        }
+    
+        [SerializeField] private SceneWithBuildIndex[] scenesIndex;
+
+        /// <summary>
+        /// Load scene from scene id
+        /// </summary>
+        /// <param name="scene"></param>
+        public void LoadScene(SceneId scene)
+        {
+            foreach (var sceneWithIndex in scenesIndex)
+            {
+                if (sceneWithIndex.scene != scene) continue;
             
-            SceneManager.LoadScene(sceneWithIndex.buildIndex);
-            break;
+                SceneManager.LoadScene(sceneWithIndex.buildIndex);
+                break;
+            }
         }
     }
 }
