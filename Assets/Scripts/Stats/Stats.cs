@@ -21,6 +21,8 @@ namespace Stats
         private const float LifeRegen = .5f;
         private bool godMode;
 
+        public float InitHp => initialHp;
+        
         public event Action OnDie;
 
         private void OnEnable()

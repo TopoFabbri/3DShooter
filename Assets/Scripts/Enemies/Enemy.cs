@@ -1,4 +1,5 @@
 using Abstracts;
+using Game;
 using ObjectManagers;
 using Patterns.SM;
 using SOs;
@@ -30,6 +31,8 @@ namespace Enemies
         {
             stateMachine = FindObjectOfType<StateMachine>();
             stateMachine.Subscribe(stateId, OnUpdate);
+            
+            Cheats.Nuke += OnNukeHandler;
 
             stats.OnDie += DieHandler;
         }
@@ -38,6 +41,8 @@ namespace Enemies
         {
             stateMachine.UnSubscribe(stateId, OnUpdate);
 
+            Cheats.Nuke -= OnNukeHandler;
+            
             stats.OnDie -= DieHandler;
         }
 
@@ -56,6 +61,11 @@ namespace Enemies
             Enemy instanced = EnemyManager.Instance.Spawn(gameObject, pos, rot).GetComponent<Enemy>();
 
             instanced.settings = settings;
+        }
+
+        private void OnNukeHandler()
+        {
+            stats.LoseLife(stats.InitHp);
         }
     }
 }
