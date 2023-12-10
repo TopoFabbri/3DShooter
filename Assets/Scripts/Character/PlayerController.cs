@@ -4,6 +4,7 @@ using Patterns;
 using Patterns.SM;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Weapons;
 
 namespace Character
@@ -17,7 +18,7 @@ namespace Character
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float grabDis = 3f;
         [SerializeField] private float barrelDis = 2f;
-        [SerializeField] private float godSpeedMultiplier = 2f;
+        [FormerlySerializedAs("godSpeedMultiplier")] [SerializeField] private float flashSpeedMultiplier = 2f;
         [SerializeField] private string gunTag = "Gun";
 
         [Header("Objects:")] [SerializeField] private Gun weapon;
@@ -32,6 +33,7 @@ namespace Character
         private Vector3 movement;
         private bool ads;
         private bool hasShot;
+        private bool flash;
 
         public Gun GetWeapon => weapon;
 
@@ -270,8 +272,23 @@ namespace Character
             stats.ToggleGodMode();
         }
         
+        /// <summary>
+        /// Toggles flash
+        /// </summary>
         private void OnFlashHandler()
         {
+            flash = !flash;
+            
+            if (flash)
+            {
+                maxSpeed *= flashSpeedMultiplier;
+                moveSpeed *= flashSpeedMultiplier;
+            }
+            else
+            {
+                maxSpeed /= flashSpeedMultiplier;
+                moveSpeed /= flashSpeedMultiplier;
+            }
         }
     }
 }
