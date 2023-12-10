@@ -17,6 +17,8 @@ namespace Level
     
         [SerializeField] private SceneWithBuildIndex[] scenesIndex;
 
+        public static event Action<SceneId> OnSceneLoaded; 
+        
         /// <summary>
         /// Load scene from scene id
         /// </summary>
@@ -27,6 +29,8 @@ namespace Level
             {
                 if (sceneWithIndex.scene != scene) continue;
             
+                OnSceneLoaded?.Invoke(scene);
+                
                 SceneManager.LoadScene(sceneWithIndex.buildIndex);
                 break;
             }

@@ -9801,7 +9801,7 @@ MonoBehaviour:
   hud: {fileID: 0}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stateMachine: {fileID: 0}
-  initialHp: 500
+  initialHp: 300
 --- !u!114 &1165602744406655865
 MonoBehaviour:
   m_ObjectHideFlags: 0

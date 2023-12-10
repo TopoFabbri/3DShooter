@@ -11,36 +11,22 @@ namespace Character
     /// </summary>
     public class PlayerLethalController : MonoBehaviour
     {
-        [SerializeField] private GameObject defaultLethal;
-        [SerializeField] private int defaultLethalQty;
-
-        private readonly Dictionary<GameObject, int> lethalObjects = new();
-        
-        public event Action<int> LethalCountChanged;
-
-        private int currentLethal;
-    
         public int CurrentLethal
         {
-            get => currentLethal;
+            get => PlayerInventory.Instance.currentLethal;
             set
             {
-                while (value >= lethalObjects.Count)
-                    value -= lethalObjects.Count;
+                while (value >= PlayerInventory.Instance.lethals.Count)
+                    value -= PlayerInventory.Instance.lethals.Count;
             
                 while (value < 0)
-                    value += lethalObjects.Count;
+                    value += PlayerInventory.Instance.lethals.Count;
             
-                currentLethal = value;
+                PlayerInventory.Instance.currentLethal = value;
             }
         }
 
-        public int LethalCount => lethalObjects.Count > 0 ? lethalObjects.ElementAt(CurrentLethal).Value : 0;
-
-        private void Awake()
-        {
-            lethalObjects.Add(defaultLethal, defaultLethalQty);
-        }
+        public int LethalCount => PlayerInventory.Instance.lethals.Count > 0 ? PlayerInventory.Instance.lethals.ElementAt(CurrentLethal).Value : 0;
 
         /// <summary>
         /// Add a new lethal object to the list
@@ -48,12 +34,10 @@ namespace Character
         /// <param name="obj"></param>
         public void AddLethalObject(GameObject obj)
         {
-            if (!lethalObjects.ContainsKey(obj))
-                lethalObjects.Add(obj, 5);
+            if (!PlayerInventory.Instance.lethals.ContainsKey(obj))
+                PlayerInventory.Instance.lethals.Add(obj, 5);
             else
-                lethalObjects[obj] += 5;
-            
-            LethalCountChanged?.Invoke(LethalCount);
+                PlayerInventory.Instance.lethals[obj] += 5;
         }
 
         /// <summary>
@@ -62,15 +46,13 @@ namespace Character
         /// <param name="obj">Object to remove</param>
         private void RemoveLethalObject(GameObject obj)
         {
-            if (!lethalObjects.ContainsKey(obj))
+            if (!PlayerInventory.Instance.lethals.ContainsKey(obj))
                 return;
 
-            lethalObjects[obj]--;
+            PlayerInventory.Instance.lethals[obj]--;
 
-            if (lethalObjects[obj] <= 0)
+            if (PlayerInventory.Instance.lethals[obj] <= 0)
                 RemoveAndCheck(obj);
-            
-            LethalCountChanged?.Invoke(LethalCount);
         }
 
         /// <summary>
@@ -78,13 +60,13 @@ namespace Character
         /// </summary>
         public void SpawnLethal(Vector3 pos, Quaternion rot)
         {
-            if (lethalObjects.Count == 0)
+            if (PlayerInventory.Instance.lethals.Count == 0)
                 return;
 
-            if (lethalObjects.ElementAt(CurrentLethal).Value <= 0)
+            if (PlayerInventory.Instance.lethals.ElementAt(CurrentLethal).Value <= 0)
                 return;
 
-            GameObject obj = lethalObjects.ElementAt(CurrentLethal).Key;
+            GameObject obj = PlayerInventory.Instance.lethals.ElementAt(CurrentLethal).Key;
 
             LethalManager.Instance.Spawn(obj, pos, rot);
             RemoveLethalObject(obj);
@@ -96,10 +78,10 @@ namespace Character
         /// <param name="obj">Object to remove</param>
         private void RemoveAndCheck(GameObject obj)
         {
-            lethalObjects.Remove(obj);
+            PlayerInventory.Instance.lethals.Remove(obj);
 
-            if (CurrentLethal >= lethalObjects.Count)
-                CurrentLethal = lethalObjects.Count - 1;
+            if (CurrentLethal >= PlayerInventory.Instance.lethals.Count)
+                CurrentLethal = PlayerInventory.Instance.lethals.Count - 1;
         }
     }
 }

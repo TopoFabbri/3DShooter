@@ -1,4 +1,5 @@
 using ObjectManagers;
+using Patterns.SM;
 using UnityEngine;
 
 namespace Weapons
@@ -9,10 +10,12 @@ namespace Weapons
     public class InstancePython : Gun
     {
         [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private Transform character;
 
         private void OnEnable()
         {
+            if (!stateMachine)
+                stateMachine = GameObject.Find("StateMachine").GetComponent<StateMachine>();
+                
             stateMachine.Subscribe(stateId, OnUpdate);
         }
 
@@ -27,13 +30,11 @@ namespace Weapons
         private void OnUpdate()
         {
             CheckReload();
-            sprite.transform.position = transform.position + Vector3.up;
-            sprite.transform.LookAt(character.position);
         }
 
         public override void Shoot()
         {
-            if (isReloading) return;
+            if (IsReloading) return;
         
             base.Shoot();
 

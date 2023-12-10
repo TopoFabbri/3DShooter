@@ -1,7 +1,10 @@
+using System.Collections;
+using Character;
 using GameStats;
 using Patterns;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace HUD
@@ -13,13 +16,14 @@ namespace HUD
     {
         [SerializeField] private Slider slider;
         [SerializeField] private TextMeshProUGUI frames;
-        [SerializeField] private TextMeshProUGUI time;
+        [FormerlySerializedAs("time")] [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private TextMeshProUGUI score;
         [SerializeField] private TextMeshProUGUI dropLethal;
-        [SerializeField] private TextMeshProUGUI lethalCount;
+        [SerializeField] private TextMeshProUGUI inventoryText;
         [SerializeField] private GameObject pickUpTxt;
         [SerializeField] private GameTimeCounter gameTimeCounter;
-
+        [SerializeField] private float barrelTutorialDuration = 10f;
+        
         private bool barrelTutorialFinished;
         private const string TimeText = "Time: ";
 
@@ -35,11 +39,19 @@ namespace HUD
 
         private void Update()
         {
-            if (barrelTutorialFinished)
+            if (barrelTutorialFinished || PlayerInventory.Instance.lethals.Count <= 0)
+            {
                 dropLethal.gameObject.SetActive(false);
-        
+            }
+            else
+            {
+                StartCoroutine(StopBarrelTutorial(barrelTutorialDuration));
+                dropLethal.gameObject.SetActive(true);
+            }
+
             frames.SetText(((int)(1f / Time.deltaTime)).ToString());
-            time.SetText(TimeText + gameTimeCounter.GameTime);
+            timeText.SetText(TimeText + gameTimeCounter.GameTime);
+            inventoryText.SetText(PlayerInventory.Text);
         }
 
         /// <summary>
@@ -76,14 +88,16 @@ namespace HUD
         {
             barrelTutorialFinished = true;
         }
-    
+
         /// <summary>
-        /// Set new text for amount of lethals left
+        /// Wait time and close barrel tutorial
         /// </summary>
-        /// <param name="lethalCount">Lethals left</param>
-        public void UpdateLethalCount(int lethalCount)
+        /// <param name="time">Time to wait</param>
+        /// <returns></returns>
+        private IEnumerator StopBarrelTutorial(float time)
         {
-            this.lethalCount.SetText(lethalCount.ToString());
+            yield return new WaitForSeconds(time);
+            barrelTutorialFinished = true;
         }
     }
 }

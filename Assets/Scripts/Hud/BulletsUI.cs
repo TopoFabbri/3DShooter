@@ -39,11 +39,11 @@ namespace HUD
             if (player.GetWeapon)
             {
                 image.color = Color.white;
-                image.sprite = sprites[player.GetWeapon.chamber];
+                image.sprite = sprites[player.GetWeapon.Chamber];
             }
             else
             {
-                image.color = new Color(0f, 0f, 0f, 0f);
+                image.color = Color.clear;
             }
         }
     }

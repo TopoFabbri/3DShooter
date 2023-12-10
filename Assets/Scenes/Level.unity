@@ -130,6 +130,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 144682153, guid: e098d2dc7e0518b47a1058c7206943b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144682155, guid: e098d2dc7e0518b47a1058c7206943b9, type: 3}
+      propertyPath: spawnables.Array.data[0].recyclable
+      value: 
+      objectReference: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
+    - target: {fileID: 915308957, guid: e098d2dc7e0518b47a1058c7206943b9, type: 3}
+      propertyPath: spawnables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 915308957, guid: e098d2dc7e0518b47a1058c7206943b9, type: 3}
+      propertyPath: spawnableTimeSettings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 915308957, guid: e098d2dc7e0518b47a1058c7206943b9, type: 3}
+      propertyPath: spawnableTimeSettings.Array.data[0].time
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1674419796115820983, guid: e098d2dc7e0518b47a1058c7206943b9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

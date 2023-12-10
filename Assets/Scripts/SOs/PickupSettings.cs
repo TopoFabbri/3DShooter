@@ -6,11 +6,11 @@ namespace SOs
     /// <summary>
     /// Spawnable pickup settings
     /// </summary>
-    [CreateAssetMenu(fileName = "_PickupSettings", menuName = "SOs/PickupSettings")]
+    [CreateAssetMenu(fileName = "_PickupSettings", menuName = "SOs/PickupSettings", order = 0)]
     public class PickupSettings : SpawnableSettings
     {
-        public GameObject lethalPrefab;
-        public Mesh mesh;
+        public GameObject prefab;
+        public GameObject previewModel;
         public Color lightColor;
     }
 }

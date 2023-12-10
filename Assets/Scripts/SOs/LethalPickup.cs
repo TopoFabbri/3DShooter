@@ -1,52 +1,35 @@
-using Abstracts;
 using Character;
-using Lethals;
 using ObjectManagers;
 using UnityEngine;
 
 namespace SOs
 {
     /// <summary>
-    /// Spawnable pickup
+    /// Spawnable lethal pickup
     /// </summary>
-    public class LethalPickup : SpawnableObject
+    public class LethalPickup : Pickup
     {
-        [SerializeField] private ParticleSystem pSystem;
-        [SerializeField] private MeshFilter lethalMesh;
+        private PlayerLethalController playerLethalController;
 
-        /// <summary>
-        /// Update object settings
-        /// </summary>
-        private void UpdateObject()
+        protected override void OnTriggerEnter(Collider other)
         {
-            pSystem.startColor = ((PickupSettings)settings).lightColor;
-            lethalMesh.mesh = ((PickupSettings)settings).mesh;
-            gameObject.name = ((PickupSettings)settings).lethalPrefab.name + "Pickup";
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!other.gameObject.TryGetComponent(out PlayerLethalController playerLethalController)) return;
+            if (!other.gameObject.TryGetComponent(out playerLethalController)) return;
             
-            PickUp(playerLethalController);
+            base.OnTriggerEnter(other);
         }
         
-        /// <summary>
-        /// Give pickup's lethal to player
-        /// </summary>
-        /// <param name="playerLethalController">Player's lethal manager</param>
-        private void PickUp(PlayerLethalController playerLethalController)
+        private void OnTriggerExit(Collider other)
         {
-            playerLethalController.AddLethalObject(((PickupSettings)settings).lethalPrefab);
+            if (!other.gameObject.TryGetComponent(out playerLethalController)) return;
+                playerLethalController = null;
+        }
+
+        protected override void PickUp()
+        {
+            if (!playerLethalController) return;
+            
+            playerLethalController.AddLethalObject(((PickupSettings)settings).prefab);
             PickupManager.Instance.Recycle(gameObject);
-        }
-        
-        public override void SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
-        {
-            this.settings = (PickupSettings)settings;
-            
-            UpdateObject();
-            PickupManager.Instance.Spawn(gameObject, pos, rot).GetComponent<LethalPickup>().settings = (PickupSettings)settings;
         }
     }
 }

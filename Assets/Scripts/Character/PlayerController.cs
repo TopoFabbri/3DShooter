@@ -47,7 +47,6 @@ namespace Character
             InputListener.DropLethal += OnDropLethal;
             InputListener.ChangeLethal += OnChangeLethal;
 
-            lethalController.LethalCountChanged += OnChangeLethalCount;
             stateMachine.Subscribe(stateId, OnUpdate);
         }
 
@@ -63,7 +62,6 @@ namespace Character
             InputListener.DropLethal -= OnDropLethal;
             InputListener.ChangeLethal -= OnChangeLethal;
         
-            lethalController.LethalCountChanged -= OnChangeLethalCount;
             stateMachine.UnSubscribe(stateId, OnUpdate);
         }
 
@@ -88,7 +86,7 @@ namespace Character
 
             if (GetWeapon)
             {
-                if (GetWeapon.isReloading)
+                if (GetWeapon.IsReloading)
                 {
                     var trans = transform;
                     GetWeapon.transform.position = trans.position - trans.forward;
@@ -152,14 +150,7 @@ namespace Character
             if (!PointingAtGun(out var hit))
                 return;
 
-            if (GetWeapon)
-            {
-                GetWeapon.DropGun();
-                weapon = null;
-            }
-
-            hit.transform.gameObject.GetComponent<Gun>().GrabGun(transform);
-            weapon = hit.transform.gameObject.GetComponent<Gun>();
+            AddGun(hit.transform.gameObject.GetComponent<Gun>());
         }
 
         /// <summary>
@@ -180,7 +171,6 @@ namespace Character
             var camTrans = cameraMovement.transform;
 
             lethalController.SpawnLethal(position + camTrans.forward * barrelDis, camTrans.rotation);
-            hud.UpdateLethalCount(lethalController.LethalCount);
         }
     
         /// <summary>
@@ -198,19 +188,13 @@ namespace Character
                     lethalController.CurrentLethal--;
                     break;
             }
-        
-            OnChangeLethalCount(lethalController.LethalCount);
         }
 
-        /// <summary>
-        /// Lethal count modified handler
-        /// </summary>
-        /// <param name="qty"></param>
-        private void OnChangeLethalCount(int qty)
+        private void OnInventoryResetHandler()
         {
-            hud.UpdateLethalCount(qty);
+            lethalController.AddLethalObject(lethalPrefab);
         }
-
+        
         /// <summary>
         /// Clamp x - z velocity
         /// </summary>
@@ -266,6 +250,15 @@ namespace Character
         public void StopMovement()
         {
             rb.velocity = Vector3.zero;
+        }
+
+        public void AddGun(Gun gun)
+        {
+            if (GetWeapon)
+                GetWeapon.DropGun();
+
+            gun.GrabGun(transform);
+            weapon = gun;
         }
 
         private void OnDestroy()

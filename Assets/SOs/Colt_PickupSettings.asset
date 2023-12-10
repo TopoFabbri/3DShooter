@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4015223375ba5b439e9f970babfbe44, type: 3}
-  m_Name: Bomb_PickupSettings
+  m_Name: Colt_PickupSettings
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8569971434374469277, guid: 42928b6a7d2258145b553e77c88c30ee, type: 3}
-  previewModel: {fileID: 336666272502545191, guid: 014be8f08933ea345aa4dc2e7e370297, type: 3}
-  lightColor: {r: 1, g: 0, b: 0, a: 0.078431375}
+  prefab: {fileID: 5625353272431480870, guid: 56e7aa91c4913ae49bcb46f482fc95d6, type: 3}
+  previewModel: {fileID: 4244602441304109504, guid: 195fedeb071c17346a73396ee05c5c2f, type: 3}
+  lightColor: {r: 0, g: 1, b: 0, a: 0.078431375}

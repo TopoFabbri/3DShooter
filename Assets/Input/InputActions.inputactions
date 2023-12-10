@@ -446,6 +446,28 @@
                     "action": "ChangeLethal",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "a4cbec50-91d5-45c5-ad88-a37b3e774809",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeLethal",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "down",
+                    "id": "51c61d79-9479-4694-8ba7-f38bbf288681",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeLethal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

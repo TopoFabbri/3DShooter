@@ -27,13 +27,11 @@ namespace Weapons
         private void OnUpdate()
         {
             CheckReload();
-            sprite.transform.position = transform.position + Vector3.up;
-            sprite.transform.LookAt(character.position);
         }
     
         public override void Shoot()
         {
-            if (isReloading) return;
+            if (IsReloading) return;
         
             var ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
 

@@ -4840,5 +4840,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1
-  damage: 60
+  damage: 100
   forceWave: 10

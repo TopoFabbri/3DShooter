@@ -1,4 +1,5 @@
 using System.Collections;
+using Character;
 using FX;
 using Patterns.SM;
 using UnityEngine;
@@ -16,7 +17,6 @@ namespace Weapons
         [SerializeField] protected Id stateId;
         [SerializeField] protected Rigidbody rb;
         [SerializeField] protected BoxCollider boxCollider;
-        [SerializeField] protected GameObject sprite;
         [SerializeField] protected WeaponVFX weaponVFX;
 
         [SerializeField] private float bulletReloadTime;
@@ -24,15 +24,19 @@ namespace Weapons
     
         private const int ChamberSize = 6;
 
-        public bool isReloading { get; private set; }
-        public int chamber { get; private set; }
+        public bool IsReloading { get; private set; }
+        public int Chamber 
+        {
+            get => PlayerInventory.Instance.bullets;
+            private set => PlayerInventory.Instance.bullets = Mathf.Clamp(value, 0, ChamberSize);
+        }
 
         /// <summary>
         /// Gameplay-only update
         /// </summary>
         protected void CheckReload()
         {
-            if (chamber <= 0)
+            if (Chamber <= 0)
                 Reload();
         }
 
@@ -41,12 +45,12 @@ namespace Weapons
         /// </summary>
         public void Reload()
         {
-            if (isReloading) return;
+            if (IsReloading) return;
     
-            isReloading = true;
-            StartCoroutine(StopReloadOnTime(bulletReloadTime * (ChamberSize - chamber)));
+            IsReloading = true;
+            StartCoroutine(StopReloadOnTime(bulletReloadTime * (ChamberSize - Chamber)));
         
-            chamber = ChamberSize;
+            Chamber = ChamberSize;
         }
         
         /// <summary>
@@ -57,7 +61,7 @@ namespace Weapons
         private IEnumerator StopReloadOnTime(float time)
         {
             yield return new WaitForSeconds(time);
-            isReloading = false;
+            IsReloading = false;
         }
     
         /// <summary>
@@ -68,7 +72,6 @@ namespace Weapons
             var trans = transform;
         
             rb.useGravity = true;
-            sprite.SetActive(true);
             boxCollider.isTrigger = false;
             hand.SetActive(false);
             trans.parent = null;
@@ -82,7 +85,6 @@ namespace Weapons
         public void GrabGun(Transform parent)
         {
             rb.useGravity = false;
-            sprite.SetActive(false);
             boxCollider.isTrigger = true;
             hand.SetActive(true);
             transform.parent = parent;
@@ -93,7 +95,7 @@ namespace Weapons
         /// </summary>
         public virtual void Shoot()
         {
-            chamber--;
+            Chamber--;
         
             weaponVFX.Shoot();
         }
