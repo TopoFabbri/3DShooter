@@ -9,6 +9,11 @@ namespace GameStats
     {
         private void Awake()
         {
+            Set();
+        }
+
+        public static void Set()
+        {
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
         }

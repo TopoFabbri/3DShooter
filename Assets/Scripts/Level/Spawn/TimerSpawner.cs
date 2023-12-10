@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameStats;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Level.Spawn
 {
@@ -11,6 +11,10 @@ namespace Level.Spawn
     /// </summary>
     public class TimerSpawner : Spawner
     {
+        private int endedCounter;
+        
+        public bool Ended => endedCounter >= spawnables.Count;
+
         [Serializable]
         public struct SpawnableTimeSettings
         {
@@ -18,7 +22,7 @@ namespace Level.Spawn
             public float time;
         }
         
-        [FormerlySerializedAs("spawnableSettings")] public List<SpawnableTimeSettings> spawnableTimeSettings;
+        public List<SpawnableTimeSettings> spawnableTimeSettings;
         
         private void OnEnable()
         {
@@ -38,9 +42,13 @@ namespace Level.Spawn
         {
             for (int i = 0; i < spawnableTimeSettings[index].amount; i++)
             {
-                yield return new WaitForSeconds(time);
+                float waitEndTime = GameTimeCounter.Instance.GameTime + time;
+                    
+                yield return new WaitUntil(() => GameTimeCounter.Instance.GameTime >= waitEndTime);
                 Spawn(index);
             }
+            
+            endedCounter++;
         }
     }
 }

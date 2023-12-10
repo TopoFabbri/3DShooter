@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ObjectManagers
 {
     /// <summary>
@@ -19,6 +21,22 @@ namespace ObjectManagers
 
                 return instance;
             }
+        }
+
+        private int enemiesAlive;
+
+        public static int EnemiesAlive => Instance.enemiesAlive;
+
+        public override GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
+        {
+            enemiesAlive++;
+            return base.Spawn(obj, pos, rot);
+        }
+
+        public override void Recycle(GameObject obj)
+        {
+            enemiesAlive--;
+            base.Recycle(obj);
         }
     }
 }

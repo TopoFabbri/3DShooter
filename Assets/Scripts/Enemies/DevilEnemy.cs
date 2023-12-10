@@ -1,17 +1,13 @@
 using System;
+using Abstracts;
 using ObjectManagers;
+using SOs;
 using UnityEngine;
 
 namespace Enemies
 {
     public class DevilEnemy : Enemy
     {
-        [Header("Devil:")]
-        [SerializeField] private float fireDis = 5f;
-        [SerializeField] private float cooldown = 1f;
-        [SerializeField] private float longCooldown = 5f;
-        [SerializeField] private GameObject fireBall;
-
         private float nextFireTime;
         private int fireCount;
 
@@ -26,11 +22,11 @@ namespace Enemies
 
             if (Time.time < nextFireTime) return;
         
-            if (Vector3.Distance(transform.position, target.position) > fireDis)
+            if (Vector3.Distance(transform.position, ((EnemySettings)settings).target.position) > ((DevilSettings)settings).fireDis)
             {
                 obstacleEvasion.CheckAndEvade();
-                rb.AddForce(speed * transform.forward, ForceMode.Acceleration);
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                rb.AddForce(((EnemySettings)settings).speed * transform.forward, ForceMode.Acceleration);
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
             }
             else
             {
@@ -45,14 +41,14 @@ namespace Enemies
         {
             fireCount++;
 
-            nextFireTime = Time.time + (fireCount >= 3 ? longCooldown : cooldown);
+            nextFireTime = Time.time + (fireCount >= 3 ? ((DevilSettings)settings).longCooldown : ((DevilSettings)settings).cooldown);
 
             if (fireCount >= 3)
                 fireCount = 0;
 
             var trans = transform;
         
-            FireballManager.Instance.Spawn(fireBall, trans.position + trans.forward, trans.rotation);
+            FireballManager.Instance.Spawn(((DevilSettings)settings).fireBall, trans.position + trans.forward, trans.rotation);
         }
     
         protected override void DieHandler()

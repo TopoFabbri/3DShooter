@@ -10,6 +10,22 @@ namespace Patterns
     {
         private readonly Queue<GameObject> pool = new();
 
+        public int ActiveObjs
+        {
+            get
+            {
+                int count = 0;
+                
+                foreach (GameObject obj in pool)
+                {
+                    if (obj.activeSelf)
+                        count++;
+                }
+                
+                return count;
+            }
+        }
+
         /// <summary>
         /// Attempts to get an object from the pool
         /// </summary>

@@ -1,59 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &42497256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 42497257}
-  - component: {fileID: 42497258}
-  m_Layer: 0
-  m_Name: RoomManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &42497257
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42497256}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 222538252790565784}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &42497258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42497256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c264145ae7558364e8a70c2233dce642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 5405977087431280526}
-  rooms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  changeRoomTriggers:
-  - {fileID: 0}
-  - {fileID: 0}
-  stateMachine: {fileID: 5405977087533315833}
-  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
 --- !u!1 &83417978
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +45,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
+--- !u!1 &1275426564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275426565}
+  - component: {fileID: 1275426566}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1275426565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275426564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 222538252790565784}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275426566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275426564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1fb89c0439a8454ca27ddd5ba126e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuId: {fileID: 11400000, guid: 26fef78e75ee9ed4aa108c721960051a, type: 2}
+  levelIds:
+  - {fileID: 11400000, guid: d8b61e060273ac645ae601bc9624a8d3, type: 2}
+  - {fileID: 11400000, guid: e1212367e9b631046a39c5104d95d6e5, type: 2}
+  - {fileID: 11400000, guid: ead73bcab4ffc084b8941b55f4d29888, type: 2}
 --- !u!1 &5405977086720011510
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,10 +141,14 @@ MonoBehaviour:
   scenesIndex:
   - scene: {fileID: 11400000, guid: 26fef78e75ee9ed4aa108c721960051a, type: 2}
     buildIndex: 0
-  - scene: {fileID: 11400000, guid: 350b53eeaacde254b9c29b5dcd82d6b1, type: 2}
+  - scene: {fileID: 11400000, guid: d8b61e060273ac645ae601bc9624a8d3, type: 2}
     buildIndex: 1
-  - scene: {fileID: 11400000, guid: 680c30d3508b0744c99a821814fb0d3e, type: 2}
+  - scene: {fileID: 11400000, guid: e1212367e9b631046a39c5104d95d6e5, type: 2}
     buildIndex: 2
+  - scene: {fileID: 11400000, guid: ead73bcab4ffc084b8941b55f4d29888, type: 2}
+    buildIndex: 3
+  - scene: {fileID: 11400000, guid: 680c30d3508b0744c99a821814fb0d3e, type: 2}
+    buildIndex: 4
 --- !u!1 &5405977087312840050
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,26 +268,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1f89173ada1f542bb68aaf24e358f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devilFrequency: 070000000500000003000000
-  spawnCooldown:
-  - 2
-  - 2
-  - 1
-  maxEnemies: 100000001900000032000000
-  enemyPrefab:
-  - {fileID: 4611229226745734839, guid: 9e57ae7e69180c64da805973433c255f, type: 3}
-  - {fileID: 4611229226745734839, guid: 068f92f40d7e85b4ebee48a42dd0d90c, type: 3}
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies: []
-  pauseMenu: {fileID: 0}
   sceneLoader: {fileID: 5405977086720011509}
   menu: {fileID: 11400000, guid: 26fef78e75ee9ed4aa108c721960051a, type: 2}
   credits: {fileID: 11400000, guid: 680c30d3508b0744c99a821814fb0d3e, type: 2}
-  roomManager: {fileID: 42497258}
   winCanvas: {fileID: 0}
   loseScreen: {fileID: 0}
+  spawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5405977087533315834
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +359,7 @@ Transform:
   - {fileID: 5405977086720011508}
   - {fileID: 3865463046973947196}
   - {fileID: 83417979}
-  - {fileID: 42497257}
+  - {fileID: 1275426565}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

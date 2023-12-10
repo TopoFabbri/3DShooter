@@ -1,4 +1,7 @@
+using Abstracts;
+using ObjectManagers;
 using Patterns.SM;
+using SOs;
 using UnityEngine;
 
 namespace Enemies
@@ -6,50 +9,53 @@ namespace Enemies
     /// <summary>
     /// Base class for enemies
     /// </summary>
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : SpawnableObject
     {
-        [Header("Enemy:")]
-        [SerializeField] protected float speed = 10f;
-        [SerializeField] protected float maxSpeed = 10f;
         [SerializeField] protected Rigidbody rb;
         [SerializeField] protected ObstacleEvasion obstacleEvasion;
-    
         [SerializeField] private Id stateId;
+
         [SerializeField] private Stats.Stats stats;
 
-        protected Transform target;
-        private const string CharacterName = "Character";
         private StateMachine stateMachine;
-    
+
+        private EnemySettings Settings => settings as EnemySettings;
+
         protected virtual void Start()
         {
-            target = GameObject.Find(CharacterName).transform;
+            Settings.target = GameObject.Find(Settings.characterName).transform;
         }
 
         protected virtual void OnEnable()
         {
             stateMachine = FindObjectOfType<StateMachine>();
             stateMachine.Subscribe(stateId, OnUpdate);
-        
+
             stats.OnDie += DieHandler;
         }
 
         protected virtual void OnDisable()
         {
             stateMachine.UnSubscribe(stateId, OnUpdate);
-        
+
             stats.OnDie -= DieHandler;
         }
-    
+
         protected virtual void OnUpdate()
         {
-            transform.LookAt(target);
+            transform.LookAt(Settings.target);
         }
-
 
         /// <summary>
         /// Manages what to do when enemy dies
         /// </summary>
         protected abstract void DieHandler();
+
+        public override void SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
+        {
+            Enemy instanced = EnemyManager.Instance.Spawn(gameObject, pos, rot).GetComponent<Enemy>();
+
+            instanced.settings = settings;
+        }
     }
 }

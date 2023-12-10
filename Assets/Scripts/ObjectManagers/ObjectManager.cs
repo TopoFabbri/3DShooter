@@ -12,7 +12,7 @@ namespace ObjectManagers
     public abstract class ObjectManager
     {
         protected string id;
-        private struct ScenePool
+        protected struct ScenePool
         {
             public readonly ObjectPool pool;
             public readonly GameObject parent;
@@ -24,7 +24,7 @@ namespace ObjectManagers
             }
         }
     
-        private readonly Dictionary<string, ScenePool> pools = new();
+        protected readonly Dictionary<string, ScenePool> pools = new();
         private GameObject parent;
 
         protected ObjectManager(string id = "<Group>Pool")

@@ -9734,7 +9734,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4611229226745734839}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.015400173, y: 0.6087469, z: 0.01182006, w: 0.793127}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9774,16 +9774,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ec8bca7455d334284c55e777e800d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  maxSpeed: 2
   rb: {fileID: 4259751715390509325}
   obstacleEvasion: {fileID: 1165602744406655865}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stats: {fileID: 1723215673720494278}
-  fireDis: 8
-  cooldown: 1
-  longCooldown: 5
-  fireBall: {fileID: 830139795630244789, guid: a94d7f4634d755147afb8a513f01aaa5, type: 3}
 --- !u!114 &1723215673720494278
 MonoBehaviour:
   m_ObjectHideFlags: 0

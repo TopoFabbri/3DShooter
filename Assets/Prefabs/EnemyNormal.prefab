@@ -156,7 +156,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4611229226745734839}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.040261544, y: 0.806381, z: 0.0552681, w: 0.5874301}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -195,14 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62dcc5c7d3777f147a47f89a0438658e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  maxSpeed: 2
-  damageTime: 2
-  damage: 40
-  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
-  characterTag: Character
-  obstacleEvasion: {fileID: 6324731538647066611}
   rb: {fileID: 4259751715390509325}
+  obstacleEvasion: {fileID: 6324731538647066611}
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stats: {fileID: 6625045434142015474}
 --- !u!114 &6625045434142015474
 MonoBehaviour:

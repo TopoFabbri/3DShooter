@@ -1,3 +1,4 @@
+using System;
 using Patterns;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,7 +11,7 @@ namespace Menus
     public class WinScreen : MonoBehaviour
     {
         [SerializeField] private GameObject image;
-
+        
         private EventSystem eventSystem;
     
         private void OnEnable()

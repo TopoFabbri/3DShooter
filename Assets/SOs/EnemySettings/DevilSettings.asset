@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e3a4e5e23442288e3f26077e78a7db, type: 3}
+  m_Name: DevilSettings
+  m_EditorClassIdentifier: 
+  speed: 20
+  maxSpeed: 2
+  characterName: Character
+  stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
+  target: {fileID: 0}
+  stateMachine: {fileID: 0}
+  fireDis: 8
+  cooldown: 1
+  longCooldown: 5
+  fireBall: {fileID: 830139795630244789, guid: a94d7f4634d755147afb8a513f01aaa5, type: 3}

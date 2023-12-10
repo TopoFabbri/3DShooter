@@ -1,5 +1,5 @@
-using System;
 using Character;
+using GameStats;
 using Level;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace Game
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private SceneId menuId;
-        
+
         private static GameManager instance;
 
         public static GameManager Instance
@@ -46,6 +46,10 @@ namespace Game
                 DestroyImmediate(gameObject);
             else
                 instance = this;
+
+            DontDestroyOnLoad(gameObject);
+            
+            Defaults.Set();
         }
 
         private void OnSceneLoadedHandler(SceneId loadedSceneId)
@@ -53,7 +57,7 @@ namespace Game
             if (loadedSceneId == menuId)
                 PlayerInventory.Instance.Reset();
         }
-        
+
         private void OnDestroy()
         {
             if (instance == this)

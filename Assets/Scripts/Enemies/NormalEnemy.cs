@@ -1,44 +1,42 @@
 using System;
-using Enemies;
 using ObjectManagers;
+using SOs;
 using UnityEngine;
 
-public class NormalEnemy : Enemy
+namespace Enemies
 {
-    [Header("Normal:")]
-    [SerializeField] private float damageTime = 2f;
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private string characterTag;
-    
-    private float cooldown;
-    private bool isInCooldown;
-    
-    public static event Action<GameObject> ZombieDestroyed; 
-    
-    /// <summary>
-    /// Gameplay-only update
-    /// </summary>
-    protected override void OnUpdate()
+    public class NormalEnemy : Enemy
     {
-        base.OnUpdate();
+        private float cooldown;
+        private bool isInCooldown;
+    
+        public static event Action<GameObject> ZombieDestroyed; 
+    
+        /// <summary>
+        /// Gameplay-only update
+        /// </summary>
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
 
-        obstacleEvasion.CheckAndEvade();
-        rb.AddForce(speed * transform.forward, ForceMode.Acceleration);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-    }
+            obstacleEvasion.CheckAndEvade();
+            rb.AddForce(((EnemySettings)settings).speed * transform.forward, ForceMode.Acceleration);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
+        }
 
-    private void OnCollisionStay(Collision other)
-    {
-        if (!(Time.time > cooldown && other.gameObject.CompareTag(characterTag))) return;
+        private void OnCollisionStay(Collision other)
+        {
+            if (!(Time.time > cooldown && other.gameObject.CompareTag(((NormalSettings)settings).characterTag))) return;
         
-        if (other.gameObject.TryGetComponent<Stats.Stats>(out var otherStats))
-            otherStats.LoseLife(damage);
-        cooldown = Time.time + damageTime;
-    }
+            if (other.gameObject.TryGetComponent<Stats.Stats>(out var otherStats))
+                otherStats.LoseLife(((NormalSettings)settings).damage);
+            cooldown = Time.time + ((NormalSettings)settings).damageTime;
+        }
     
-    protected override void DieHandler()
-    {
-        ZombieDestroyed?.Invoke(gameObject);
-        EnemyManager.Instance.Recycle(gameObject);
+        protected override void DieHandler()
+        {
+            ZombieDestroyed?.Invoke(gameObject);
+            EnemyManager.Instance.Recycle(gameObject);
+        }
     }
 }

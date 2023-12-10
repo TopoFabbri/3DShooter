@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Character;
-using Enemies;
 using JetBrains.Annotations;
-using Menus;
+using Level.Spawn;
 using ObjectManagers;
 using UnityEngine;
 
@@ -17,20 +15,13 @@ namespace Level
     {
         private static LevelManager instance;
     
-        [SerializeField] private int[] devilFrequency;
-        [SerializeField] private float[] spawnCooldown;
-        [SerializeField] private int[] maxEnemies;
-        [SerializeField] private List<GameObject> enemyPrefab = new();
-        [SerializeField] private List<Transform> spawnPoints = new();
-        [SerializeField] private List<GameObject> enemies = new();
-        [SerializeField] private PauseMenu pauseMenu;
         [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private SceneId menu;
         [SerializeField] private SceneId credits;
-        [SerializeField] private RoomManager roomManager;
         [SerializeField] private GameObject winCanvas;
         [SerializeField] private GameObject loseScreen;
-
+        [SerializeField] private TimerSpawner[] spawners;
+        
         public static LevelManager Instance
         {
             get
@@ -44,10 +35,9 @@ namespace Level
                 return instance;
             }
         }
-    
-        public int EnemyCount => enemies.Count;
 
         private int spawnedEnemies;
+        private int enemyCount;
 
         private void Awake()
         {
@@ -57,69 +47,38 @@ namespace Level
                 instance = this;
         }
 
-        private void Start()
-        {
-            StartCoroutine(SpawnEnemies());
-        }
-
         private void OnEnable()
         {
-            DevilEnemy.DevilDestroyed += OnEnemyDestroyed;
-            NormalEnemy.ZombieDestroyed += OnEnemyDestroyed;
             PlayerController.Destroyed += CharacterDestroyed;
-            RoomManager.OnRoomChanged += OnRoomChanged;
         }
 
         private void OnDisable()
         {
-            DevilEnemy.DevilDestroyed -= OnEnemyDestroyed;
-            NormalEnemy.ZombieDestroyed -= OnEnemyDestroyed;
             PlayerController.Destroyed -= CharacterDestroyed;
-            RoomManager.OnRoomChanged -= OnRoomChanged;
+        }
+        
+        private void Update()
+        {
+            CheckWinCondition();
         }
 
         /// <summary>
-        /// Spawns enemies on given time
+        /// Check if level was won and show win screen
         /// </summary>
-        /// <returns>IEnumerator</returns>
-        private IEnumerator SpawnEnemies()
+        private void CheckWinCondition()
         {
-            var spawnIndex = 0;
-
-            while (spawnedEnemies < maxEnemies[roomManager.current])
+            bool spawnersEnded = true;
+            
+            foreach (TimerSpawner spawner in spawners)
             {
-                var enemyIndex = 0;
-
-                if (spawnedEnemies > 0 && spawnedEnemies % devilFrequency[roomManager.current] == 0)
-                    enemyIndex = 1;
-
-                if (spawnIndex >= spawnPoints.Count)
-                    spawnIndex = 0;
-
-                var enemy = EnemyManager.Instance.Spawn(enemyPrefab[enemyIndex], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
-
-                enemies.Add(enemy);
-
-                spawnIndex++;
-                spawnedEnemies++;
-
-                yield return new WaitForSeconds(spawnCooldown[roomManager.current]);
-
-                if (pauseMenu.paused)
-                    yield return new WaitUntil(() => !pauseMenu.paused);
+                if (!spawner.Ended)
+                    spawnersEnded = false;
             }
+            
+            if (EnemyManager.EnemiesAlive <= 0 && spawnersEnded)
+                ShowWinScreen();
         }
-
-        /// <summary>
-        /// Removes destroyed enemies from list
-        /// </summary>
-        /// <param name="gObject"></param>
-        private void OnEnemyDestroyed(GameObject gObject)
-        {
-            if (enemies.Contains(gObject))
-                enemies.Remove(gObject);
-        }
-
+        
         /// <summary>
         /// Load menu when character dies
         /// </summary>
@@ -129,22 +88,9 @@ namespace Level
         }
 
         /// <summary>
-        /// Call action player entered next room
-        /// </summary>
-        /// <param name="newSpawns"></param>
-        private void OnRoomChanged(List<Transform> newSpawns)
-        {
-            spawnPoints.Clear();
-            spawnPoints = newSpawns;
-            spawnedEnemies = 0;
-        
-            StartCoroutine(SpawnEnemies());
-        }
-
-        /// <summary>
         /// Activate win canvas
         /// </summary>
-        public void ShowWinScreen()
+        private void ShowWinScreen()
         {
             winCanvas.SetActive(true);
         }
