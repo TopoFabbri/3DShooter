@@ -1,5 +1,4 @@
 using ObjectManagers;
-using Patterns.SM;
 using UnityEngine;
 
 namespace Weapons
@@ -10,27 +9,6 @@ namespace Weapons
     public class InstancePython : Gun
     {
         [SerializeField] private GameObject bulletPrefab;
-
-        private void OnEnable()
-        {
-            if (!stateMachine)
-                stateMachine = GameObject.Find("StateMachine").GetComponent<StateMachine>();
-                
-            stateMachine.Subscribe(stateId, OnUpdate);
-        }
-
-        private void OnDisable()
-        {
-            stateMachine.UnSubscribe(stateId, OnUpdate);
-        }
-
-        /// <summary>
-        /// Gameplay-only update
-        /// </summary>
-        private void OnUpdate()
-        {
-            CheckReload();
-        }
 
         public override void Shoot()
         {

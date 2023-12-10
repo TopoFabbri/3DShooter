@@ -23,7 +23,7 @@ namespace SOs
         /// </summary>
         protected abstract void PickUp();
         
-        protected virtual void OnTriggerEnter(Collider other)
+        protected virtual void OnCollisionEnter(Collision other)
         {
             PickUp();
         }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2296501115560167953}
   - component: {fileID: 8908607650592196329}
   - component: {fileID: 4079246405997736614}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LethalExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

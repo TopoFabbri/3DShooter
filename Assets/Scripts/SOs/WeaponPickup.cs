@@ -12,14 +12,14 @@ namespace SOs
     {
         private PlayerController playerController;
         
-        protected override void OnTriggerEnter(Collider other)
+        protected override void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.TryGetComponent(out playerController)) return;
             
-            base.OnTriggerEnter(other);
+            base.OnCollisionEnter(other);
         }
         
-        private void OnTriggerExit(Collider other)
+        private void OnCollisionExit(Collision other)
         {
             if (!other.gameObject.TryGetComponent(out playerController)) return;
             playerController = null;

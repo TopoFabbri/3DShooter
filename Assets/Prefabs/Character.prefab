@@ -1736,7 +1736,7 @@ MonoBehaviour:
   maxSpeed: 5
   grabDis: 4
   barrelDis: 2
-  godSpeedMultiplier: 2
+  flashSpeedMultiplier: 2
   gunTag: Gun
   weapon: {fileID: 0}
   cameraMovement: {fileID: 1130744254070975277}
@@ -3128,7 +3128,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 887
+    m_Bits: 1911
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

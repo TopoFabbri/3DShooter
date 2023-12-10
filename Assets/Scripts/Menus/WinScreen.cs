@@ -1,4 +1,3 @@
-using System;
 using Patterns;
 using UnityEngine;
 using UnityEngine.EventSystems;

@@ -30,11 +30,29 @@ namespace Weapons
             get => PlayerInventory.Instance.bullets;
             private set => PlayerInventory.Instance.bullets = Mathf.Clamp(value, 0, ChamberSize);
         }
+        
+        protected virtual void OnEnable()
+        {
+            if (!stateMachine)
+                stateMachine = GameObject.Find("StateMachine").GetComponent<StateMachine>();
+                
+            stateMachine.Subscribe(stateId, OnUpdate);
+        }
+
+        protected virtual void OnDisable()
+        {
+            stateMachine.UnSubscribe(stateId, OnUpdate);
+        }
+        
+        protected virtual void OnUpdate()
+        {
+            CheckReload();
+        }
 
         /// <summary>
         /// Gameplay-only update
         /// </summary>
-        protected void CheckReload()
+        private void CheckReload()
         {
             if (Chamber <= 0)
                 Reload();

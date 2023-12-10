@@ -23,7 +23,7 @@ namespace Level.Spawn
         /// Spawn object by index
         /// </summary>
         /// <param name="index">Position in list of object to spawn</param>
-        protected void Spawn(int index)
+        protected virtual void Spawn(int index)
         {
             Transform trans = transform;
             

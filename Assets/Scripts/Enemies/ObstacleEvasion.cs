@@ -9,7 +9,6 @@ namespace Enemies
     {
         [SerializeField] private float radius = .5f;
         [SerializeField] private float detectionDis = 1f;
-        [SerializeField] private string wallsTag = "Walls";
 
         /// <summary>
         /// Update character rotation to evade obstacles
@@ -25,7 +24,7 @@ namespace Enemies
             var ray = new Ray(leftRayOrigin, trans.forward);
             Vector3 dir;
 
-            if (Physics.Raycast(ray, out var hit, detectionDis) && hit.transform.CompareTag(wallsTag))
+            if (Physics.Raycast(ray, out var hit, detectionDis, LayerMask.GetMask("Walls")))
             {
                 dir = Vector3.Cross(Vector3.up, hit.normal);
                 transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
@@ -34,7 +33,7 @@ namespace Enemies
 
             ray.origin = rightRayOrigin;
 
-            if (Physics.Raycast(ray, out hit, detectionDis) && hit.transform.CompareTag(wallsTag))
+            if (Physics.Raycast(ray, out hit, detectionDis, LayerMask.GetMask("Walls")))
             {
                 dir = Vector3.Cross(Vector3.up, hit.normal);
                 transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
@@ -43,7 +42,7 @@ namespace Enemies
 
             ray.origin = transform.position;
 
-            if (!Physics.Raycast(ray, out hit, detectionDis) || !hit.transform.CompareTag(wallsTag)) return;
+            if (!Physics.Raycast(ray, out hit, detectionDis, LayerMask.GetMask("Walls"))) return;
 
             dir = Vector3.Cross(Vector3.up, hit.normal);
             transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
