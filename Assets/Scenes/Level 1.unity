@@ -393,6 +393,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197420110}
   m_CullTransparentMesh: 1
+--- !u!114 &425942176 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
+  m_PrefabInstance: {fileID: 1162678562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1f89173ada1f542bb68aaf24e358f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &637996151
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,13 +489,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1162678566}
-        m_TargetAssemblyTypeName: Level.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 2
+      - m_Target: {fileID: 425942176}
+        m_TargetAssemblyTypeName: Level.LevelManager, Assembly-CSharp
+        m_MethodName: OnNextLevelHandler
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: e1212367e9b631046a39c5104d95d6e5, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Level.SceneId, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -940,30 +951,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 42497258, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 42497258, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: rooms.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 42497258, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: rooms.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 42497258, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: rooms.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 42497258, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: changeRoomTriggers.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 42497258, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: changeRoomTriggers.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 83417980, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
       propertyPath: pauseMenu
       value: 
@@ -1021,10 +1008,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1765628272}
     - target: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1765628272}
-    - target: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
       propertyPath: winCanvas
       value: 
       objectReference: {fileID: 799403275}
@@ -1033,9 +1016,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1765628271}
     - target: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: spawners.Array.size
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: nextLevelId
+      value: 
+      objectReference: {fileID: 11400000, guid: e1212367e9b631046a39c5104d95d6e5, type: 2}
     - target: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
       propertyPath: spawners.Array.data[0]
       value: 
@@ -1044,14 +1027,6 @@ PrefabInstance:
       propertyPath: spawners.Array.data[1]
       value: 
       objectReference: {fileID: 1112655114}
-    - target: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5405977087431280526, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
-      propertyPath: spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6219289111464631663, guid: 1125816e5cac2d84d959851ca6fa6b2b, type: 3}
       propertyPath: m_Name
       value: Managers

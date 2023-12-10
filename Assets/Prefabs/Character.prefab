@@ -1736,6 +1736,7 @@ MonoBehaviour:
   maxSpeed: 5
   grabDis: 4
   barrelDis: 2
+  godSpeedMultiplier: 2
   gunTag: Gun
   weapon: {fileID: 0}
   cameraMovement: {fileID: 1130744254070975277}
@@ -1743,8 +1744,8 @@ MonoBehaviour:
   hud: {fileID: 3838418102426732605}
   stateMachine: {fileID: 0}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
-  lethalPrefab: {fileID: 8764917934442121572, guid: c66a69e698697824280f838fab36a556, type: 3}
   lethalController: {fileID: 19832587972827919}
+  stats: {fileID: 3973310374492301881}
 --- !u!114 &19832587972827919
 MonoBehaviour:
   m_ObjectHideFlags: 0

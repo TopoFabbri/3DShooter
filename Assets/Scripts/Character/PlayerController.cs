@@ -1,4 +1,5 @@
 using System;
+using Game;
 using Patterns;
 using Patterns.SM;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Character
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float grabDis = 3f;
         [SerializeField] private float barrelDis = 2f;
+        [SerializeField] private float godSpeedMultiplier = 2f;
         [SerializeField] private string gunTag = "Gun";
 
         [Header("Objects:")] [SerializeField] private Gun weapon;
@@ -24,14 +26,12 @@ namespace Character
         [SerializeField] private HUD.Hud hud;
         [SerializeField] private StateMachine stateMachine;
         [SerializeField] private Id stateId;
-        [SerializeField] private GameObject lethalPrefab;
         [SerializeField] private PlayerLethalController lethalController;
-    
+        [SerializeField] private Stats.Stats stats;
+        
         private Vector3 movement;
         private bool ads;
         private bool hasShot;
-
-        public static event Action Destroyed;
 
         public Gun GetWeapon => weapon;
 
@@ -46,7 +46,10 @@ namespace Character
             InputListener.Reload += OnReload;
             InputListener.DropLethal += OnDropLethal;
             InputListener.ChangeLethal += OnChangeLethal;
-
+            
+            Cheats.GodMode += OnGodModeHandler;
+            Cheats.Flash += OnFlashHandler;
+    
             stateMachine.Subscribe(stateId, OnUpdate);
         }
 
@@ -62,6 +65,9 @@ namespace Character
             InputListener.DropLethal -= OnDropLethal;
             InputListener.ChangeLethal -= OnChangeLethal;
         
+            Cheats.GodMode -= OnGodModeHandler;
+            Cheats.Flash -= OnFlashHandler;
+            
             stateMachine.UnSubscribe(stateId, OnUpdate);
         }
 
@@ -189,11 +195,6 @@ namespace Character
                     break;
             }
         }
-
-        private void OnInventoryResetHandler()
-        {
-            lethalController.AddLethalObject(lethalPrefab);
-        }
         
         /// <summary>
         /// Clamp x - z velocity
@@ -260,10 +261,17 @@ namespace Character
             gun.GrabGun(transform);
             weapon = gun;
         }
-
-        private void OnDestroy()
+        
+        /// <summary>
+        /// Toggles god mode
+        /// </summary>
+        private void OnGodModeHandler()
         {
-            Destroyed?.Invoke();
+            stats.ToggleGodMode();
+        }
+        
+        private void OnFlashHandler()
+        {
         }
     }
 }

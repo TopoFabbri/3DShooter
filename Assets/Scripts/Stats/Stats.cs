@@ -19,13 +19,14 @@ namespace Stats
 
         private float hp;
         private const float LifeRegen = .5f;
+        private bool godMode;
 
         public event Action OnDie;
 
         private void OnEnable()
         {
             hp = initialHp;
-        
+
             if (!stateMachine)
                 stateMachine = FindObjectOfType<StateMachine>();
 
@@ -69,7 +70,8 @@ namespace Stats
         /// <param name="damage"></param>
         public void LoseLife(float damage)
         {
-            hp -= damage;
+            if (!godMode)
+                hp -= damage;
 
             if (isCharacter && hud)
                 hud.SetHealthSlider(hp);
@@ -82,8 +84,13 @@ namespace Stats
         {
             if (isCharacter)
                 LevelManager.Instance.Lose();
-        
+
             OnDie?.Invoke();
+        }
+
+        public void ToggleGodMode()
+        {
+            godMode = !godMode;
         }
     }
 }

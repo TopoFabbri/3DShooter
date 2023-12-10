@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Character;
+using Game;
 using JetBrains.Annotations;
 using Level.Spawn;
 using ObjectManagers;
@@ -15,12 +16,12 @@ namespace Level
     {
         private static LevelManager instance;
     
-        [SerializeField] private SceneLoader sceneLoader;
         [SerializeField] private SceneId menu;
         [SerializeField] private SceneId credits;
         [SerializeField] private GameObject winCanvas;
         [SerializeField] private GameObject loseScreen;
         [SerializeField] private TimerSpawner[] spawners;
+        [SerializeField] private SceneId nextLevelId;
         
         public static LevelManager Instance
         {
@@ -49,12 +50,12 @@ namespace Level
 
         private void OnEnable()
         {
-            PlayerController.Destroyed += CharacterDestroyed;
+            Cheats.NextLevel += OnNextLevelHandler;
         }
 
         private void OnDisable()
         {
-            PlayerController.Destroyed -= CharacterDestroyed;
+            Cheats.NextLevel -= OnNextLevelHandler;
         }
         
         private void Update()
@@ -77,14 +78,6 @@ namespace Level
             
             if (EnemyManager.EnemiesAlive <= 0 && spawnersEnded)
                 ShowWinScreen();
-        }
-        
-        /// <summary>
-        /// Load menu when character dies
-        /// </summary>
-        private void CharacterDestroyed()
-        {
-            sceneLoader.LoadScene(menu);
         }
 
         /// <summary>
@@ -117,14 +110,21 @@ namespace Level
         
             yield return new WaitForSeconds(seconds);
         
-            if (sceneLoader)
-                sceneLoader.LoadScene(sceneId);
+            SceneLoader.Instance.LoadScene(sceneId);
         }
 
         private void OnDestroy()
         {
             if (instance == this)
                 instance = null;
+        }
+        
+        /// <summary>
+        /// Load next level
+        /// </summary>
+        public void OnNextLevelHandler()
+        {
+            SceneLoader.Instance.LoadScene(nextLevelId);
         }
     }
 }

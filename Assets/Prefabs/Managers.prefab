@@ -90,10 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuId: {fileID: 11400000, guid: 26fef78e75ee9ed4aa108c721960051a, type: 2}
-  levelIds:
-  - {fileID: 11400000, guid: d8b61e060273ac645ae601bc9624a8d3, type: 2}
-  - {fileID: 11400000, guid: e1212367e9b631046a39c5104d95d6e5, type: 2}
-  - {fileID: 11400000, guid: ead73bcab4ffc084b8941b55f4d29888, type: 2}
 --- !u!1 &5405977086720011510
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +156,7 @@ GameObject:
   - component: {fileID: 5405977087312840079}
   - component: {fileID: 5405977087312840048}
   - component: {fileID: 5405977087312840049}
+  - component: {fileID: 5541983762282531619}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -224,6 +221,18 @@ MonoBehaviour:
   m_DefaultActionMap: World
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5541983762282531619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405977087312840050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ab1c3cfecbe784995c7642c3656609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5405977087431280496
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1f89173ada1f542bb68aaf24e358f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoader: {fileID: 5405977086720011509}
   menu: {fileID: 11400000, guid: 26fef78e75ee9ed4aa108c721960051a, type: 2}
   credits: {fileID: 11400000, guid: 680c30d3508b0744c99a821814fb0d3e, type: 2}
   winCanvas: {fileID: 0}
@@ -276,8 +284,7 @@ MonoBehaviour:
   spawners:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  nextLevelId: {fileID: 0}
 --- !u!1 &5405977087533315834
 GameObject:
   m_ObjectHideFlags: 0

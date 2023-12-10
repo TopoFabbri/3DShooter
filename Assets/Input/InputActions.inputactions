@@ -103,6 +103,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "NextLevel",
+                    "type": "Button",
+                    "id": "831dbdfc-f2cd-4e46-85f1-270f5dd07441",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GodMode",
+                    "type": "Button",
+                    "id": "546839f5-18d3-4689-aeae-1d2811e5473c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Flash",
+                    "type": "Button",
+                    "id": "88b21826-6078-48f6-bbf2-cd284730c2af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Nuke",
+                    "type": "Button",
+                    "id": "2c5a6061-98a0-48bd-a3a0-631bb6b59102",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -468,6 +504,50 @@
                     "action": "ChangeLethal",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "54d6e941-5a5a-44e0-b575-f52c27db0817",
+                    "path": "<Keyboard>/f9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad7cb888-833e-4b8c-a969-31860a0b70a6",
+                    "path": "<Keyboard>/f10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08c3f90e-a65f-4641-a98f-c6f49b7307a4",
+                    "path": "<Keyboard>/f11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb7a0799-0e66-4d9f-a5be-840ffdb58823",
+                    "path": "<Keyboard>/f12",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nuke",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
