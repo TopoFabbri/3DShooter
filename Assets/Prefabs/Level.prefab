@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnables:
-  - recyclable: {fileID: 444750218368097429, guid: 0195b081a17de0f43a6c3b33e24e9b44, type: 3}
+  - recyclable: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
     settings: {fileID: 11400000, guid: 78a6c68ac68b1374a9ebdfb653101c77, type: 2}
   spawnableTimeSettings:
   - amount: 1
@@ -97,11 +97,7 @@ MonoBehaviour:
   spawnables:
   - recyclable: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
     settings: {fileID: 11400000, guid: 0d912585caa023a429c04cab2acb89fe, type: 2}
-  - recyclable: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
-    settings: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
   spawnableTimeSettings:
-  - amount: 1
-    time: 5
   - amount: 1
     time: 10
 --- !u!1 &1831412391
@@ -23474,6 +23470,10 @@ PrefabInstance:
       propertyPath: stateMachine
       value: 
       objectReference: {fileID: 1674419796201438413}
+    - target: {fileID: 3838418102426732605, guid: 5d510a099eb141146863b9430c1a467a, type: 3}
+      propertyPath: gameTimer
+      value: 
+      objectReference: {fileID: 6645439938523156808}
     - target: {fileID: 3838418102426732605, guid: 5d510a099eb141146863b9430c1a467a, type: 3}
       propertyPath: gameTimeCounter
       value: 

@@ -49,7 +49,7 @@ namespace Stats
             {
                 hp += LifeRegen * Time.deltaTime;
                 if (hud)
-                    hud.SetSlider(hp);
+                    hud.SetHealthSlider(hp);
             }
 
             hp = Mathf.Clamp(hp, 0f, initialHp);
@@ -72,7 +72,7 @@ namespace Stats
             hp -= damage;
 
             if (isCharacter && hud)
-                hud.SetSlider(hp);
+                hud.SetHealthSlider(hp);
         }
 
         /// <summary>

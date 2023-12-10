@@ -14,90 +14,90 @@ namespace HUD
     /// </summary>
     public class Hud : MonoBehaviour
     {
-        [SerializeField] private Slider slider;
-        [SerializeField] private TextMeshProUGUI frames;
+        [SerializeField] private Slider healthSlider;
+        [SerializeField] private TextMeshProUGUI fpsText;
         [FormerlySerializedAs("time")] [SerializeField] private TextMeshProUGUI timeText;
-        [SerializeField] private TextMeshProUGUI score;
-        [SerializeField] private TextMeshProUGUI dropLethal;
+        [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private TextMeshProUGUI dropLethalText;
         [SerializeField] private TextMeshProUGUI inventoryText;
-        [SerializeField] private GameObject pickUpTxt;
-        [SerializeField] private GameTimeCounter gameTimeCounter;
-        [SerializeField] private float barrelTutorialDuration = 10f;
+        [SerializeField] private GameObject pickupText;
+        [SerializeField] private GameTimeCounter gameTimer;
+        [SerializeField] private float barrelTutorialMaxTime = 10f;
         
-        private bool barrelTutorialFinished;
-        private const string TimeText = "Time: ";
+        private bool barrelTutorialCompleted;
+        private const string timeLabel = "Time: ";
 
         private void OnEnable()
         {
-            InputListener.DropLethal += OnDropLethal;
+            InputListener.DropLethal += OnLethalUsed;
         }
 
         private void OnDisable()
         {
-            InputListener.DropLethal -= OnDropLethal;
+            InputListener.DropLethal -= OnLethalUsed;
         }
 
         private void Update()
         {
-            if (barrelTutorialFinished || PlayerInventory.Instance.lethals.Count <= 0)
+            if (barrelTutorialCompleted || PlayerInventory.Instance.lethals.Count <= 0)
             {
-                dropLethal.gameObject.SetActive(false);
+                dropLethalText.gameObject.SetActive(false);
             }
             else
             {
-                StartCoroutine(StopBarrelTutorial(barrelTutorialDuration));
-                dropLethal.gameObject.SetActive(true);
+                StartCoroutine(EndBarrelTutorial(barrelTutorialMaxTime));
+                dropLethalText.gameObject.SetActive(true);
             }
 
-            frames.SetText(((int)(1f / Time.deltaTime)).ToString());
-            timeText.SetText(TimeText + gameTimeCounter.GameTime);
+            fpsText.SetText(((int)(1f / Time.deltaTime)).ToString());
+            timeText.SetText(timeLabel + gameTimer.GameTime);
             inventoryText.SetText(PlayerInventory.Text);
         }
 
         /// <summary>
         /// Set slider value based on hp
         /// </summary>
-        /// <param name="hp"></param>
-        public void SetSlider(float hp)
+        /// <param name="currentHp"></param>
+        public void SetHealthSlider(float currentHp)
         {
-            slider.value = hp;
+            healthSlider.value = currentHp;
         }
 
         /// <summary>
         /// Show or hide 'pickup' text
         /// </summary>
-        /// <param name="active"></param>
-        public void SetPickupTextActive(bool active)
+        /// <param name="isActive"></param>
+        public void SetPickupTextActive(bool isActive)
         {
-            pickUpTxt.SetActive(active && barrelTutorialFinished);
+            pickupText.SetActive(isActive && barrelTutorialCompleted);
         }
 
         /// <summary>
         /// Update score text
         /// </summary>
-        /// <param name="newScore">New score to display</param>
-        public void UpdateScore(int newScore)
+        /// <param name="newScore"></param>
+        public void UpdateScoreText(int newScore)
         {
-            score.SetText(newScore.ToString());
+            scoreText.SetText(newScore.ToString());
         }
 
         /// <summary>
-        /// Stop barrel tutorial on barrel placed
+        /// Stop barrel tutorial on barrel used
         /// </summary>
-        private void OnDropLethal()
+        private void OnLethalUsed()
         {
-            barrelTutorialFinished = true;
+            barrelTutorialCompleted = true;
         }
 
         /// <summary>
         /// Wait time and close barrel tutorial
         /// </summary>
-        /// <param name="time">Time to wait</param>
+        /// <param name="waitTime"></param>
         /// <returns></returns>
-        private IEnumerator StopBarrelTutorial(float time)
+        private IEnumerator EndBarrelTutorial(float waitTime)
         {
-            yield return new WaitForSeconds(time);
-            barrelTutorialFinished = true;
+            yield return new WaitForSeconds(waitTime);
+            barrelTutorialCompleted = true;
         }
     }
 }

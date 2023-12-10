@@ -301,14 +301,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef97b29763009f49a414596aae860e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 203050438}
-  frames: {fileID: 1235885236}
-  time: {fileID: 1504329066}
-  score: {fileID: 2531736270374525743}
-  dropLethal: {fileID: 7163809899106423106}
+  healthSlider: {fileID: 203050438}
+  fpsText: {fileID: 1235885236}
+  timeText: {fileID: 1504329066}
+  scoreText: {fileID: 2531736270374525743}
+  dropLethalText: {fileID: 7163809899106423106}
   inventoryText: {fileID: 1324483632594478299}
-  pickUpTxt: {fileID: 932818298}
-  gameTimeCounter: {fileID: 0}
+  pickupText: {fileID: 932818298}
+  gameTimer: {fileID: 0}
+  barrelTutorialMaxTime: 10
 --- !u!1 &640243161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8c3fb50a4325240b0f67ce63d1245f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLethal: {fileID: 8764917934442121572, guid: c66a69e698697824280f838fab36a556, type: 3}
 --- !u!114 &3973310374492301881
 MonoBehaviour:
   m_ObjectHideFlags: 0

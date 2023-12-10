@@ -44,7 +44,7 @@ namespace Level
             {
                 yield return new WaitForSeconds(secondsToScore);
                 score += scorePerTime;
-                hud.UpdateScore(score);
+                hud.UpdateScoreText(score);
 
                 if (pauseMenu.paused)
                     yield return new WaitUntil(() => !pauseMenu.paused);
@@ -58,7 +58,7 @@ namespace Level
         private void OnEnemyDestroyed(GameObject gObject)
         {
             score++;
-            hud.UpdateScore(score);
+            hud.UpdateScoreText(score);
         }
     }
 }
