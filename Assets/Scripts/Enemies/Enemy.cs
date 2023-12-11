@@ -1,3 +1,4 @@
+using System;
 using Abstracts;
 using Game;
 using ObjectManagers;
@@ -17,6 +18,8 @@ namespace Enemies
         [SerializeField] private Id stateId;
 
         [SerializeField] private Stats.Stats stats;
+        
+        public static event Action<int> OnEnemyDie; 
 
         private StateMachine stateMachine;
 
@@ -54,7 +57,11 @@ namespace Enemies
         /// <summary>
         /// Manages what to do when enemy dies
         /// </summary>
-        protected abstract void DieHandler();
+        private void DieHandler()
+        {
+            OnEnemyDie?.Invoke(Settings.score);
+            EnemyManager.Instance.Recycle(gameObject);
+        }
 
         public override void SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
         {
@@ -63,9 +70,23 @@ namespace Enemies
             instanced.settings = settings;
         }
 
+        /// <summary>
+        /// Handle nuke event
+        /// </summary>
         private void OnNukeHandler()
         {
             stats.LoseLife(stats.InitHp);
+        }
+
+        /// <summary>
+        /// Move enemy in direction
+        /// </summary>
+        /// <param name="dir">direction to move</param>
+        protected virtual void Move(Vector3 dir)
+        {
+            obstacleEvasion.CheckAndEvade();
+            rb.AddForce(((EnemySettings)settings).speed * dir, ForceMode.Acceleration);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
         }
     }
 }

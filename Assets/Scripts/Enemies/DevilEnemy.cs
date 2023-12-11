@@ -1,5 +1,4 @@
 using System;
-using Abstracts;
 using ObjectManagers;
 using SOs;
 using UnityEngine;
@@ -10,8 +9,6 @@ namespace Enemies
     {
         private float nextFireTime;
         private int fireCount;
-
-        public static event Action<GameObject> DevilDestroyed;
     
         /// <summary>
         /// Gameplay-only update
@@ -23,15 +20,9 @@ namespace Enemies
             if (Time.time < nextFireTime) return;
         
             if (Vector3.Distance(transform.position, ((EnemySettings)settings).target.position) > ((DevilSettings)settings).fireDis)
-            {
-                obstacleEvasion.CheckAndEvade();
-                rb.AddForce(((EnemySettings)settings).speed * transform.forward, ForceMode.Acceleration);
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
-            }
+                Move(transform.forward);
             else
-            {
                 Shoot();
-            }
         }
 
         /// <summary>
@@ -49,12 +40,6 @@ namespace Enemies
             var trans = transform;
         
             FireballManager.Instance.Spawn(((DevilSettings)settings).fireBall, trans.position + trans.forward, trans.rotation);
-        }
-    
-        protected override void DieHandler()
-        {
-            DevilDestroyed?.Invoke(gameObject);
-            EnemyManager.Instance.Recycle(gameObject);
         }
     }
 }

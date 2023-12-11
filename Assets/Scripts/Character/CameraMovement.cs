@@ -21,6 +21,7 @@ namespace Character
         private const float CursorSpeed = 20f;
 
         private bool gamepad;
+        private bool paralyzed;
         private Camera cam;
         private float xRotation;
         private float yRotation;
@@ -30,6 +31,7 @@ namespace Character
         public bool aimDownSight;
     
         public Vector3 worldMouseDir { get; private set; }
+        public bool Paralyzed {set => paralyzed = value;}
 
         private void Start()
         {
@@ -67,6 +69,9 @@ namespace Character
         /// </summary>
         private void CenterAim()
         {
+            if (paralyzed)
+                return;
+            
             var camTransform = cam.transform;
             var ray = new Ray(camTransform.position, camTransform.forward);
 

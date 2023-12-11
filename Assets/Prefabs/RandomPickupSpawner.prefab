@@ -49,4 +49,6 @@ MonoBehaviour:
     settings: {fileID: 11400000, guid: 78a6c68ac68b1374a9ebdfb653101c77, type: 2}
   - recyclable: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
     settings: {fileID: 11400000, guid: 0d912585caa023a429c04cab2acb89fe, type: 2}
+  - recyclable: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
+    settings: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
   time: 10

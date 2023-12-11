@@ -24,14 +24,12 @@ namespace Level
 
         private void OnEnable()
         {
-            DevilEnemy.DevilDestroyed += OnEnemyDestroyed;
-            NormalEnemy.ZombieDestroyed += OnEnemyDestroyed;
+            Enemy.OnEnemyDie += OnEnemyDestroyed;
         }
 
         private void OnDisable()
         {
-            DevilEnemy.DevilDestroyed -= OnEnemyDestroyed;
-            NormalEnemy.ZombieDestroyed -= OnEnemyDestroyed;
+            Enemy.OnEnemyDie -= OnEnemyDestroyed;
         }
 
         /// <summary>
@@ -54,11 +52,11 @@ namespace Level
         /// <summary>
         /// Increase score by destroying enemies
         /// </summary>
-        /// <param name="gObject">Enemy</param>
-        private void OnEnemyDestroyed(GameObject gObject)
+        /// <param name="score">Score to add</param>
+        private void OnEnemyDestroyed(int score)
         {
-            score++;
-            hud.UpdateScoreText(score);
+            this.score += score;
+            hud.UpdateScoreText(this.score);
         }
     }
 }

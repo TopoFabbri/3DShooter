@@ -2082,26 +2082,6 @@ PrefabInstance:
       propertyPath: time
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4ea52af287707154c9429fe47a8dfc13, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].recyclable
-      value: 
-      objectReference: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].recyclable
-      value: 
-      objectReference: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
     - target: {fileID: 5715516348919780687, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2168,26 +2148,6 @@ PrefabInstance:
       propertyPath: time
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4ea52af287707154c9429fe47a8dfc13, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].recyclable
-      value: 
-      objectReference: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].recyclable
-      value: 
-      objectReference: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
     - target: {fileID: 5715516348919780687, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2534,26 +2494,6 @@ PrefabInstance:
       propertyPath: time
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4ea52af287707154c9429fe47a8dfc13, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].recyclable
-      value: 
-      objectReference: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].recyclable
-      value: 
-      objectReference: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
     - target: {fileID: 5715516348919780687, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2620,26 +2560,6 @@ PrefabInstance:
       propertyPath: time
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4ea52af287707154c9429fe47a8dfc13, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].recyclable
-      value: 
-      objectReference: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].recyclable
-      value: 
-      objectReference: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
     - target: {fileID: 5715516348919780687, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5042,26 +4962,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1482365053}
     m_Modifications:
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ee811f4730055d4f8132c74af111482, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 4ea52af287707154c9429fe47a8dfc13, type: 2}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[2].recyclable
-      value: 
-      objectReference: {fileID: 467361360, guid: 71e6ee0d7e7d5e647adfede8852be22f, type: 3}
-    - target: {fileID: 4598848369238520593, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
-      propertyPath: spawnables.Array.data[3].recyclable
-      value: 
-      objectReference: {fileID: -222167337247255239, guid: fd652d9dba6552d40a30410b444d04d9, type: 3}
     - target: {fileID: 5715516348919780687, guid: 281c7dcdd4bd70b428dc498d57924007, type: 3}
       propertyPath: m_RootOrder
       value: 0

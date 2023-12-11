@@ -9,6 +9,7 @@ namespace SOs
         public float speed = 20f;
         public float maxSpeed = 2f;
         public string characterName = "Character";
+        public int score = 10;
 
         public Transform target;
     }

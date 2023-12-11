@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using Game;
+using GameStats;
 using Patterns;
 using Patterns.SM;
 using UnityEngine;
@@ -31,6 +33,7 @@ namespace Character
         [SerializeField] private Stats.Stats stats;
         
         private Vector3 movement;
+        private bool paralyzed;
         private bool ads;
         private bool hasShot;
         private bool flash;
@@ -117,6 +120,9 @@ namespace Character
         /// <param name="input"></param>
         public void OnMove(InputValue input)
         {
+            if (paralyzed)
+                return;
+            
             Vector2 direction = input.Get<Vector2>();
             movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
         }
@@ -289,6 +295,31 @@ namespace Character
                 maxSpeed /= flashSpeedMultiplier;
                 moveSpeed /= flashSpeedMultiplier;
             }
+        }
+
+        /// <summary>
+        /// Paralyze player
+        /// </summary>
+        public void Paralyze(float time)
+        {
+            paralyzed = true;
+            cameraMovement.Paralyzed = true;
+            StartCoroutine(StopParalyzeOnTime(time));
+        }
+        
+        /// <summary>
+        /// Wait for time and stop paralyze effect
+        /// </summary>
+        /// <param name="time">Time to wait</param>
+        /// <returns></returns>
+        private IEnumerator StopParalyzeOnTime(float time)
+        {
+            float endTime = GameTimeCounter.Instance.GameTime + time;
+            
+            yield return new WaitUntil(() => GameTimeCounter.Instance.GameTime > endTime);
+            
+            cameraMovement.Paralyzed = false;
+            paralyzed = false;
         }
     }
 }

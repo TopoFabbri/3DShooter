@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23a32754595430f8f5d0e33863f79a6, type: 3}
+  m_Name: DroneSettings
+  m_EditorClassIdentifier: 
+  speed: 20
+  maxSpeed: 2
+  characterName: Character
+  target: {fileID: 0}
+  disToPlayer: 10
+  minMoveTime: 1
+  maxMoveTime: 5
+  flyHeight: 3
+  fireCooldown: 5
+  fireTime: 1

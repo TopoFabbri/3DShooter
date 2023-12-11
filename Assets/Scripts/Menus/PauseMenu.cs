@@ -44,10 +44,14 @@ namespace Menus
 
         private void OnDisable()
         {
+            stateMachine.UnSubscribe(pauseId, OnUpdate);
+            
             InputListener.Pause -= OnPause;
             InputListener.Resume -= OnResume;
             InputListener.Navigate -= OnNavigate;
             InputListener.MoveCursor -= OnCursor;
+            
+            Time.timeScale = 1f;
         }
 
         private void OnUpdate()
@@ -77,6 +81,7 @@ namespace Menus
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             player.StopMovement();
+            Time.timeScale = 0;
         }
 
         /// <summary>
@@ -89,6 +94,7 @@ namespace Menus
             playerInput.SwitchCurrentActionMap(MapWorld);
             pauseScreen.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1;
         }
 
         /// <summary>

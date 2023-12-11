@@ -10,8 +10,6 @@ namespace Enemies
         private float cooldown;
         private bool isInCooldown;
     
-        public static event Action<GameObject> ZombieDestroyed; 
-    
         /// <summary>
         /// Gameplay-only update
         /// </summary>
@@ -31,12 +29,6 @@ namespace Enemies
             if (other.gameObject.TryGetComponent<Stats.Stats>(out var otherStats))
                 otherStats.LoseLife(((NormalSettings)settings).damage);
             cooldown = Time.time + ((NormalSettings)settings).damageTime;
-        }
-    
-        protected override void DieHandler()
-        {
-            ZombieDestroyed?.Invoke(gameObject);
-            EnemyManager.Instance.Recycle(gameObject);
         }
     }
 }
