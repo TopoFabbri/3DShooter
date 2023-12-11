@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using Abstracts;
 using Game;
 using GameStats;
 using Patterns;
@@ -14,7 +14,7 @@ namespace Character
     /// <summary>
     /// Character controller class
     /// </summary>
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IGunHolder
     {
         [SerializeField] private float moveSpeed = 500f;
         [SerializeField] private float maxSpeed = 5f;
@@ -132,8 +132,7 @@ namespace Character
         /// </summary>
         public void OnShoot()
         {
-            if (GetWeapon)
-                GetWeapon.GetComponent<Gun>().Shoot();
+            ((IGunHolder)this).Shoot();
         }
 
         /// <summary>
@@ -150,10 +149,7 @@ namespace Character
         /// </summary>
         public void OnDrop()
         {
-            if (GetWeapon)
-                GetWeapon.DropGun();
-        
-            weapon = null;
+            ((IGunHolder)this).DropGun();
         }
 
         /// <summary>
@@ -164,7 +160,7 @@ namespace Character
             if (!PointingAtGun(out var hit))
                 return;
 
-            AddGun(hit.transform.gameObject.GetComponent<Gun>());
+            ((IGunHolder)this).AddGun(hit.transform.gameObject.GetComponent<Gun>());
         }
 
         /// <summary>
@@ -172,8 +168,7 @@ namespace Character
         /// </summary>
         public void OnReload()
         {
-            if (GetWeapon)
-                GetWeapon.Reload();
+            ((IGunHolder)this).Reload();
         }
 
         /// <summary>
@@ -261,7 +256,13 @@ namespace Character
             rb.velocity = Vector3.zero;
         }
 
-        public void AddGun(Gun gun)
+        void IGunHolder.Shoot()
+        {
+            if (GetWeapon)
+                GetWeapon.GetComponent<Gun>().Shoot();
+        }
+
+        void IGunHolder.AddGun(Gun gun)
         {
             if (GetWeapon)
                 GetWeapon.DropGun();
@@ -269,7 +270,21 @@ namespace Character
             gun.GrabGun(transform);
             weapon = gun;
         }
+
+        void IGunHolder.DropGun()
+        {
+            if (GetWeapon)
+                GetWeapon.DropGun();
         
+            weapon = null;
+        }
+
+        void IGunHolder.Reload()
+        {
+            if (GetWeapon)
+                GetWeapon.Reload();
+        }
+
         /// <summary>
         /// Toggles god mode
         /// </summary>

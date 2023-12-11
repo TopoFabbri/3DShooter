@@ -1,4 +1,4 @@
-using Character;
+using Abstracts;
 using ObjectManagers;
 using UnityEngine;
 using Weapons;
@@ -10,29 +10,29 @@ namespace SOs
     /// </summary>
     public class WeaponPickup : Pickup
     {
-        private PlayerController playerController;
+        private IGunHolder gunHolder;
         
         protected override void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.TryGetComponent(out playerController)) return;
+            if (!other.gameObject.TryGetComponent(out gunHolder)) return;
             
             base.OnCollisionEnter(other);
         }
         
         private void OnCollisionExit(Collision other)
         {
-            if (!other.gameObject.TryGetComponent(out playerController)) return;
-            playerController = null;
+            if (!other.gameObject.TryGetComponent(out gunHolder)) return;
+            gunHolder = null;
         }
         
         protected override void PickUp()
         {
-            if (!playerController) return;
+            if (gunHolder == null) return;
 
             GameObject weapon = Instantiate(((PickupSettings)settings).prefab);
             
             if (weapon.TryGetComponent(out Gun gun))
-                playerController.AddGun(gun);
+                gunHolder.AddGun(gun);
             
             PickupManager.Instance.Recycle(gameObject);
         }
