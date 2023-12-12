@@ -47,7 +47,10 @@ namespace Patterns
         /// <param name="parent">The parent Transform to attach the instantiated GameObject.</param>
         public static GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot, Transform parent)
         {
-            return Object.Instantiate(obj, pos, rot, parent);
+            GameObject objInstance = Object.Instantiate(obj, pos, rot, parent);
+            objInstance.name = obj.name;
+            
+            return objInstance;
         }
     }
 }
