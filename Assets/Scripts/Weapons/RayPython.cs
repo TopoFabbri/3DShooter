@@ -12,13 +12,13 @@ namespace Weapons
     
         public override void Shoot()
         {
-            if (IsReloading) return;
+            if (IsReloading || InCooldown) return;
         
-            var ray = new Ray(bulletSpawnPoint.position, bulletSpawnPoint.forward);
+            Ray ray = new(bulletSpawnPoint.position, bulletSpawnPoint.forward);
 
             base.Shoot();
 
-            if (!Physics.Raycast(ray, out var hit, 100f, LayerMask.GetMask("Enemy", "Walls", "Player", "Projectile"))) return;
+            if (!Physics.Raycast(ray, out var hit, 100f, LayerMask.GetMask("Enemy", "Walls", "Player", "Projectile", "SpecialEnemy", "Default"))) return;
         
             weaponVFX.PlayHitExplosion(hit.point);
 

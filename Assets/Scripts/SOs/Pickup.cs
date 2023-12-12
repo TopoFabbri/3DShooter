@@ -28,7 +28,7 @@ namespace SOs
             PickUp();
         }
         
-        public override void SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
+        public override SpawnableObject SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
         {
             this.settings = (PickupSettings)settings;
             
@@ -36,6 +36,8 @@ namespace SOs
             Pickup pickup = PickupManager.Instance.Spawn(gameObject, pos, rot).GetComponent<Pickup>();
             pickup.settings = (PickupSettings)settings;
             Instantiate(((PickupSettings)settings).previewModel, pickup.meshHolder);
+            
+            return pickup;
         }
     }
 }

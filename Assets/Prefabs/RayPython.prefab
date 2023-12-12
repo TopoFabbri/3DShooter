@@ -213,13 +213,12 @@ MonoBehaviour:
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   rb: {fileID: 5968411035550672685}
   boxCollider: {fileID: 4528350694815874131}
-  sprite: {fileID: 0}
   weaponVFX: {fileID: 2272584350502567794}
   bulletReloadTime: 0.1
+  minBetweenShotTime: 0.5
   dropForce: {x: 0, y: 1, z: 2}
   strength: 10
-  character: {fileID: 0}
-  damage: 50
+  damage: 10
 --- !u!114 &2272584350502567794
 MonoBehaviour:
   m_ObjectHideFlags: 0

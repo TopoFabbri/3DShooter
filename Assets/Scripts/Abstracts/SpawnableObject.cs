@@ -9,6 +9,6 @@ namespace Abstracts
     {
         protected SpawnableSettings settings;
         
-        public abstract void SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot);
+        public abstract SpawnableObject SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot);
     }
 }

@@ -1,8 +1,8 @@
 using System.Collections;
-using Character;
 using FX;
 using Patterns.SM;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Weapons
 {
@@ -20,15 +20,20 @@ namespace Weapons
         [SerializeField] protected WeaponVFX weaponVFX;
 
         [SerializeField] private float bulletReloadTime;
+        [SerializeField] private float minBetweenShotTime;
         [SerializeField] private Vector3 dropForce;
     
         private const int ChamberSize = 6;
 
+        private int bullets;
+
         public bool IsReloading { get; private set; }
+        public bool InCooldown { get; private set; }
+        
         public int Chamber 
         {
-            get => PlayerInventory.Instance.bullets;
-            private set => PlayerInventory.Instance.bullets = Mathf.Clamp(value, 0, ChamberSize);
+            get => bullets;
+            private set => bullets = Mathf.Clamp(value, 0, ChamberSize);
         }
         
         protected virtual void OnEnable()
@@ -81,6 +86,12 @@ namespace Weapons
             yield return new WaitForSeconds(time);
             IsReloading = false;
         }
+
+        private IEnumerator StopCooldownOnTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+            InCooldown = false;
+        }
     
         /// <summary>
         /// Release grabbed weapon
@@ -106,6 +117,7 @@ namespace Weapons
             boxCollider.isTrigger = true;
             hand.SetActive(true);
             transform.parent = parent;
+            transform.localPosition = Vector3.zero;
         }
 
         /// <summary>
@@ -113,9 +125,19 @@ namespace Weapons
         /// </summary>
         public virtual void Shoot()
         {
+            if (IsReloading || InCooldown) return;
+            
+            if (Chamber <= 0)
+            {
+                Reload();
+                return;
+            }
+            
             Chamber--;
         
             weaponVFX.Shoot();
+            InCooldown = true;
+            StartCoroutine(StopCooldownOnTime(minBetweenShotTime));
         }
     }
 }

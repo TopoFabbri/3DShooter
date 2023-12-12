@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Abstracts;
 using ObjectManagers;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace SOs
     /// </summary>
     public class WeaponPickup : Pickup
     {
+        public static List<WeaponPickup> weaponsInMap = new(); 
+        
         private IGunHolder gunHolder;
         
         protected override void OnCollisionEnter(Collision other)
@@ -35,6 +38,14 @@ namespace SOs
                 gunHolder.AddGun(gun);
             
             PickupManager.Instance.Recycle(gameObject);
+        }
+
+        public override SpawnableObject SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
+        {
+            WeaponPickup pickup = (WeaponPickup)base.SpawnWithSettings(settings, pos, rot);
+            
+            weaponsInMap.Add(pickup);
+            return pickup;
         }
     }
 }

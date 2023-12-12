@@ -11,8 +11,6 @@ namespace Character
         public readonly Dictionary<GameObject, int> lethals = new();
         public int currentLethal = 0;
 
-        public int bullets;
-
         public static PlayerInventory Instance
         {
             get

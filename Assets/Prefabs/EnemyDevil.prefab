@@ -9795,7 +9795,7 @@ MonoBehaviour:
   hud: {fileID: 0}
   stateId: {fileID: 11400000, guid: da717a63e3f75fe40ac6de23090481af, type: 2}
   stateMachine: {fileID: 0}
-  initialHp: 300
+  initialHp: 60
 --- !u!114 &1165602744406655865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9810,7 +9810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.5
   detectionDis: 1
-  wallsTag: Walls
 --- !u!1001 &6274736317127878824
 PrefabInstance:
   m_ObjectHideFlags: 0

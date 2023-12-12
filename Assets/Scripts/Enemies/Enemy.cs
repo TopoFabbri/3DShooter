@@ -63,11 +63,13 @@ namespace Enemies
             EnemyManager.Instance.Recycle(gameObject);
         }
 
-        public override void SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
+        public override SpawnableObject SpawnWithSettings(SpawnableSettings settings, Vector3 pos, Quaternion rot)
         {
             Enemy instanced = EnemyManager.Instance.Spawn(gameObject, pos, rot).GetComponent<Enemy>();
 
             instanced.settings = settings;
+            
+            return instanced;
         }
 
         /// <summary>
@@ -84,7 +86,6 @@ namespace Enemies
         /// <param name="dir">direction to move</param>
         protected virtual void Move(Vector3 dir)
         {
-            obstacleEvasion.CheckAndEvade();
             rb.AddForce(((EnemySettings)settings).speed * dir, ForceMode.Acceleration);
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
         }

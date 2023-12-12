@@ -20,7 +20,10 @@ namespace Character
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float grabDis = 3f;
         [SerializeField] private float barrelDis = 2f;
-        [FormerlySerializedAs("godSpeedMultiplier")] [SerializeField] private float flashSpeedMultiplier = 2f;
+
+        [FormerlySerializedAs("godSpeedMultiplier")] [SerializeField]
+        private float flashSpeedMultiplier = 2f;
+
         [SerializeField] private string gunTag = "Gun";
 
         [Header("Objects:")] [SerializeField] private Gun weapon;
@@ -31,14 +34,21 @@ namespace Character
         [SerializeField] private Id stateId;
         [SerializeField] private PlayerLethalController lethalController;
         [SerializeField] private Stats.Stats stats;
-        
+        [SerializeField] private Transform handPlace;
+
         private Vector3 movement;
         private bool paralyzed;
         private bool ads;
         private bool hasShot;
         private bool flash;
 
-        public Gun GetWeapon => weapon;
+        public Gun Weapon
+        {
+            get => weapon;
+            set => weapon = value;
+        }
+
+        public Transform GetHand => handPlace;
 
         private void OnEnable()
         {
@@ -51,10 +61,10 @@ namespace Character
             InputListener.Reload += OnReload;
             InputListener.DropLethal += OnDropLethal;
             InputListener.ChangeLethal += OnChangeLethal;
-            
+
             Cheats.GodMode += OnGodModeHandler;
             Cheats.Flash += OnFlashHandler;
-    
+
             stateMachine.Subscribe(stateId, OnUpdate);
         }
 
@@ -69,10 +79,10 @@ namespace Character
             InputListener.Reload -= OnReload;
             InputListener.DropLethal -= OnDropLethal;
             InputListener.ChangeLethal -= OnChangeLethal;
-        
+
             Cheats.GodMode -= OnGodModeHandler;
             Cheats.Flash -= OnFlashHandler;
-            
+
             stateMachine.UnSubscribe(stateId, OnUpdate);
         }
 
@@ -95,19 +105,21 @@ namespace Character
             else
                 AimStop();
 
-            if (GetWeapon)
+            if (((IGunHolder)this).Weapon)
             {
-                if (GetWeapon.IsReloading)
+                if (((IGunHolder)this).Weapon.IsReloading)
                 {
                     var trans = transform;
-                    GetWeapon.transform.position = trans.position - trans.forward;
+                    ((IGunHolder)this).Weapon.transform.position = trans.position - trans.forward;
                 }
                 else
                 {
                     Transform cameraMovementTransform;
-                    GetWeapon.transform.position =
-                        (cameraMovementTransform = cameraMovement.transform).TransformPoint(new Vector3(.26f, -.234f, .561f));
-                    GetWeapon.transform.LookAt(cameraMovement.worldMouseDir + cameraMovementTransform.up * -0.1597f);
+                    Weapon.transform.localPosition = Vector3.zero;
+                        (cameraMovementTransform = cameraMovement.transform).TransformPoint(new Vector3(.26f, -.234f,
+                            .561f));
+                    ((IGunHolder)this).Weapon.transform.LookAt(cameraMovement.worldMouseDir +
+                                                                  cameraMovementTransform.up * -0.1597f);
                 }
             }
 
@@ -122,7 +134,7 @@ namespace Character
         {
             if (paralyzed)
                 return;
-            
+
             Vector2 direction = input.Get<Vector2>();
             movement = new Vector3(direction.x, 0, direction.y) * moveSpeed;
         }
@@ -181,7 +193,7 @@ namespace Character
 
             lethalController.SpawnLethal(position + camTrans.forward * barrelDis, camTrans.rotation);
         }
-    
+
         /// <summary>
         /// Call change lethal
         /// </summary>
@@ -198,7 +210,7 @@ namespace Character
                     break;
             }
         }
-        
+
         /// <summary>
         /// Clamp x - z velocity
         /// </summary>
@@ -256,35 +268,6 @@ namespace Character
             rb.velocity = Vector3.zero;
         }
 
-        void IGunHolder.Shoot()
-        {
-            if (GetWeapon)
-                GetWeapon.GetComponent<Gun>().Shoot();
-        }
-
-        void IGunHolder.AddGun(Gun gun)
-        {
-            if (GetWeapon)
-                GetWeapon.DropGun();
-
-            gun.GrabGun(transform);
-            weapon = gun;
-        }
-
-        void IGunHolder.DropGun()
-        {
-            if (GetWeapon)
-                GetWeapon.DropGun();
-        
-            weapon = null;
-        }
-
-        void IGunHolder.Reload()
-        {
-            if (GetWeapon)
-                GetWeapon.Reload();
-        }
-
         /// <summary>
         /// Toggles god mode
         /// </summary>
@@ -292,14 +275,14 @@ namespace Character
         {
             stats.ToggleGodMode();
         }
-        
+
         /// <summary>
         /// Toggles flash
         /// </summary>
         private void OnFlashHandler()
         {
             flash = !flash;
-            
+
             if (flash)
             {
                 maxSpeed *= flashSpeedMultiplier;
@@ -317,11 +300,13 @@ namespace Character
         /// </summary>
         public void Paralyze(float time)
         {
+            rb.velocity = Vector3.zero;
+            movement = Vector3.zero;
             paralyzed = true;
             cameraMovement.Paralyzed = true;
             StartCoroutine(StopParalyzeOnTime(time));
         }
-        
+
         /// <summary>
         /// Wait for time and stop paralyze effect
         /// </summary>
@@ -330,9 +315,9 @@ namespace Character
         private IEnumerator StopParalyzeOnTime(float time)
         {
             float endTime = GameTimeCounter.Instance.GameTime + time;
-            
+
             yield return new WaitUntil(() => GameTimeCounter.Instance.GameTime > endTime);
-            
+
             cameraMovement.Paralyzed = false;
             paralyzed = false;
         }

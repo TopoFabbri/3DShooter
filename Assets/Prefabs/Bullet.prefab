@@ -50,7 +50,7 @@ MonoBehaviour:
   speed: 100
   rb: {fileID: 2769742968444626374}
   particleSys: {fileID: 8214336893352226562, guid: 931d1aa3e8ccdb84991b0199c090f3cd, type: 3}
-  damage: 50
+  damage: 10
   lifeTime: 5
   addPlayerVel: 1
 --- !u!135 &2258691574598215783

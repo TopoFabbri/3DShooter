@@ -21,31 +21,37 @@ namespace Enemies
             var leftRayOrigin = position - right * radius;
             var rightRayOrigin = position + right * radius;
 
-            var ray = new Ray(leftRayOrigin, trans.forward);
+            var ray = new Ray(transform.position, trans.forward);
             Vector3 dir;
 
+            Draw.Line(ray.origin, ray.direction, detectionDis);
             if (Physics.Raycast(ray, out var hit, detectionDis, LayerMask.GetMask("Walls")))
             {
                 dir = Vector3.Cross(Vector3.up, hit.normal);
                 transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
+                Draw.Line(transform.position, dir, 1f);
+                return;
+            }
+            
+            ray.origin = leftRayOrigin;
+            
+            Draw.Line(ray.origin, ray.direction, detectionDis);
+            if (Physics.Raycast(ray, out hit, detectionDis, LayerMask.GetMask("Walls")))
+            {
+                dir = Vector3.Cross(Vector3.up, hit.normal);
+                transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
+                Draw.Line(transform.position, dir, 1f);
                 return;
             }
 
             ray.origin = rightRayOrigin;
 
-            if (Physics.Raycast(ray, out hit, detectionDis, LayerMask.GetMask("Walls")))
-            {
-                dir = Vector3.Cross(Vector3.up, hit.normal);
-                transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
-                return;
-            }
-
-            ray.origin = transform.position;
-
+            Draw.Line(ray.origin, ray.direction, detectionDis);
+            
             if (!Physics.Raycast(ray, out hit, detectionDis, LayerMask.GetMask("Walls"))) return;
-
             dir = Vector3.Cross(Vector3.up, hit.normal);
             transform.Rotate(Vector3.down, Vector3.Angle(dir, transform.forward));
+            Draw.Line(transform.position, dir, 1f);
         }
     }
 }

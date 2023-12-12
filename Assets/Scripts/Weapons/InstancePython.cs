@@ -12,7 +12,7 @@ namespace Weapons
 
         public override void Shoot()
         {
-            if (IsReloading) return;
+            if (IsReloading || InCooldown) return;
         
             base.Shoot();
 

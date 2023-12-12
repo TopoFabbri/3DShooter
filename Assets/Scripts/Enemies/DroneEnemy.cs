@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Character;
 using GameStats;
-using ObjectManagers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -27,14 +26,12 @@ namespace Enemies
             base.OnUpdate();
 
             lineRenderer.SetPosition(0, transform.position);
-            
+
             if (Settings.disToPlayer < Vector3.Distance(transform.position, Settings.target.position))
             {
-                Vector3 direction = Settings.target.position - transform.position;
-
-                direction.y = 0;
-                direction.Normalize();
-                Move(direction);
+                transform.LookAt(Settings.target);
+                obstacleEvasion.CheckAndEvade();
+                Move(transform.forward);
             }
             else
             {
@@ -68,7 +65,7 @@ namespace Enemies
         private IEnumerator PrepareAndFire()
         {
             shooting = true;
-            
+
             rb.velocity = Vector3.zero;
 
             float shotTime = GameTimeCounter.Instance.GameTime + Settings.fireTime;
@@ -124,16 +121,16 @@ namespace Enemies
         {
             float endTime = GameTimeCounter.Instance.GameTime + Settings.showRayTime;
             float cooldownTime = GameTimeCounter.Instance.GameTime + Settings.fireCooldown;
-            
+
             yield return new WaitUntil(() => GameTimeCounter.Instance.GameTime > endTime);
             lineRenderer.startColor = Color.clear;
             lineRenderer.endColor = Color.clear;
-            
+
             cooldownFinished = false;
 
             yield return new WaitUntil(() => GameTimeCounter.Instance.GameTime > cooldownTime);
             shooting = false;
-            
+
             cooldownFinished = true;
         }
     }

@@ -51,6 +51,8 @@ namespace Weapons
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (rb.velocity.magnitude < 5f) return;
+            
             ExplosionManager.Instance.Spawn(particleSys, transform.position, Quaternion.identity);
 
             if (collision.gameObject.GetComponent<Stats.Stats>())

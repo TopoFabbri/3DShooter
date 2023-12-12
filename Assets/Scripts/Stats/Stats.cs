@@ -51,8 +51,11 @@ namespace Stats
             if (isCharacter)
             {
                 hp += LifeRegen * Time.deltaTime;
+                
+                hp = Mathf.Clamp(hp, 0f, initialHp);
+                
                 if (hud)
-                    hud.SetHealthSlider(hp);
+                    hud.SetHealthSlider(hp * 100f / initialHp);
             }
 
             hp = Mathf.Clamp(hp, 0f, initialHp);

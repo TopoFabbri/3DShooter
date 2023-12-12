@@ -18,8 +18,7 @@ namespace Enemies
             base.OnUpdate();
 
             obstacleEvasion.CheckAndEvade();
-            rb.AddForce(((EnemySettings)settings).speed * transform.forward, ForceMode.Acceleration);
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
+            Move(transform.forward);
         }
 
         private void OnCollisionStay(Collision other)

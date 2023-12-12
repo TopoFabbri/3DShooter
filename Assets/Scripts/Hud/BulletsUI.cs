@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abstracts;
 using Character;
 using Patterns.SM;
 using UnityEngine;
@@ -36,10 +37,10 @@ namespace HUD
         /// </summary>
         private void OnUpdate()
         {
-            if (player.GetWeapon)
+            if (((IGunHolder)player).Weapon)
             {
                 image.color = Color.white;
-                image.sprite = sprites[player.GetWeapon.Chamber];
+                image.sprite = sprites[((IGunHolder)player).Weapon.Chamber];
             }
             else
             {

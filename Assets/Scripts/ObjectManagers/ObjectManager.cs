@@ -23,6 +23,8 @@ namespace ObjectManagers
                 parent = new GameObject(prefab.name + "Pool");
             }
         }
+
+        private static GameObject poolContainer = new("PoolContainer");
     
         protected readonly Dictionary<string, ScenePool> pools = new();
         private GameObject parent;
@@ -32,6 +34,13 @@ namespace ObjectManagers
             this.id = id;
         }
 
+        /// <summary>
+        /// Spawn given object at given position and rotation
+        /// </summary>
+        /// <param name="obj">Object to spawn</param>
+        /// <param name="pos">Position to spawn</param>
+        /// <param name="rot">Rotation to spawn</param>
+        /// <returns>Spawned object</returns>
         public virtual GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
         {
             CheckPool(obj);
@@ -41,6 +50,7 @@ namespace ObjectManagers
             if (!objInstance)
                 return Factory.Spawn(obj, pos, rot, pools[obj.name].parent.transform);
         
+            objInstance.name = obj.name;
             objInstance.transform.position = pos;
             objInstance.transform.rotation = rot;
         
@@ -49,6 +59,10 @@ namespace ObjectManagers
             return objInstance;
         }
     
+        /// <summary>
+        /// Add object to pool and deactivate it
+        /// </summary>
+        /// <param name="obj">Object to recycle</param>
         public virtual void Recycle(GameObject obj)
         {
             string poolName = obj.name;
@@ -60,12 +74,25 @@ namespace ObjectManagers
             pools[poolName].pool.Release(obj);
         }
 
+        /// <summary>
+        /// If object pool has no parent, create it
+        /// </summary>
+        /// <param name="prefab">Object of which to create a parent</param>
         protected virtual void InitParent(GameObject prefab)
         {
             if (!parent)
                 parent = new GameObject(id + "Pool");
+            
+            if (!poolContainer)
+                poolContainer = new GameObject("PoolContainer");
+            
+            parent.transform.parent = poolContainer.transform;
         }
 
+        /// <summary>
+        /// Check if object pool already exists and if not, create it
+        /// </summary>
+        /// <param name="obj">Object to check</param>
         private void CheckPool(GameObject obj)
         {
             InitParent(obj);
