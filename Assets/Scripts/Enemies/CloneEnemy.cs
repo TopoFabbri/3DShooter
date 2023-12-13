@@ -36,12 +36,12 @@ namespace Enemies
         /// </summary>
         private void LookForWeapon()
         {
-            if (WeaponPickup.weaponsInMap.Count == 0)
+            if (WeaponPickup.WeaponsInMap.Count == 0)
                 return;
 
             Transform closestWeapon = null;
             
-            foreach (WeaponPickup weaponPickup in WeaponPickup.weaponsInMap)
+            foreach (WeaponPickup weaponPickup in WeaponPickup.WeaponsInMap)
             {
                 if (!weaponPickup.gameObject.activeSelf)
                     continue;

@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 namespace Level
 {
+    /// <summary>
+    /// Load scenes by scene id
+    /// </summary>
     public class SceneLoader : MonoBehaviour
     {
         [Serializable] private struct SceneWithBuildIndex
@@ -21,6 +24,7 @@ namespace Level
         public static event Action<SceneId> OnSceneLoaded;
 
         private static SceneLoader instance;
+        [SerializeField] private string stopAllSoundsEvent = "StopAll";
 
         public static SceneLoader Instance
         {
@@ -55,6 +59,10 @@ namespace Level
                 instance = null;
         }
 
+        /// <summary>
+        /// Loads scene by SceneId
+        /// </summary>
+        /// <param name="scene">SceneId of the scene to load</param>
         public void LoadScene(SceneId scene)
         {
             foreach (var sceneWithIndex in scenesIndex)
@@ -63,6 +71,8 @@ namespace Level
 
                 OnSceneLoaded?.Invoke(scene);
                 currentScene = scene;
+
+                AkSoundEngine.PostEvent(stopAllSoundsEvent, gameObject);
                 
                 SceneManager.LoadScene(sceneWithIndex.buildIndex);
                 break;

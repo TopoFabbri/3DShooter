@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{8B212637-455C-413A-B92C-FAD1345253D4}" SchemaVersion="119">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{8B212637-455C-413A-B92C-FAD1345253D4}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{8B212637-455C-413A-B92C-FAD1345253D4}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="PlayShoot" ID="{F73C1D90-9F92-4A23-A6B3-3ABB1B979E2F}">
+					<ChildrenList>
+						<Action Name="" ID="{DEFF7EDE-0256-4884-AE87-C0083C6204FB}" ShortID="390573548">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Shoot" ID="{484B11CF-49E8-484C-B78F-ACF63F00E1F7}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayReload" ID="{39A8F046-8C73-40CF-A63C-E129D8D81F6C}">
+					<ChildrenList>
+						<Action Name="" ID="{17393B97-22B3-4F81-AD21-CC955B876C49}" ShortID="346763975">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Reload" ID="{41230536-3BFE-4187-A68D-94E3D70A19D4}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayExplosion" ID="{D506DBA4-010B-4A56-92D0-1AB9B3D74A26}">
+					<ChildrenList>
+						<Action Name="" ID="{736B013C-B43F-43D0-8082-DB8141AB6C86}" ShortID="145324407">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Explosion" ID="{7B06210A-0DAF-462F-8D2D-58EF2DE7FB7A}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayStep" ID="{A32C322D-9F28-4930-88B3-FB2B4834D215}">
+					<ChildrenList>
+						<Action Name="" ID="{D34FF06C-327A-4B8C-8295-8313FC5374C0}" ShortID="587542663">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Step" ID="{F2C52AA9-C861-4735-8AC1-CCF38F0AC0C4}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayRicochet" ID="{27EC966F-9F8E-4309-824D-390C70570035}">
+					<ChildrenList>
+						<Action Name="" ID="{C8D3D1E6-CFED-45E5-86B9-44E77C950F1C}" ShortID="610466961">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ricochet" ID="{635580F3-23A7-4EFC-BEC5-934F38390024}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayDroneLoop" ID="{A00A4AA0-016A-42BC-B976-FF91485EA299}">
+					<ChildrenList>
+						<Action Name="" ID="{52453010-AA14-41E5-B3D9-538266AB1964}" ShortID="527760919">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Drone" ID="{6962D10C-7850-4F66-866A-F067A9B8019B}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopDroneLoop" ID="{0816BFEB-2539-4A02-A184-9ACC25162273}">
+					<ChildrenList>
+						<Action Name="" ID="{CB7DE447-D181-483C-9006-ADB40CA9AFD8}" ShortID="523011727">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Drone" ID="{6962D10C-7850-4F66-866A-F067A9B8019B}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PlayEnemyLoop" ID="{7F74EEC5-59E8-40FC-B124-885509B258B8}">
+					<ChildrenList>
+						<Action Name="" ID="{53F5FB8F-6894-4A4A-AD44-56FB99C8D0E9}" ShortID="787465646">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnemySoundSeq" ID="{004D9662-2F06-4D19-A5E8-3B1E5D525C98}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopEnemyLoop" ID="{AE42F151-A49D-42E4-8D58-D239CCF6139C}">
+					<ChildrenList>
+						<Action Name="" ID="{6DBE58ED-DCE8-433C-9D6C-EE5E6D0AF2E5}" ShortID="473048101">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="EnemySoundSeq" ID="{004D9662-2F06-4D19-A5E8-3B1E5D525C98}" WorkUnitID="{04EAF5A3-8092-4CE2-A4A4-3D9D9B1BBADB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopAll" ID="{4B23E5C1-B86F-4A3F-86BE-DA14C581EA7F}">
+					<ChildrenList>
+						<Action Name="" ID="{5A0E3861-86BD-4DC6-9D7B-ACB3E8FB2B5E}" ShortID="135188842">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="3"/>
+								<Property Name="Scope" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList/>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

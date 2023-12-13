@@ -15,6 +15,9 @@ MonoBehaviour:
   speed: 20
   maxSpeed: 2
   characterName: Character
+  score: 10
+  playSoundEvent: PlayDroneLoop
+  stopSoundEvent: StopDroneLoop
   target: {fileID: 0}
   disToPlayer: 10
   minMoveTime: 1
@@ -22,3 +25,5 @@ MonoBehaviour:
   flyHeight: 3
   fireCooldown: 5
   fireTime: 1
+  paralyzeTime: 3
+  showRayTime: 1

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4804689210924833614, guid: 0195b081a17de0f43a6c3b33e24e9b44, type: 3}
       propertyPath: m_Name
-      value: BombPickup
+      value: BarrelPickup
       objectReference: {fileID: 0}
     - target: {fileID: 5366599686218673470, guid: 0195b081a17de0f43a6c3b33e24e9b44, type: 3}
       propertyPath: m_RootOrder
@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7478471029318055810, guid: 0195b081a17de0f43a6c3b33e24e9b44, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
+      value: 0.8608516
       objectReference: {fileID: 0}
     - target: {fileID: 7478471029318055810, guid: 0195b081a17de0f43a6c3b33e24e9b44, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r

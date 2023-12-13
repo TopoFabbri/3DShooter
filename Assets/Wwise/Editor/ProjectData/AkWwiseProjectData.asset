@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 408e4c00ecafb94398bbc312a1a3e1d7
     GuidInternal: 
-    m_lastTime: -8584992086043850651
+    m_lastTime: -8584991830411055541
     List:
     - name: Soundbank
       guid: 97d136e175b5c64e845bc274f728db27
@@ -94,8 +94,178 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 3726218b5c453a41b92cfad1345253d4
     GuidInternal: 
-    m_lastTime: -8584992116249188489
-    List: []
+    m_lastTime: -8584991814628755803
+    List:
+    - name: PlayDroneLoop
+      guid: a04a0aa06a01bc42b976ff91485ea299
+      id: 1140012509
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayDroneLoop
+        ObjectType: 3
+        guid: a04a0aa06a01bc42b976ff91485ea299
+      Path: Events\Default Work Unit\PlayDroneLoop
+      maxAttenuation: 100
+      maxDuration: -1
+      minDuration: -1
+    - name: PlayEnemyLoop
+      guid: c5ee747fe859fc40b124885509b258b8
+      id: 759283899
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayEnemyLoop
+        ObjectType: 3
+        guid: c5ee747fe859fc40b124885509b258b8
+      Path: Events\Default Work Unit\PlayEnemyLoop
+      maxAttenuation: 100
+      maxDuration: -1
+      minDuration: -1
+    - name: PlayExplosion
+      guid: a4db06d50b01564a92d01ab9b3d74a26
+      id: 182906760
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayExplosion
+        ObjectType: 3
+        guid: a4db06d50b01564a92d01ab9b3d74a26
+      Path: Events\Default Work Unit\PlayExplosion
+      maxAttenuation: 100
+      maxDuration: 2.4581597
+      minDuration: 2.4581597
+    - name: PlayReload
+      guid: 46f0a839738ccf40a63ce129d8d81f6c
+      id: 785535932
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayReload
+        ObjectType: 3
+        guid: 46f0a839738ccf40a63ce129d8d81f6c
+      Path: Events\Default Work Unit\PlayReload
+      maxAttenuation: 100
+      maxDuration: 1.2745391
+      minDuration: 1.2745391
+    - name: PlayRicochet
+      guid: 6f96ec278e9f0943824d390c70570035
+      id: 4105725876
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayRicochet
+        ObjectType: 3
+        guid: 6f96ec278e9f0943824d390c70570035
+      Path: Events\Default Work Unit\PlayRicochet
+      maxAttenuation: 0
+      maxDuration: 1.5921673
+      minDuration: 0.7662663
+    - name: PlayShoot
+      guid: 901d3cf7929f234aa6b33abb1b979e2f
+      id: 1489638472
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayShoot
+        ObjectType: 3
+        guid: 901d3cf7929f234aa6b33abb1b979e2f
+      Path: Events\Default Work Unit\PlayShoot
+      maxAttenuation: 100
+      maxDuration: 1.239699
+      minDuration: 1.239699
+    - name: PlayStep
+      guid: 2d322ca3289f304988b3fb2b4834d215
+      id: 440472397
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: PlayStep
+        ObjectType: 3
+        guid: 2d322ca3289f304988b3fb2b4834d215
+      Path: Events\Default Work Unit\PlayStep
+      maxAttenuation: 0
+      maxDuration: 0.36740902
+      minDuration: 0.31417522
+    - name: StopAll
+      guid: c1e5234b6fb83f4a86beda14c581ea7f
+      id: 3086540886
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: StopAll
+        ObjectType: 3
+        guid: c1e5234b6fb83f4a86beda14c581ea7f
+      Path: Events\Default Work Unit\StopAll
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: StopDroneLoop
+      guid: ebbf16083925024aa1849acc25162273
+      id: 1302182243
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: StopDroneLoop
+        ObjectType: 3
+        guid: ebbf16083925024aa1849acc25162273
+      Path: Events\Default Work Unit\StopDroneLoop
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: StopEnemyLoop
+      guid: 51f142ae9da4e4428d58d239ccf6139c
+      id: 888375337
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 3726218b5c453a41b92cfad1345253d4
+      - ElementName: StopEnemyLoop
+        ObjectType: 3
+        guid: 51f142ae9da4e4428d58d239ccf6139c
+      Path: Events\Default Work Unit\StopEnemyLoop
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -153,8 +323,8 @@ MonoBehaviour:
     m_lastTime: -8584992116248958513
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
-  AutoSyncSelection: 0
+  ExpandedWaapiItemIds: 050000000600000007000000080000001200000013000000
+  AutoSyncSelection: 1
   autoPopulateEnabled: 1
   currentDataSource: 0
   CurrentPluginConfig: 

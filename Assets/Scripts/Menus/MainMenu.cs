@@ -1,3 +1,4 @@
+using Level;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -28,9 +29,9 @@ namespace Menus
         /// Load a scene from number
         /// </summary>
         /// <param name="scene"></param>
-        public void LoadScene(int scene)
+        public void LoadScene(SceneId scene)
         {
-            SceneManager.LoadScene(scene);
+            SceneLoader.Instance.LoadScene(scene);
         }
 
         /// <summary>

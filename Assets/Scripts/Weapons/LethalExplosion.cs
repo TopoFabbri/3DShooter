@@ -12,9 +12,11 @@ namespace Weapons
         [SerializeField] private float duration = 3f;
         [SerializeField] private float damage = 20f;
         [SerializeField] private float forceWave = 10f;
+        [SerializeField] private string soundEvent = "PlayExplosion";
 
         private void OnEnable()
         {
+            AkSoundEngine.PostEvent(soundEvent, gameObject);
             StartCoroutine(DestroyAfterTime(duration));
         }
 

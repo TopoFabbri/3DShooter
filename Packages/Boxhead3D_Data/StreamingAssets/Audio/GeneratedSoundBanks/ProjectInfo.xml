@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="3DShooter_WwiseProject" GUID="{8A3B3B73-D867-49B0-BC26-8FAB12492C91}" Generator="2023.1.0.8367"/>
+	<CacheRoot>../../../../3DShooter_WwiseProject/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Mac" GUID="{613C443E-873C-4D55-B1F7-B3FFA7D0AAE3}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="../../../../3DShooter_WwiseProject/GeneratedSoundBanks/Mac"/>
+		<Platform Name="Windows" GUID="{0F1D9B24-183B-4966-B8F7-AAD35C86997B}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="../../../../3DShooter_WwiseProject/GeneratedSoundBanks/Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{8B219E26-64A5-433C-B070-54CC26992145}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{3F901AE9-518B-17D2-A72E-7ACC6AD55174}</FileHash>
+</ProjectInfo>

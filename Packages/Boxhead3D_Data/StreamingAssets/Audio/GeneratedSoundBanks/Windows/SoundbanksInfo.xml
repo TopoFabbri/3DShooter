@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B6CBD692-12EC-CDBA-0932-48F63C40C91F}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="1661994096" Type="User" Language="SFX" Hash="{FC9F57CE-F8D2-8AC9-E32C-1E35D7B9FFA6}">
+			<ShortName>Soundbank</ShortName>
+			<Path>Soundbank.bnk</Path>
+			<Media>
+				<File Id="54207330" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps.wav</ShortName>
+					<CachePath>SFX/Footsteps_A1F5FEF4.wem</CachePath>
+				</File>
+				<File Id="60364992" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_17986E01.wem</CachePath>
+				</File>
+				<File Id="88252556" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_1CE0A9AC.wem</CachePath>
+				</File>
+				<File Id="99242701" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Shoot.wav</ShortName>
+					<CachePath>SFX/Shoot_85B060C8.wem</CachePath>
+				</File>
+				<File Id="100360240" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_3DD7DF0A.wem</CachePath>
+				</File>
+				<File Id="116127922" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_1FB8AB11.wem</CachePath>
+				</File>
+				<File Id="199293576" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_C9552B6E.wem</CachePath>
+				</File>
+				<File Id="297386072" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_969B0E62.wem</CachePath>
+				</File>
+				<File Id="309338266" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_5FAE4CFB.wem</CachePath>
+				</File>
+				<File Id="351790009" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_04D8E9A8.wem</CachePath>
+				</File>
+				<File Id="382549365" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_477BBBD2.wem</CachePath>
+				</File>
+				<File Id="382952839" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Reload.wav</ShortName>
+					<CachePath>SFX/Reload_4CF9ACAB.wem</CachePath>
+				</File>
+				<File Id="394961159" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_171841B0.wem</CachePath>
+				</File>
+				<File Id="489040262" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drone.wav</ShortName>
+					<CachePath>SFX/Drone_0A4B38D4.wem</CachePath>
+				</File>
+				<File Id="505396802" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps.wav</ShortName>
+					<CachePath>SFX/Footsteps_EAD89976.wem</CachePath>
+				</File>
+				<File Id="518217940" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_D095055C.wem</CachePath>
+				</File>
+				<File Id="543340648" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_7972DA41.wem</CachePath>
+				</File>
+				<File Id="656159997" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Explosion.wav</ShortName>
+					<CachePath>SFX/Explosion_ACD9D946.wem</CachePath>
+				</File>
+				<File Id="748750257" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps.wav</ShortName>
+					<CachePath>SFX/Footsteps_8CA8A633.wem</CachePath>
+				</File>
+				<File Id="789132094" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_103919A1.wem</CachePath>
+				</File>
+				<File Id="880457859" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps.wav</ShortName>
+					<CachePath>SFX/Footsteps_CB7F170C.wem</CachePath>
+				</File>
+				<File Id="977668185" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps.wav</ShortName>
+					<CachePath>SFX/Footsteps_626EC0A2.wem</CachePath>
+				</File>
+				<File Id="993520083" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemies.wav</ShortName>
+					<CachePath>SFX/Enemies_B766CACC.wem</CachePath>
+				</File>
+				<File Id="1042573484" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Drone.wav</ShortName>
+					<CachePath>SFX/Drone_C712825A.wem</CachePath>
+				</File>
+				<File Id="1072330858" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ricochet.wav</ShortName>
+					<CachePath>SFX/Ricochet_15C44B71.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="1140012509" Name="PlayDroneLoop" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="489040262"/>
+						<MediaRef Id="1042573484"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="759283899" Name="PlayEnemyLoop" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="60364992"/>
+						<MediaRef Id="297386072"/>
+						<MediaRef Id="309338266"/>
+						<MediaRef Id="382549365"/>
+						<MediaRef Id="518217940"/>
+						<MediaRef Id="789132094"/>
+						<MediaRef Id="993520083"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="182906760" Name="PlayExplosion" MaxAttenuation="100" DurationType="OneShot" DurationMin="2.4581597" DurationMax="2.4581597">
+					<MediaRefs>
+						<MediaRef Id="656159997"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="785535932" Name="PlayReload" MaxAttenuation="100" DurationType="OneShot" DurationMin="1.2745391" DurationMax="1.2745391">
+					<MediaRefs>
+						<MediaRef Id="382952839"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4105725876" Name="PlayRicochet" DurationType="OneShot" DurationMin="0.7662663" DurationMax="1.5921673">
+					<MediaRefs>
+						<MediaRef Id="88252556"/>
+						<MediaRef Id="100360240"/>
+						<MediaRef Id="116127922"/>
+						<MediaRef Id="199293576"/>
+						<MediaRef Id="351790009"/>
+						<MediaRef Id="394961159"/>
+						<MediaRef Id="543340648"/>
+						<MediaRef Id="1072330858"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1489638472" Name="PlayShoot" MaxAttenuation="100" DurationType="OneShot" DurationMin="1.239699" DurationMax="1.239699">
+					<MediaRefs>
+						<MediaRef Id="99242701"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="440472397" Name="PlayStep" DurationType="OneShot" DurationMin="0.31417522" DurationMax="0.36740902">
+					<MediaRefs>
+						<MediaRef Id="54207330"/>
+						<MediaRef Id="505396802"/>
+						<MediaRef Id="748750257"/>
+						<MediaRef Id="880457859"/>
+						<MediaRef Id="977668185"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1302182243" Name="StopDroneLoop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="888375337" Name="StopEnemyLoop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{5EB244C7-74AC-696D-33DC-F8DA85C4F03F}</FileHash>
+</SoundBanksInfo>

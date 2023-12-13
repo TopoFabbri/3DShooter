@@ -11,7 +11,7 @@ namespace SOs
     /// </summary>
     public class WeaponPickup : Pickup
     {
-        public static List<WeaponPickup> weaponsInMap = new(); 
+        public static readonly List<WeaponPickup> WeaponsInMap = new(); 
         
         private IGunHolder gunHolder;
         
@@ -44,8 +44,13 @@ namespace SOs
         {
             WeaponPickup pickup = (WeaponPickup)base.SpawnWithSettings(settings, pos, rot);
             
-            weaponsInMap.Add(pickup);
+            WeaponsInMap.Add(pickup);
             return pickup;
+        }
+
+        private void OnDestroy()
+        {
+            WeaponsInMap.Remove(this);
         }
     }
 }

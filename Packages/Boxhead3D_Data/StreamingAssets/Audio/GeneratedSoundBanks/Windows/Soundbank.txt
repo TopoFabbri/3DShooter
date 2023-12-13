@@ -1,0 +1,38 @@
+Event	ID	Name			Wwise Object Path	Notes
+	182906760	PlayExplosion			\Default Work Unit\PlayExplosion	
+	440472397	PlayStep			\Default Work Unit\PlayStep	
+	759283899	PlayEnemyLoop			\Default Work Unit\PlayEnemyLoop	
+	785535932	PlayReload			\Default Work Unit\PlayReload	
+	888375337	StopEnemyLoop			\Default Work Unit\StopEnemyLoop	
+	1140012509	PlayDroneLoop			\Default Work Unit\PlayDroneLoop	
+	1302182243	StopDroneLoop			\Default Work Unit\StopDroneLoop	
+	1489638472	PlayShoot			\Default Work Unit\PlayShoot	
+	4105725876	PlayRicochet			\Default Work Unit\PlayRicochet	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	54207330	Footsteps_04	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Footsteps_A1F5FEF4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Step\Footsteps_04		55516
+	60364992	Enemies_05	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_17986E01.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemySound\Enemies_05		1481120
+	88252556	Ricochet_01	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_1CE0A9AC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_01		191640
+	99242701	Shoot	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Shoot_85B060C8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Shoot		218776
+	100360240	Ricochet_03	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_3DD7DF0A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_03		135264
+	116127922	Ricochet_04	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_1FB8AB11.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_04		205808
+	199293576	Ricochet	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_C9552B6E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet		243024
+	297386072	Enemies_04	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_969B0E62.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemySound\Enemies_04		683480
+	309338266	Enemies_02	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_5FAE4CFB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemySound\Enemies_02		570544
+	351790009	Ricochet_02	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_04D8E9A8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_02		158880
+	382549365	Enemies_03	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_477BBBD2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemySound\Enemies_03		354168
+	382952839	Reload	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Reload_4CF9ACAB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Reload		224924
+	394961159	Ricochet_05	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_171841B0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_05		236012
+	489040262	Drone	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Drone_0A4B38D4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\Drone\Drone		2461864
+	505396802	Footsteps_03	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Footsteps_EAD89976.wem		\Actor-Mixer Hierarchy\Default Work Unit\Step\Footsteps_03		56948
+	518217940	EnemiesSilence	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_D095055C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemiesSilence		638036
+	543340648	Ricochet_06	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_7972DA41.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_06		180904
+	656159997	Explosion	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Explosion_ACD9D946.wem		\Actor-Mixer Hierarchy\Default Work Unit\Explosion		433716
+	748750257	Footsteps_02	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Footsteps_8CA8A633.wem		\Actor-Mixer Hierarchy\Default Work Unit\Step\Footsteps_02		64632
+	789132094	Enemies	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_103919A1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemySound\Enemies		1276324
+	880457859	Footsteps_01	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Footsteps_CB7F170C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Step\Footsteps_01		61036
+	977668185	Footsteps	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Footsteps_626EC0A2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Step\Footsteps		64908
+	993520083	Enemies_01	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Enemies_B766CACC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\EnemySoundSeq\EnemySound\Enemies_01		856968
+	1042573484	Drone_01	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Drone_C712825A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy\Drone\Drone_01		2564516
+	1072330858	Ricochet_07	D:\Da Archive\Unity Projects\3DShooter\3DShooter_WwiseProject\.cache\Windows\SFX\Ricochet_15C44B71.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ricochet\Ricochet_07		280952
+

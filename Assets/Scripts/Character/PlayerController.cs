@@ -321,5 +321,13 @@ namespace Character
             cameraMovement.Paralyzed = false;
             paralyzed = false;
         }
+
+        /// <summary>
+        /// Play step sound
+        /// </summary>
+        public void Step()
+        {
+            AkSoundEngine.PostEvent("PlayStep", gameObject);
+        }
     }
 }

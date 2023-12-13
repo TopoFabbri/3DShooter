@@ -217,6 +217,8 @@ MonoBehaviour:
   bulletReloadTime: 0.1
   minBetweenShotTime: 0.5
   dropForce: {x: 0, y: 1, z: 2}
+  shootEvent: PlayShoot
+  reloadEvent: PlayReload
   strength: 10
   damage: 10
 --- !u!114 &2272584350502567794

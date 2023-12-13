@@ -22,6 +22,9 @@ namespace Weapons
         [SerializeField] private float bulletReloadTime;
         [SerializeField] private float minBetweenShotTime;
         [SerializeField] private Vector3 dropForce;
+        
+        [SerializeField] private string shootEvent = "PlayShoot";
+        [SerializeField] private string reloadEvent = "PlayReload";
     
         private const int ChamberSize = 6;
 
@@ -70,6 +73,8 @@ namespace Weapons
         {
             if (IsReloading) return;
     
+            AkSoundEngine.PostEvent(reloadEvent, gameObject);
+            
             IsReloading = true;
             StartCoroutine(StopReloadOnTime(bulletReloadTime * (ChamberSize - Chamber)));
         
@@ -135,6 +140,7 @@ namespace Weapons
             
             Chamber--;
         
+            AkSoundEngine.PostEvent(shootEvent, gameObject);
             weaponVFX.Shoot();
             InCooldown = true;
             StartCoroutine(StopCooldownOnTime(minBetweenShotTime));

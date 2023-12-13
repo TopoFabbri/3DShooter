@@ -1,5 +1,6 @@
 using Abstracts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SOs
 {
@@ -10,6 +11,8 @@ namespace SOs
         public float maxSpeed = 2f;
         public string characterName = "Character";
         public int score = 10;
+        [FormerlySerializedAs("playSoundEventName")] public string playSoundEvent = "PlayEnemyLoop";
+        [FormerlySerializedAs("stopSoundEventName")] public string stopSoundEvent = "StopEnemyLoop";
 
         public Transform target;
     }

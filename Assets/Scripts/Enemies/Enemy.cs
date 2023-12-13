@@ -59,6 +59,8 @@ namespace Enemies
         /// </summary>
         private void DieHandler()
         {
+            AkSoundEngine.PostEvent(Settings.stopSoundEvent, gameObject);
+
             OnEnemyDie?.Invoke(Settings.score);
             EnemyManager.Instance.Recycle(gameObject);
         }
@@ -68,6 +70,7 @@ namespace Enemies
             Enemy instanced = EnemyManager.Instance.Spawn(gameObject, pos, rot).GetComponent<Enemy>();
 
             instanced.settings = settings;
+            AkSoundEngine.PostEvent(instanced.Settings.playSoundEvent, instanced.gameObject);
             
             return instanced;
         }
@@ -88,6 +91,11 @@ namespace Enemies
         {
             rb.AddForce(((EnemySettings)settings).speed * dir, ForceMode.Acceleration);
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, ((EnemySettings)settings).maxSpeed);
+        }
+
+        private void OnDestroy()
+        {
+            AkSoundEngine.PostEvent(Settings.stopSoundEvent, gameObject);
         }
     }
 }

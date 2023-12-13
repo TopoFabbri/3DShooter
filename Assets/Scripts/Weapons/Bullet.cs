@@ -15,6 +15,7 @@ namespace Weapons
 
         [SerializeField] private GameObject particleSys;
         [SerializeField] private float damage = 50f;
+        [SerializeField] private int maxCollisions = 3;
 
         [FormerlySerializedAs("life")] [SerializeField]
         private float lifeTime = 5f;
@@ -23,6 +24,7 @@ namespace Weapons
 
         private Transform character;
         private const string CharacterObjectName = "Character";
+        private int collisions;
 
 
         private void OnEnable()
@@ -51,12 +53,17 @@ namespace Weapons
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (rb.velocity.magnitude < 5f) return;
+            collisions++;
             
+            AkSoundEngine.PostEvent("PlayRicochet", gameObject);
             ExplosionManager.Instance.Spawn(particleSys, transform.position, Quaternion.identity);
 
             if (collision.gameObject.GetComponent<Stats.Stats>())
                 collision.gameObject.GetComponent<Stats.Stats>().LoseLife(damage);
+            
+            
+            if (collisions >= maxCollisions)
+                BulletManager.Instance.Recycle(gameObject);
         }
     }
 }
