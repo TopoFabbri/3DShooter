@@ -16,6 +16,9 @@ namespace Character
             get => PlayerInventory.Instance.currentLethal;
             set
             {
+                if (PlayerInventory.Instance.lethals.Count == 0)
+                    return;
+                
                 while (value >= PlayerInventory.Instance.lethals.Count)
                     value -= PlayerInventory.Instance.lethals.Count;
             

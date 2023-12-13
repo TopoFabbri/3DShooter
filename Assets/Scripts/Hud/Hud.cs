@@ -16,11 +16,12 @@ namespace HUD
     {
         [SerializeField] private Slider healthSlider;
         [SerializeField] private TextMeshProUGUI fpsText;
-        [FormerlySerializedAs("time")] [SerializeField] private TextMeshProUGUI timeText;
+        [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI dropLethalText;
         [SerializeField] private TextMeshProUGUI inventoryText;
         [SerializeField] private GameObject pickupText;
+        [SerializeField] private GameObject paralyzedText;
         [SerializeField] private GameTimeCounter gameTimer;
         [SerializeField] private float barrelTutorialMaxTime = 10f;
         
@@ -70,6 +71,17 @@ namespace HUD
         public void SetPickupTextActive(bool isActive)
         {
             pickupText.SetActive(isActive && barrelTutorialCompleted);
+        }
+        
+        /// <summary>
+        /// Show or hide 'paralyzed' text
+        /// </summary>
+        /// <param name="isParalyzed">True to show false to hide</param>
+        public void SetParalyzedHud(bool isParalyzed)
+        {
+            pickupText.SetActive(!isParalyzed);
+            barrelTutorialCompleted = isParalyzed || barrelTutorialCompleted;
+            paralyzedText.SetActive(isParalyzed);
         }
 
         /// <summary>

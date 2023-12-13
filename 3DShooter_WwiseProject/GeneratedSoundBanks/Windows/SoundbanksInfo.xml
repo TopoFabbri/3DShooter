@@ -22,109 +22,109 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="1661994096" Type="User" Language="SFX" Hash="{647578D5-F56D-1E72-BFE6-E4B4D0711BC2}">
+		<SoundBank Id="1661994096" Type="User" Language="SFX" Hash="{0BA228D5-F776-241D-ACE6-F996E584B2CE}">
 			<ShortName>Soundbank</ShortName>
 			<Path>Soundbank.bnk</Path>
 			<Media>
 				<File Id="54207330" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps.wav</ShortName>
-					<CachePath>SFX/Footsteps_192A3193.wem</CachePath>
+					<CachePath>SFX/Footsteps_A1F5FEF4.wem</CachePath>
 				</File>
 				<File Id="60364992" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_4256A9F5.wem</CachePath>
+					<CachePath>SFX/Enemies_17986E01.wem</CachePath>
 				</File>
 				<File Id="88252556" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_D30F0920.wem</CachePath>
+					<CachePath>SFX/Ricochet_1CE0A9AC.wem</CachePath>
 				</File>
 				<File Id="99242701" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Shoot.wav</ShortName>
-					<CachePath>SFX/Shoot_C4DA1070.wem</CachePath>
+					<CachePath>SFX/Shoot_85B060C8.wem</CachePath>
 				</File>
 				<File Id="100360240" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_23C57585.wem</CachePath>
+					<CachePath>SFX/Ricochet_3DD7DF0A.wem</CachePath>
 				</File>
 				<File Id="116127922" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_4062C221.wem</CachePath>
+					<CachePath>SFX/Ricochet_1FB8AB11.wem</CachePath>
 				</File>
 				<File Id="199293576" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_9259AC59.wem</CachePath>
+					<CachePath>SFX/Ricochet_C9552B6E.wem</CachePath>
 				</File>
 				<File Id="297386072" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_BE1638D3.wem</CachePath>
+					<CachePath>SFX/Enemies_969B0E62.wem</CachePath>
 				</File>
 				<File Id="309338266" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_CA2744C6.wem</CachePath>
+					<CachePath>SFX/Enemies_5FAE4CFB.wem</CachePath>
 				</File>
 				<File Id="351790009" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_EDB31A2E.wem</CachePath>
+					<CachePath>SFX/Ricochet_04D8E9A8.wem</CachePath>
 				</File>
 				<File Id="382549365" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_9479945E.wem</CachePath>
+					<CachePath>SFX/Enemies_477BBBD2.wem</CachePath>
 				</File>
 				<File Id="382952839" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Reload.wav</ShortName>
-					<CachePath>SFX/Reload_FEEB380D.wem</CachePath>
+					<CachePath>SFX/Reload_4CF9ACAB.wem</CachePath>
 				</File>
 				<File Id="394961159" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_D69B6E1D.wem</CachePath>
+					<CachePath>SFX/Ricochet_171841B0.wem</CachePath>
 				</File>
 				<File Id="489040262" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Drone.wav</ShortName>
-					<CachePath>SFX/Drone_629564B4.wem</CachePath>
+					<CachePath>SFX/Drone_0A4B38D4.wem</CachePath>
 				</File>
 				<File Id="505396802" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps.wav</ShortName>
-					<CachePath>SFX/Footsteps_4E03B75C.wem</CachePath>
+					<CachePath>SFX/Footsteps_EAD89976.wem</CachePath>
 				</File>
 				<File Id="518217940" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_5E8BF11A.wem</CachePath>
+					<CachePath>SFX/Enemies_D095055C.wem</CachePath>
 				</File>
 				<File Id="543340648" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_BD6C4C62.wem</CachePath>
+					<CachePath>SFX/Ricochet_7972DA41.wem</CachePath>
 				</File>
 				<File Id="656159997" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Explosion.wav</ShortName>
-					<CachePath>SFX/Explosion_BFDB95C2.wem</CachePath>
+					<CachePath>SFX/Explosion_ACD9D946.wem</CachePath>
 				</File>
 				<File Id="748750257" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps.wav</ShortName>
-					<CachePath>SFX/Footsteps_16B6870E.wem</CachePath>
+					<CachePath>SFX/Footsteps_8CA8A633.wem</CachePath>
 				</File>
 				<File Id="789132094" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_E529CDDD.wem</CachePath>
+					<CachePath>SFX/Enemies_103919A1.wem</CachePath>
 				</File>
 				<File Id="880457859" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps.wav</ShortName>
-					<CachePath>SFX/Footsteps_22AF5A9E.wem</CachePath>
+					<CachePath>SFX/Footsteps_CB7F170C.wem</CachePath>
 				</File>
 				<File Id="977668185" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps.wav</ShortName>
-					<CachePath>SFX/Footsteps_731CC0AB.wem</CachePath>
+					<CachePath>SFX/Footsteps_626EC0A2.wem</CachePath>
 				</File>
 				<File Id="993520083" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemies.wav</ShortName>
-					<CachePath>SFX/Enemies_A483BCBD.wem</CachePath>
+					<CachePath>SFX/Enemies_B766CACC.wem</CachePath>
 				</File>
 				<File Id="1042573484" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Drone.wav</ShortName>
-					<CachePath>SFX/Drone_26BFBD57.wem</CachePath>
+					<CachePath>SFX/Drone_C712825A.wem</CachePath>
 				</File>
 				<File Id="1072330858" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ricochet.wav</ShortName>
-					<CachePath>SFX/Ricochet_1C504BE5.wem</CachePath>
+					<CachePath>SFX/Ricochet_15C44B71.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -187,5 +187,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5A1B1904-518C-98F7-3004-ED91B9D98F5D}</FileHash>
+	<FileHash>{5BB2E5C4-37BB-92B1-E41B-58BB1333E981}</FileHash>
 </SoundBanksInfo>

@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID PLAYRICOCHET = 4105725876U;
         static const AkUniqueID PLAYSHOOT = 1489638472U;
         static const AkUniqueID PLAYSTEP = 440472397U;
+        static const AkUniqueID STOPALL = 3086540886U;
         static const AkUniqueID STOPDRONELOOP = 1302182243U;
         static const AkUniqueID STOPENEMYLOOP = 888375337U;
     } // namespace EVENTS

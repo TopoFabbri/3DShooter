@@ -22,7 +22,7 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="1661994096" Type="User" Language="SFX" Hash="{FC9F57CE-F8D2-8AC9-E32C-1E35D7B9FFA6}">
+		<SoundBank Id="1661994096" Type="User" Language="SFX" Hash="{0BA228D5-F776-241D-ACE6-F996E584B2CE}">
 			<ShortName>Soundbank</ShortName>
 			<Path>Soundbank.bnk</Path>
 			<Media>
@@ -181,10 +181,11 @@
 						<MediaRef Id="977668185"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3086540886" Name="StopAll" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="1302182243" Name="StopDroneLoop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="888375337" Name="StopEnemyLoop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5EB244C7-74AC-696D-33DC-F8DA85C4F03F}</FileHash>
+	<FileHash>{5BB2E5C4-37BB-92B1-E41B-58BB1333E981}</FileHash>
 </SoundBanksInfo>

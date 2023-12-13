@@ -304,6 +304,7 @@ namespace Character
             movement = Vector3.zero;
             paralyzed = true;
             cameraMovement.Paralyzed = true;
+            hud.SetParalyzedHud(true);
             StartCoroutine(StopParalyzeOnTime(time));
         }
 
@@ -320,6 +321,7 @@ namespace Character
 
             cameraMovement.Paralyzed = false;
             paralyzed = false;
+            hud.SetParalyzedHud(false);
         }
 
         /// <summary>

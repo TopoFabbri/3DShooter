@@ -7,6 +7,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1140012509	PlayDroneLoop			\Default Work Unit\PlayDroneLoop	
 	1302182243	StopDroneLoop			\Default Work Unit\StopDroneLoop	
 	1489638472	PlayShoot			\Default Work Unit\PlayShoot	
+	3086540886	StopAll			\Default Work Unit\StopAll	
 	4105725876	PlayRicochet			\Default Work Unit\PlayRicochet	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
